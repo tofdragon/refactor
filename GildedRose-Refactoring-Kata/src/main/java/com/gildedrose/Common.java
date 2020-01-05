@@ -13,11 +13,11 @@ public class Common extends Item {
 
     @Override
     protected void updateCommonQuality() {
-        if (quality <= 0) {
+        if (getQuality() <= 0) {
             return;
         }
 
-        quality = quality - 1;
+        setQuality(getQuality() - 1);
     }
 
     @Override
@@ -27,15 +27,15 @@ public class Common extends Item {
 
     @Override
     protected void updateWhenSellLessThanZero() {
-        if (sellIn >= 0) {
+        if (getSellIn() >= 0) {
             return;
         }
 
-        if (quality <= 0) {
+        if (getQuality() <= 0) {
             return;
         }
 
-        quality = quality - 1;
+        setQuality(getQuality() - 1);
     }
 
 }

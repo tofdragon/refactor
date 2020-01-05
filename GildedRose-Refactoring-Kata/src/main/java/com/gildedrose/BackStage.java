@@ -15,26 +15,26 @@ public final class BackStage extends Item {
 
     @Override
     protected void updateCommonQuality() {
-        if (quality >= 50) {
+        if (getQuality() >= 50) {
             return;
         }
-        quality = quality + 1;
+        setQuality(getQuality() + 1);
 
-        if (sellIn < 11) {
+        if (getSellIn() < 11) {
             qualityIncrementWhenQualityLt();
         }
 
-        if (sellIn < 6) {
+        if (getSellIn() < 6) {
             qualityIncrementWhenQualityLt();
         }
     }
 
     @Override
     protected void updateWhenSellLessThanZero() {
-        if (sellIn >= 0) {
+        if (getSellIn() >= 0) {
             return;
         }
-        quality = 0;
+        setQuality(0);
     }
 
     @Override

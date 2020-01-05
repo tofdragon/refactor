@@ -1,12 +1,12 @@
 package com.gildedrose;
 
-public class Item {
+public abstract class Item {
 
-    public String name;
+    private String name;
 
-    public int sellIn;
+    private int sellIn;
 
-    public int quality;
+    private int quality;
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
@@ -34,9 +34,25 @@ public class Item {
     }
 
     protected final void qualityIncrementWhenQualityLt() {
-        if (quality < 50) {
+        if (getQuality() < 50) {
             quality = quality + 1;
         }
+    }
+
+    protected final void setQuality(int quality) {
+        this.quality = quality;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSellIn() {
+        return sellIn;
+    }
+
+    public int getQuality() {
+        return quality;
     }
 
     @Override

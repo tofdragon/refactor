@@ -25,7 +25,7 @@ public final class Aged extends Item {
 
     @Override
     protected void updateWhenSellLessThanZero() {
-        if (sellIn >= 0) {
+        if (getSellIn() >= 0) {
             return;
         }
         qualityIncrementWhenQualityLt();
