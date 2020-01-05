@@ -20,11 +20,11 @@ public final class BackStage extends Item {
         }
         qualityIncrement();
 
-        if (getSellIn() < 11) {
+        if (getSellIn() < 10) {
             qualityIncrementWhenQualityLt();
         }
 
-        if (getSellIn() < 6) {
+        if (getSellIn() < 5) {
             qualityIncrementWhenQualityLt();
         }
     }

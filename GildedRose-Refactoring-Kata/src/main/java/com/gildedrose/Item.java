@@ -15,8 +15,8 @@ public abstract class Item {
     }
 
     public void passOneDay() {
-        updateCommonQuality();
         updateSell();
+        updateCommonQuality();
         updateWhenSellLessThanZero();
     }
 
