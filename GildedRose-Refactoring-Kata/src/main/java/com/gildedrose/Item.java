@@ -21,31 +21,16 @@ public class Item {
     }
 
     protected void updateCommonQuality() {
-        if (quality <= 0) {
-            return;
-        }
-
-        quality = quality - 1;
     }
 
     protected void updateSell() {
-        sellInDecrement();
+    }
+
+    protected void updateWhenSellLessThanZero() {
     }
 
     protected final void sellInDecrement() {
         sellIn = sellIn - 1;
-    }
-
-    protected void updateWhenSellLessThanZero() {
-        if (sellIn >= 0) {
-            return;
-        }
-
-        if (quality <= 0) {
-            return;
-        }
-
-        quality = quality - 1;
     }
 
     protected final void qualityIncrementWhenQualityLt() {
