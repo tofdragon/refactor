@@ -3,9 +3,9 @@ package com.gildedrose;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+public final class TextTestFixture {
 
-public class TextTestFixture {
-    public static void main(String[] args) {
+    public static String baseLine() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(bos);
         out.println("OMGHAI!");
@@ -25,9 +25,6 @@ public class TextTestFixture {
         GildedRose app = new GildedRose(items);
 
         int days = 2;
-        if (args.length > 0) {
-            days = Integer.parseInt(args[0]) + 1;
-        }
 
         for (int i = 0; i < days; i++) {
             out.println("-------- day " + i + " --------");
@@ -39,7 +36,7 @@ public class TextTestFixture {
             app.updateQuality();
         }
 
-        System.out.println(bos.toString());
+        return bos.toString();
     }
 
 }
