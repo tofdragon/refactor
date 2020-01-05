@@ -14,7 +14,7 @@ public abstract class Item {
         this.quality = quality;
     }
 
-    public void updateQuality() {
+    public void passOneDay() {
         updateCommonQuality();
         updateSell();
         updateWhenSellLessThanZero();

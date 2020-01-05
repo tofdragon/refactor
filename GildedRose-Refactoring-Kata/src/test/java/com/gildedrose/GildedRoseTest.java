@@ -10,7 +10,7 @@ class GildedRoseTest {
     void foo() {
         Item[] items = new Item[] { new Common("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.passOneDay();
         assertEquals("foo", app.getItems()[0].getName());
     }
 
