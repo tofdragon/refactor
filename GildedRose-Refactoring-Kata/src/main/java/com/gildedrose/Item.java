@@ -29,6 +29,10 @@ public class Item {
     }
 
     protected void updateSell() {
+        sellInDecrement();
+    }
+
+    protected final void sellInDecrement() {
         sellIn = sellIn - 1;
     }
 
@@ -42,6 +46,12 @@ public class Item {
         }
 
         quality = quality - 1;
+    }
+
+    protected final void qualityIncrementWhenQualityLt() {
+        if (quality < 50) {
+            quality = quality + 1;
+        }
     }
 
     @Override

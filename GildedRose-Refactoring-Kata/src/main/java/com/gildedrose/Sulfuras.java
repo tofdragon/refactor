@@ -15,9 +15,6 @@ public final class Sulfuras extends Item {
 
     @Override
     protected void updateCommonQuality() {
-        if (quality <= 0) {
-            return;
-        }
     }
 
     @Override
@@ -26,13 +23,6 @@ public final class Sulfuras extends Item {
 
     @Override
     protected void updateWhenSellLessThanZero() {
-        if (sellIn >= 0) {
-            return;
-        }
-
-        if (quality <= 0) {
-            return;
-        }
     }
 
 }
