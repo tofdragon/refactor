@@ -26,19 +26,16 @@ public final class BackStage extends Item {
         qualityIncrement();
 
         if (getSellIn() < 10) {
-            qualityIncrementWhenQualityLt();
+            qualityIncrementWhenQualityLtFifty();
         }
 
         if (getSellIn() < 5) {
-            qualityIncrementWhenQualityLt();
+            qualityIncrementWhenQualityLtFifty();
         }
     }
 
     @Override
-    protected void updateWhenSellLessThanZero() {
-        if (sellInGtEqZero()) {
-            return;
-        }
+    protected void sellInExpired() {
         qualityZero();
     }
 }

@@ -22,7 +22,7 @@ public final class Sulfuras extends Item {
     }
 
     @Override
-    protected void updateWhenSellLessThanZero() {
+    protected void sellInExpired() {
     }
 
 }

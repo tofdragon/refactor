@@ -26,11 +26,7 @@ public final class Common extends Item {
     }
 
     @Override
-    protected void updateWhenSellLessThanZero() {
-        if (sellInGtEqZero()) {
-            return;
-        }
-
+    protected void sellInExpired() {
         if (qualityLtEqZero()) {
             return;
         }

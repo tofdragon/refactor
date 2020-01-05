@@ -20,14 +20,11 @@ public final class Aged extends Item {
 
     @Override
     protected void updateCommonQuality() {
-        qualityIncrementWhenQualityLt();
+        qualityIncrementWhenQualityLtFifty();
     }
 
     @Override
-    protected void updateWhenSellLessThanZero() {
-        if (sellInGtEqZero()) {
-            return;
-        }
-        qualityIncrementWhenQualityLt();
+    protected void sellInExpired() {
+        qualityIncrementWhenQualityLtFifty();
     }
 }

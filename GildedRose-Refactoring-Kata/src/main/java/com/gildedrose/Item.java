@@ -17,7 +17,11 @@ public abstract class Item {
     public void passOneDay() {
         updateSell();
         updateCommonQuality();
-        updateWhenSellLessThanZero();
+
+        if (getSellIn() >= 0) {
+            return;
+        }
+        sellInExpired();
     }
 
     protected void updateSell() {
@@ -26,18 +30,14 @@ public abstract class Item {
     protected void updateCommonQuality() {
     }
 
-    protected void updateWhenSellLessThanZero() {
+    protected void sellInExpired() {
     }
 
     protected final void sellInDecrement() {
         sellIn = sellIn - 1;
     }
 
-    protected final boolean sellInGtEqZero() {
-        return getSellIn() >= 0;
-    }
-
-    protected final void qualityIncrementWhenQualityLt() {
+    protected final void qualityIncrementWhenQualityLtFifty() {
         if (getQuality() < 50) {
             qualityIncrement();
         }
