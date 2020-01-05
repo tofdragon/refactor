@@ -74,15 +74,15 @@ public class Item {
         }
     }
 
-    boolean isBackStage() {
+    private boolean isBackStage() {
         return name.equals("Backstage passes to a TAFKAL80ETC concert");
     }
 
-    boolean isSulfuras() {
+    private boolean isSulfuras() {
         return name.equals("Sulfuras, Hand of Ragnaros");
     }
 
-    boolean isAged() {
+    private boolean isAged() {
         return name.equals("Aged Brie");
     }
 
