@@ -33,25 +33,41 @@ public abstract class Item {
         sellIn = sellIn - 1;
     }
 
+    protected final boolean sellInGtEqZero() {
+        return getSellIn() >= 0;
+    }
+
     protected final void qualityIncrementWhenQualityLt() {
         if (getQuality() < 50) {
-            quality = quality + 1;
+            qualityIncrement();
         }
     }
 
-    protected final void setQuality(int quality) {
-        this.quality = quality;
+    protected final void qualityDecrement() {
+        this.quality = this.quality - 1;
+    }
+
+    protected final void qualityIncrement() {
+        this.quality = this.quality + 1;
+    }
+
+    protected final void qualityZero() {
+        this.quality = 0;
+    }
+
+    protected final boolean qualityLtEqZero() {
+        return getQuality() <= 0;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getSellIn() {
+    protected final int getSellIn() {
         return sellIn;
     }
 
-    public int getQuality() {
+    protected final int getQuality() {
         return quality;
     }
 

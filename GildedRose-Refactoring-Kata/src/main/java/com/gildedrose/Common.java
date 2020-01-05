@@ -5,7 +5,7 @@ package com.gildedrose;
  *
  * @author sunjing
  */
-public class Common extends Item {
+public final class Common extends Item {
 
     public Common(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
@@ -13,11 +13,11 @@ public class Common extends Item {
 
     @Override
     protected void updateCommonQuality() {
-        if (getQuality() <= 0) {
+        if (qualityLtEqZero()) {
             return;
         }
 
-        setQuality(getQuality() - 1);
+        qualityDecrement();
     }
 
     @Override
@@ -27,15 +27,15 @@ public class Common extends Item {
 
     @Override
     protected void updateWhenSellLessThanZero() {
-        if (getSellIn() >= 0) {
+        if (sellInGtEqZero()) {
             return;
         }
 
-        if (getQuality() <= 0) {
+        if (qualityLtEqZero()) {
             return;
         }
 
-        setQuality(getQuality() - 1);
+        qualityDecrement();
     }
 
 }

@@ -18,7 +18,7 @@ public final class BackStage extends Item {
         if (getQuality() >= 50) {
             return;
         }
-        setQuality(getQuality() + 1);
+        qualityIncrement();
 
         if (getSellIn() < 11) {
             qualityIncrementWhenQualityLt();
@@ -31,10 +31,10 @@ public final class BackStage extends Item {
 
     @Override
     protected void updateWhenSellLessThanZero() {
-        if (getSellIn() >= 0) {
+        if (sellInGtEqZero()) {
             return;
         }
-        setQuality(0);
+        qualityZero();
     }
 
     @Override
