@@ -21,18 +21,7 @@ public class Item {
     }
 
     protected void updateCommonQuality() {
-        if (isAged() || isBackStage()) {
-            if (quality < 50) {
-                quality = quality + 1;
-            }
-            return;
-        }
-
         if (quality <= 0) {
-            return;
-        }
-
-        if (isSulfuras()) {
             return;
         }
 
@@ -40,10 +29,6 @@ public class Item {
     }
 
     protected void updateSell() {
-        if (isSulfuras()) {
-            return;
-        }
-
         sellIn = sellIn - 1;
     }
 
@@ -52,37 +37,11 @@ public class Item {
             return;
         }
 
-        if (isAged()) {
-            if (quality < 50) {
-                quality = quality + 1;
-            }
-            return;
-        }
-
-        if (isBackStage()) {
-            return;
-        }
-
         if (quality <= 0) {
             return;
         }
 
-        if (isSulfuras()) {
-            return;
-        }
         quality = quality - 1;
-    }
-
-    private boolean isBackStage() {
-        return name.equals("Backstage passes to a TAFKAL80ETC concert");
-    }
-
-    private boolean isSulfuras() {
-        return name.equals("Sulfuras, Hand of Ragnaros");
-    }
-
-    private boolean isAged() {
-        return name.equals("Aged Brie");
     }
 
     @Override
