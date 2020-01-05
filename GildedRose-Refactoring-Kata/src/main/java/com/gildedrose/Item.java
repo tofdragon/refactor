@@ -16,7 +16,7 @@ public class Item {
 
     public void updateQuality() {
         updateCommonQuality();
-        updateSellWhenNotSulfuras();
+        updateSell();
         updateWhenSellLessThanZero();
     }
 
@@ -53,7 +53,7 @@ public class Item {
         quality = quality - 1;
     }
 
-    private void updateSellWhenNotSulfuras() {
+    private void updateSell() {
         if (isSulfuras()) {
             return;
         }
