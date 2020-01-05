@@ -21,13 +21,7 @@ public class Item {
     }
 
     private void updateCommonQuality() {
-        if (!isAged() && !isBackStage()) {
-            if (quality > 0) {
-                if (!isSulfuras()) {
-                    quality = quality - 1;
-                }
-            }
-        } else {
+        if (isAged() || isBackStage()) {
             if (quality < 50) {
                 quality = quality + 1;
 
@@ -45,33 +39,52 @@ public class Item {
                     }
                 }
             }
+            return;
         }
+
+        if (quality <= 0) {
+            return;
+        }
+
+        if (isSulfuras()) {
+            return;
+        }
+
+        quality = quality - 1;
     }
 
     private void updateSellWhenNotSulfuras() {
-        if (!isSulfuras()) {
-            sellIn = sellIn - 1;
+        if (isSulfuras()) {
+            return;
         }
+
+        sellIn = sellIn - 1;
     }
 
     private void updateWhenSellLessThanZero() {
-        if (sellIn < 0) {
-            if (!isAged()) {
-                if (!isBackStage()) {
-                    if (quality > 0) {
-                        if (!isSulfuras()) {
-                            quality = quality - 1;
-                        }
-                    }
-                } else {
-                    quality = quality - quality;
-                }
-            } else {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            }
+        if (sellIn >= 0) {
+            return;
         }
+
+        if (isAged()) {
+            if (quality < 50) {
+                quality = quality + 1;
+            }
+            return;
+        }
+
+        if (isBackStage()) {
+            quality = quality - quality;
+        }
+
+        if (quality <= 0) {
+            return;
+        }
+
+        if (isSulfuras()) {
+            return;
+        }
+        quality = quality - 1;
     }
 
     private boolean isBackStage() {
