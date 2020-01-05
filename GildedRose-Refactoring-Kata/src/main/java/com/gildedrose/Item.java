@@ -20,24 +20,10 @@ public class Item {
         updateWhenSellLessThanZero();
     }
 
-    private void updateCommonQuality() {
+    protected void updateCommonQuality() {
         if (isAged() || isBackStage()) {
             if (quality < 50) {
                 quality = quality + 1;
-
-                if (isBackStage()) {
-                    if (sellIn < 11) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-
-                    if (sellIn < 6) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
-                }
             }
             return;
         }
@@ -53,7 +39,7 @@ public class Item {
         quality = quality - 1;
     }
 
-    private void updateSell() {
+    protected void updateSell() {
         if (isSulfuras()) {
             return;
         }
@@ -61,7 +47,7 @@ public class Item {
         sellIn = sellIn - 1;
     }
 
-    private void updateWhenSellLessThanZero() {
+    protected void updateWhenSellLessThanZero() {
         if (sellIn >= 0) {
             return;
         }
@@ -74,7 +60,7 @@ public class Item {
         }
 
         if (isBackStage()) {
-            quality = quality - quality;
+            return;
         }
 
         if (quality <= 0) {
