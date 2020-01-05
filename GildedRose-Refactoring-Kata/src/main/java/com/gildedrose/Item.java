@@ -20,10 +20,10 @@ public abstract class Item {
         updateWhenSellLessThanZero();
     }
 
-    protected void updateCommonQuality() {
+    protected void updateSell() {
     }
 
-    protected void updateSell() {
+    protected void updateCommonQuality() {
     }
 
     protected void updateWhenSellLessThanZero() {

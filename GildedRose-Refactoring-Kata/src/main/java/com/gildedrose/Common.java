@@ -12,17 +12,17 @@ public final class Common extends Item {
     }
 
     @Override
+    protected void updateSell() {
+        sellInDecrement();
+    }
+
+    @Override
     protected void updateCommonQuality() {
         if (qualityLtEqZero()) {
             return;
         }
 
         qualityDecrement();
-    }
-
-    @Override
-    protected void updateSell() {
-        sellInDecrement();
     }
 
     @Override

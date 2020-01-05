@@ -14,11 +14,11 @@ public final class Sulfuras extends Item {
     }
 
     @Override
-    protected void updateCommonQuality() {
+    protected void updateSell() {
     }
 
     @Override
-    protected void updateSell() {
+    protected void updateCommonQuality() {
     }
 
     @Override

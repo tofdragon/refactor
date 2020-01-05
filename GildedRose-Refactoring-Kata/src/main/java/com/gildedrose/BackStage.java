@@ -14,6 +14,11 @@ public final class BackStage extends Item {
     }
 
     @Override
+    protected void updateSell() {
+        sellInDecrement();
+    }
+
+    @Override
     protected void updateCommonQuality() {
         if (getQuality() >= 50) {
             return;
@@ -35,10 +40,5 @@ public final class BackStage extends Item {
             return;
         }
         qualityZero();
-    }
-
-    @Override
-    protected void updateSell() {
-        sellInDecrement();
     }
 }
