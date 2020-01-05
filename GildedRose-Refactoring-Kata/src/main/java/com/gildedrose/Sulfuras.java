@@ -7,8 +7,10 @@ package com.gildedrose;
  */
 public final class Sulfuras extends Item {
 
-    public Sulfuras(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    private static final String NAME = "Sulfuras, Hand of Ragnaros";
+
+    public Sulfuras(int sellIn, int quality) {
+        super(NAME, sellIn, quality);
     }
 
     @Override

@@ -7,8 +7,10 @@ package com.gildedrose;
  */
 public final class Aged extends Item {
 
-    public Aged(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    private static final String NAME = "Aged Brie";
+
+    public Aged(int sellIn, int quality) {
+        super(NAME, sellIn, quality);
     }
 
     @Override
