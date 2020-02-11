@@ -3,7 +3,11 @@ public class Length {
     private final String unit;
 
     public static final String FOOT = "f";
-    
+
+    public static final String YARD = "yard";
+
+    public static final String INCH = "inch";
+
     public Length(double val, String unit) {
         this.value = val;
         this.unit = unit;
@@ -14,11 +18,11 @@ public class Length {
             return footTo(target);
         }
 
-        if (this.unit.equals("yard")) {
+        if (this.unit.equals(YARD)) {
             return yardTo(target);
         }
 
-        if (this.unit.equals("inch")) {
+        if (this.unit.equals(INCH)) {
             return inchTo(target);
         }
 
@@ -26,11 +30,11 @@ public class Length {
     }
 
     private Length footTo(String target) {
-        if (target.equals("yard")) {
+        if (target.equals(YARD)) {
             return new Length(this.value / 3, target);
         }
 
-        if (target.equals("inch")) {
+        if (target.equals(INCH)) {
             return new Length(this.value * 12, target);
         }
 
@@ -38,7 +42,7 @@ public class Length {
     }
 
     private Length yardTo(String target) {
-        if (target.equals("inch")) {
+        if (target.equals(INCH)) {
             return new Length(this.value * 36, target);
         }
 
@@ -54,7 +58,7 @@ public class Length {
             return new Length(this.value / 12, target);
         }
 
-        if (target.equals("yard")) {
+        if (target.equals(YARD)) {
             return new Length(this.value / 36, target);
         }
 
