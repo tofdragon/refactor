@@ -7,17 +7,17 @@ public class Length {
         this.unit = unit;
     }
 
-    public Length as(String u) {
+    public Length as(String target) {
         if (this.unit.equals("f")) {
-            return footTo(u);
+            return footTo(target);
         }
 
         if (this.unit.equals("yard")) {
-            return yardTo(u);
+            return yardTo(target);
         }
 
         if (this.unit.equals("inch")) {
-            return inchTo(u);
+            return inchTo(target);
         }
 
         return this;
