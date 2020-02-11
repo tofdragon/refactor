@@ -14,10 +14,10 @@ public class LengthTest {
 
     @Test
     public void should_2_feet_equals_2_feet() {
-        Length result = new Length(2, "f").as("f");
+        Length result = new Length(2, Length.FOOT).as(Length.FOOT);
 
         assertThat(result.getVal(), is(2.0));
-        assertThat(result.getUnit(), is("f"));
+        assertThat(result.getUnit(), is(Length.FOOT));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class LengthTest {
 
     @Test
     public void should_1_foot_equals_12_inches() {
-        Length result = new Length(1, "f").as("inch");
+        Length result = new Length(1, Length.FOOT).as("inch");
 
         assertThat(result.getVal(), is(12.0));
         assertThat(result.getUnit(), is("inch"));
@@ -38,7 +38,7 @@ public class LengthTest {
 
     @Test
     public void should_3_foot_equals_1_yard() {
-        Length result = new Length(3, "f").as("yard");
+        Length result = new Length(3, Length.FOOT).as("yard");
 
         assertThat(result.getVal(), is(1.0));
         assertThat(result.getUnit(), is("yard"));
@@ -46,10 +46,10 @@ public class LengthTest {
 
     @Test
     public void should_1_yard_equals_3_feet() {
-        Length result = new Length(1, "yard").as("f");
+        Length result = new Length(1, "yard").as(Length.FOOT);
 
         assertThat(result.getVal(), is(3.0));
-        assertThat(result.getUnit(), is("f"));
+        assertThat(result.getUnit(), is(Length.FOOT));
     }
 
     @Test
@@ -70,10 +70,10 @@ public class LengthTest {
 
     @Test
     public void should_12_inches_equals_1_foot() {
-        Length result = new Length(12, "inch").as("f");
+        Length result = new Length(12, "inch").as(Length.FOOT);
 
         assertThat(result.getVal(), is(1.0));
-        assertThat(result.getUnit(), is("f"));
+        assertThat(result.getUnit(), is(Length.FOOT));
     }
 
     @Test

@@ -2,13 +2,15 @@ public class Length {
     private final double value;
     private final String unit;
 
+    public static final String FOOT = "f";
+    
     public Length(double val, String unit) {
         this.value = val;
         this.unit = unit;
     }
 
     public Length as(String target) {
-        if (this.unit.equals("f")) {
+        if (this.unit.equals(FOOT)) {
             return footTo(target);
         }
 
@@ -40,7 +42,7 @@ public class Length {
             return new Length(this.value * 36, target);
         }
 
-        if (target.equals("f")) {
+        if (target.equals(FOOT)) {
             return new Length(this.value * 3, target);
         }
 
@@ -48,7 +50,7 @@ public class Length {
     }
 
     private Length inchTo(String target) {
-        if (target.equals("f")) {
+        if (target.equals(FOOT)) {
             return new Length(this.value / 12, target);
         }
 
