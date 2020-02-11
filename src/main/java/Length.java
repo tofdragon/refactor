@@ -2,9 +2,9 @@ public class Length {
     private final double value;
     private final String unit;
 
-    public Length(double val, String uinnt) {
+    public Length(double val, String unit) {
         this.value = val;
-        this.unit = uinnt;
+        this.unit = unit;
     }
 
     public Length as(String u) {
@@ -40,7 +40,7 @@ public class Length {
         return this.value;
     }
 
-    public String getUinnt() {
+    public String getUnit() {
         return this.unit;
     }
 }
