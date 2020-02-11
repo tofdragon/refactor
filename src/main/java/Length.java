@@ -26,31 +26,37 @@ public class Length {
     private Length footTo(String target) {
         if (target.equals("yard")) {
             return new Length(this.value / 3, target);
-        } else if (target.equals("inch")) {
-            return new Length(this.value * 12, target);
-        } else {
-            return this;
         }
+
+        if (target.equals("inch")) {
+            return new Length(this.value * 12, target);
+        }
+
+        return this;
     }
 
     private Length yardTo(String target) {
         if (target.equals("inch")) {
             return new Length(this.value * 36, target);
-        } else if (target.equals("f")) {
-            return new Length(this.value * 3, target);
-        } else {
-            return this;
         }
+
+        if (target.equals("f")) {
+            return new Length(this.value * 3, target);
+        }
+
+        return this;
     }
 
     private Length inchTo(String target) {
         if (target.equals("f")) {
             return new Length(this.value / 12, target);
-        } else if (target.equals("yard")) {
-            return new Length(this.value / 36, target);
-        } else {
-            return this;
         }
+
+        if (target.equals("yard")) {
+            return new Length(this.value / 36, target);
+        }
+
+        return this;
     }
 
     public double getVal() {
