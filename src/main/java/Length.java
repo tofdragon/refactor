@@ -79,7 +79,7 @@ public class Length {
         return this;
     }
 
-    public double getVal() {
+    public double getValue() {
         return this.value;
     }
 
