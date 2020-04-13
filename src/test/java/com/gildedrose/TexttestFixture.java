@@ -1,8 +1,18 @@
 package com.gildedrose;
 
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
+
+import java.io.PrintStream;
+
 public class TexttestFixture {
     public static void main(String[] args) {
-        System.out.println("OMGHAI!");
+        System.out.println(baseLine(6));
+    }
+
+    static String baseLine(int days) {
+        ByteOutputStream bos = new ByteOutputStream();
+        PrintStream out = new PrintStream(bos);
+        out.println("OMGHAI!");
 
         Item[] items = new Item[] {
                 new Item("+5 Dexterity Vest", 10, 20), //
@@ -19,20 +29,17 @@ public class TexttestFixture {
 
         GildedRose app = new GildedRose(items);
 
-        int days = 3;
-        if (args.length > 0) {
-            days = Integer.parseInt(args[0]) + 1;
-        }
-
         for (int i = 0; i < days; i++) {
-            System.out.println("-------- day " + i + " --------");
-            System.out.println("name, sellIn, quality");
+            out.println("-------- day " + i + " --------");
+            out.println("name, sellIn, quality");
             for (Item item : items) {
-                System.out.println(item);
+                out.println(item);
             }
-            System.out.println();
+            out.println();
             app.update_quality();
         }
+
+        return bos.toString();
     }
 
 }
