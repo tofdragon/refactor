@@ -15,7 +15,7 @@ public class GildedRoseTest {
 
     @Test
     public void foo() {
-        Item[] items = new Item[] { new Item("foo", 1, 5) };
+        Item[] items = new Item[]{new Item("foo", 1, 5)};
         GildedRose app = new GildedRose(items);
         app.update_quality();
         assertEquals("foo", app.items[0].name);
@@ -29,8 +29,8 @@ public class GildedRoseTest {
     }
 
     private void equals_base_line_of(int days) throws IOException {
-        String baseline = Files.toString(new File("src/test/java/baseLine" +days+".txt"), UTF_8);
-        Assert.assertEquals(baseline, TexttestFixture.baseLine(days));
+        String baseline = Files.toString(new File("src/test/java/baseLine" + days + ".txt"), UTF_8);
+        Assert.assertEquals(baseline, TextTestFixture.baseLine(days));
     }
 
     @Test
