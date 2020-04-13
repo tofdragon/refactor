@@ -4,8 +4,8 @@ public class AgedBrie extends Item {
 
     private static final String NAME = "Aged Brie";
 
-    public AgedBrie(int sell_in, int quality) {
-        super(NAME, sell_in, quality);
+    public AgedBrie(int sellIn, int quality) {
+        super(NAME, sellIn, quality);
     }
 
     protected void updateQuality() {
