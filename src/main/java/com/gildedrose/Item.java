@@ -15,6 +15,12 @@ public class Item {
     }
 
     void passOneDay() {
+        updateQuality();
+        updateSellIn();
+        updateQualityWhenExpired();
+    }
+
+    private void updateQuality() {
         if (!isAgedBrie() && !isBackstage()) {
             if (quality > 0) {
                 if (!isSulfuras()) {
@@ -40,11 +46,15 @@ public class Item {
                 }
             }
         }
+    }
 
+    private void updateSellIn() {
         if (!isSulfuras()) {
             sell_in = sell_in - 1;
         }
+    }
 
+    private void updateQualityWhenExpired() {
         if (sell_in < 0) {
             if (!isAgedBrie()) {
                 if (!isBackstage()) {
