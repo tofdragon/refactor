@@ -4,8 +4,8 @@ public class Backstage extends Item {
 
     private static final String NAME = "Backstage passes to a TAFKAL80ETC concert";
 
-    public Backstage(int sell_in, int quality) {
-        super(NAME, sell_in, quality);
+    public Backstage(int sellIn, int quality) {
+        super(NAME, sellIn, quality);
     }
 
     protected void updateQuality() {
@@ -14,26 +14,25 @@ public class Backstage extends Item {
         }
         quality = quality + 1;
 
-        if (sell_in < 11) {
+        if (sellIn < 11) {
             if (quality < 50) {
                 quality = quality + 1;
             }
         }
 
-        if (sell_in < 6) {
+        if (sellIn < 6) {
             if (quality < 50) {
                 quality = quality + 1;
             }
         }
-        return;
     }
 
     protected void updateSellIn() {
-        sell_in = sell_in - 1;
+        sellIn = sellIn - 1;
     }
 
     protected void updateQualityWhenExpired() {
-        if (sell_in >= 0) {
+        if (sellIn >= 0) {
             return;
         }
         quality = quality - quality;

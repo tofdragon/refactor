@@ -9,21 +9,19 @@ public class AgedBrie extends Item {
     }
 
     protected void updateQuality() {
-
         if (quality >= 50) {
             return;
         }
 
         quality = quality + 1;
-        return;
     }
 
     protected void updateSellIn() {
-        sell_in = sell_in - 1;
+        sellIn = sellIn - 1;
     }
 
     protected void updateQualityWhenExpired() {
-        if (sell_in >= 0) {
+        if (sellIn >= 0) {
             return;
         }
 

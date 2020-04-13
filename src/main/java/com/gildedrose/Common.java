@@ -2,8 +2,8 @@ package com.gildedrose;
 
 public class Common extends Item {
 
-    public Common(String name, int sell_in, int quality) {
-        super(name, sell_in, quality);
+    public Common(String name, int sellIn, int quality) {
+        super(name, sellIn, quality);
     }
 
     protected void updateQuality() {
@@ -14,11 +14,11 @@ public class Common extends Item {
     }
 
     protected void updateSellIn() {
-        sell_in = sell_in - 1;
+        sellIn = sellIn - 1;
     }
 
     protected void updateQualityWhenExpired() {
-        if (sell_in >= 0) {
+        if (sellIn >= 0) {
             return;
         }
 
