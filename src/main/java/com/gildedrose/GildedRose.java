@@ -7,9 +7,9 @@ class GildedRose {
         this.items = items;
     }
 
-    public void updateQuality() {
+    public void passOneDay() {
         for (Item item : items) {
-            item.updateQuality();
+            item.passOneDay();
         }
     }
 }

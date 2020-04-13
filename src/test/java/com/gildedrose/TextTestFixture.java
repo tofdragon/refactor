@@ -36,7 +36,7 @@ public class TextTestFixture {
                 out.println(item);
             }
             out.println();
-            app.updateQuality();
+            app.passOneDay();
         }
 
         return bos.toString();
