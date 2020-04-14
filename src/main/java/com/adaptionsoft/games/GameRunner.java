@@ -1,39 +1,35 @@
-
 package com.adaptionsoft.games;
 
 import java.util.Random;
 
-
 public class GameRunner {
 
-	private static boolean notAWinner;
+    private static boolean notAWinner;
 
-	public static void main(String[] args) {
-		Random rand = new Random();
-		playGame(rand);
+    public static void main(String[] args) {
+        Random rand = new Random();
+        playGame(rand);
+    }
 
-	}
+    public static void playGame(Random rand) {
+        Game game = new Game();
 
-	public static void playGame(Random rand) {
-		Game aGame = new Game();
+        game.add("Chet");
+        game.add("Pat");
+        game.add("Sue");
 
-		aGame.add("Chet");
-		aGame.add("Pat");
-		aGame.add("Sue");
+        do {
+            boolean isStillInPenaltyBox = game.roll(rand.nextInt(5) + 1);
+            boolean isWrongAnswer = rand.nextInt(9) == 7;
 
-
-		do {
-
-			aGame.roll(rand.nextInt(5) + 1);
-
-			if (rand.nextInt(9) == 7) {
-				notAWinner = aGame.wrongAnswer();
-			} else {
-				notAWinner = aGame.wasCorrectlyAnswered();
-			}
-
-
-
-		} while (notAWinner);
-	}
+            if (!isStillInPenaltyBox) {
+                if (isWrongAnswer) {
+                    notAWinner = game.wrongAnswer();
+                } else {
+                    notAWinner = game.wasCorrectlyAnswered();
+                }
+            }
+            game.goNextPlayer();
+        } while (notAWinner);
+    }
 }
