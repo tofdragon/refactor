@@ -1,0 +1,6 @@
+.gradle
+build
+.idea
+/*.iml
+/out/production/classes/com/adaptionsoft/games/*.class
+/out/test/classes/com/adaptionsoft/games/*.class
