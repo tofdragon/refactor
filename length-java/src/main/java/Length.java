@@ -1,3 +1,6 @@
+/**
+ * @author sunjing
+ */
 public class Length {
     private final double value;
     private final String unit;
