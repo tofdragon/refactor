@@ -23,7 +23,7 @@ public class Length {
         if (this.unit.equals("yard")) {
             if (u.equals("inch")) {
                 len = new Length(this.value * 36, u);
-            } else if (u.equals("f")){
+            } else if (u.equals("f")) {
                 len = new Length(this.value * 3, u);
             }
         }
