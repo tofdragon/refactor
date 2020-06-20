@@ -2,13 +2,24 @@
  * @author sunjing
  */
 public class Length {
+
     private final double value;
+
     private final String unit;
 
+    /**
+     * 英尺
+     */
     private static final String FOOT = "f";
 
+    /**
+     * 码
+     */
     private static final String YARD = "yard";
 
+    /**
+     * 英寸
+     */
     private static final String INCH = "inch";
 
     public Length(double val, String unit) {
