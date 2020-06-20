@@ -7,6 +7,8 @@ public class Length {
 
     private final String unit;
 
+    private final Unit tempUnit;
+
     /**
      * 英尺
      */
@@ -25,6 +27,13 @@ public class Length {
     public Length(double value, String unit) {
         this.value = value;
         this.unit = unit;
+        if (unit.equals(FOOT)) {
+            this.tempUnit = Unit.FOOT;
+        } else if (unit.equals(YARD)) {
+            this.tempUnit = Unit.YARD;
+        } else {
+            this.tempUnit = Unit.INCH;
+        }
     }
 
     public Length as(String to) {
@@ -38,6 +47,22 @@ public class Length {
 
         if (this.unit.equals(INCH)) {
             return inchTo(to);
+        }
+
+        return this;
+    }
+
+    public Length as(Unit to) {
+        if (this.tempUnit == Unit.FOOT) {
+            return footTo(FOOT);
+        }
+
+        if (this.tempUnit == Unit.YARD) {
+            return yardTo(YARD);
+        }
+
+        if (this.tempUnit == Unit.INCH) {
+            return inchTo(INCH);
         }
 
         return this;
