@@ -36,6 +36,18 @@ public class Length {
         }
     }
 
+    public Length(double value, Unit unit) {
+        this.value = value;
+        this.tempUnit = unit;
+        if (unit == Unit.FOOT) {
+            this.unit = FOOT;
+        } else if (unit == Unit.YARD) {
+            this.unit = YARD;
+        } else {
+            this.unit = INCH;
+        }
+    }
+
     public Length as(Unit to) {
         if (this.tempUnit == Unit.FOOT) {
             return footTo(to);
@@ -54,11 +66,11 @@ public class Length {
 
     private Length footTo(Unit to) {
         if (to == Unit.YARD) {
-            return new Length(this.value / 3, YARD);
+            return new Length(this.value / 3, to);
         }
 
         if (to == Unit.INCH) {
-            return new Length(this.value * 12, INCH);
+            return new Length(this.value * 12, to);
         }
 
         return this;
@@ -66,11 +78,11 @@ public class Length {
 
     private Length yardTo(Unit to) {
         if (to == Unit.INCH) {
-            return new Length(this.value * 36, INCH);
+            return new Length(this.value * 36, to);
         }
 
         if (to == Unit.FOOT) {
-            return new Length(this.value * 3, FOOT);
+            return new Length(this.value * 3, to);
         }
 
         return this;
@@ -78,11 +90,11 @@ public class Length {
 
     private Length inchTo(Unit to) {
         if (to == Unit.FOOT) {
-            return new Length(this.value / 12, FOOT);
+            return new Length(this.value / 12, to);
         }
 
         if (to == Unit.YARD) {
-            return new Length(this.value / 36, YARD);
+            return new Length(this.value / 36, to);
         }
 
         return this;
