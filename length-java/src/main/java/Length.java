@@ -30,30 +30,54 @@ public class Length {
     public Length as(String to) {
         Length len = this;
         if (this.unit.equals(FOOT)) {
-            if (to.equals(YARD)) {
-                len = new Length(this.value / 3, to);
-            } else if (to.equals(INCH)) {
-                len = new Length(this.value * 12, to);
-            }
+            return footTo(to);
         }
 
         if (this.unit.equals(YARD)) {
-            if (to.equals(INCH)) {
-                len = new Length(this.value * 36, to);
-            } else if (to.equals(FOOT)) {
-                len = new Length(this.value * 3, to);
-            }
+            return yardTo(to);
         }
 
         if (this.unit.equals(INCH)) {
-            if (to.equals(FOOT)) {
-                len = new Length(this.value / 12, to);
-            } else if (to.equals(YARD)) {
-                len = new Length(this.value / 36, to);
-            }
+            return inchTo(to);
         }
 
         return len;
+    }
+
+    private Length footTo(String to) {
+        if (to.equals(YARD)) {
+            return new Length(this.value / 3, to);
+        }
+
+        if (to.equals(INCH)) {
+            return new Length(this.value * 12, to);
+        }
+
+        return this;
+    }
+
+    private Length yardTo(String to) {
+        if (to.equals(INCH)) {
+            return new Length(this.value * 36, to);
+        }
+
+        if (to.equals(FOOT)) {
+            return new Length(this.value * 3, to);
+        }
+
+        return this;
+    }
+
+    private Length inchTo(String to) {
+        if (to.equals(FOOT)) {
+            return new Length(this.value / 12, to);
+        }
+
+        if (to.equals(YARD)) {
+            return new Length(this.value / 36, to);
+        }
+
+        return this;
     }
 
     public double getValue() {
