@@ -36,69 +36,53 @@ public class Length {
         }
     }
 
-    public Length as(String to) {
-        if (this.unit.equals(FOOT)) {
+    public Length as(Unit to) {
+        if (this.tempUnit == Unit.FOOT) {
             return footTo(to);
         }
 
-        if (this.unit.equals(YARD)) {
+        if (this.tempUnit == Unit.YARD) {
             return yardTo(to);
         }
 
-        if (this.unit.equals(INCH)) {
+        if (this.tempUnit == Unit.INCH) {
             return inchTo(to);
         }
 
         return this;
     }
 
-    public Length as(Unit to) {
-        if (this.tempUnit == Unit.FOOT) {
-            return footTo(FOOT);
+    private Length footTo(Unit to) {
+        if (to == Unit.YARD) {
+            return new Length(this.value / 3, YARD);
         }
 
-        if (this.tempUnit == Unit.YARD) {
-            return yardTo(YARD);
-        }
-
-        if (this.tempUnit == Unit.INCH) {
-            return inchTo(INCH);
+        if (to == Unit.INCH) {
+            return new Length(this.value * 12, INCH);
         }
 
         return this;
     }
 
-    private Length footTo(String to) {
-        if (to.equals(YARD)) {
-            return new Length(this.value / 3, to);
+    private Length yardTo(Unit to) {
+        if (to == Unit.INCH) {
+            return new Length(this.value * 36, INCH);
         }
 
-        if (to.equals(INCH)) {
-            return new Length(this.value * 12, to);
-        }
-
-        return this;
-    }
-
-    private Length yardTo(String to) {
-        if (to.equals(INCH)) {
-            return new Length(this.value * 36, to);
-        }
-
-        if (to.equals(FOOT)) {
-            return new Length(this.value * 3, to);
+        if (to == Unit.FOOT) {
+            return new Length(this.value * 3, FOOT);
         }
 
         return this;
     }
 
-    private Length inchTo(String to) {
-        if (to.equals(FOOT)) {
-            return new Length(this.value / 12, to);
+    private Length inchTo(Unit to) {
+        if (to == Unit.FOOT) {
+            return new Length(this.value / 12, FOOT);
         }
 
-        if (to.equals(YARD)) {
-            return new Length(this.value / 36, to);
+        if (to == Unit.YARD) {
+            return new Length(this.value / 36, YARD);
         }
 
         return this;
