@@ -28,7 +28,6 @@ public class Length {
     }
 
     public Length as(String to) {
-        Length len = this;
         if (this.unit.equals(FOOT)) {
             return footTo(to);
         }
@@ -41,7 +40,7 @@ public class Length {
             return inchTo(to);
         }
 
-        return len;
+        return this;
     }
 
     private Length footTo(String to) {
