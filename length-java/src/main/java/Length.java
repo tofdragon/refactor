@@ -5,23 +5,23 @@ public class Length {
 
     private final double value;
 
-    private final Unit tempUnit;
+    private final Unit unit;
 
     public Length(double value, Unit unit) {
         this.value = value;
-        this.tempUnit = unit;
+        this.unit = unit;
     }
 
     public Length as(Unit to) {
-        if (this.tempUnit == Unit.FOOT) {
+        if (this.unit == Unit.FOOT) {
             return footTo(to);
         }
 
-        if (this.tempUnit == Unit.YARD) {
+        if (this.unit == Unit.YARD) {
             return yardTo(to);
         }
 
-        if (this.tempUnit == Unit.INCH) {
+        if (this.unit == Unit.INCH) {
             return inchTo(to);
         }
 
@@ -69,6 +69,6 @@ public class Length {
     }
 
     public Unit getUnit() {
-        return this.tempUnit;
+        return this.unit;
     }
 }
