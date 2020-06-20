@@ -22,8 +22,8 @@ public class Length {
      */
     private static final String INCH = "inch";
 
-    public Length(double val, String unit) {
-        this.value = val;
+    public Length(double value, String unit) {
+        this.value = value;
         this.unit = unit;
     }
 
@@ -56,7 +56,7 @@ public class Length {
         return len;
     }
 
-    public double getVal() {
+    public double getValue() {
         return this.value;
     }
 
