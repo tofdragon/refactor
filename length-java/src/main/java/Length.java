@@ -43,7 +43,7 @@ public class Length {
         return this.value;
     }
 
-    public String getUinnt() {
+    public String getUnit() {
         return this.unit;
     }
 }
