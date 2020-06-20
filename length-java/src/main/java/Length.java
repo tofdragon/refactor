@@ -103,8 +103,8 @@ public class Length {
     public double getValue() {
         return this.value;
     }
-
-    public String getUnit() {
-        return this.unit;
+    
+    public Unit getTempUnit() {
+        return this.tempUnit;
     }
 }
