@@ -5,47 +5,11 @@ public class Length {
 
     private final double value;
 
-    private final String unit;
-
     private final Unit tempUnit;
-
-    /**
-     * 英尺
-     */
-    private static final String FOOT = "f";
-
-    /**
-     * 码
-     */
-    private static final String YARD = "yard";
-
-    /**
-     * 英寸
-     */
-    private static final String INCH = "inch";
-
-    public Length(double value, String unit) {
-        this.value = value;
-        this.unit = unit;
-        if (unit.equals(FOOT)) {
-            this.tempUnit = Unit.FOOT;
-        } else if (unit.equals(YARD)) {
-            this.tempUnit = Unit.YARD;
-        } else {
-            this.tempUnit = Unit.INCH;
-        }
-    }
 
     public Length(double value, Unit unit) {
         this.value = value;
         this.tempUnit = unit;
-        if (unit == Unit.FOOT) {
-            this.unit = FOOT;
-        } else if (unit == Unit.YARD) {
-            this.unit = YARD;
-        } else {
-            this.unit = INCH;
-        }
     }
 
     public Length as(Unit to) {
