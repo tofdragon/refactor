@@ -16,29 +16,29 @@ public class Length {
         this.unit = unit;
     }
 
-    public Length as(String u) {
+    public Length as(String to) {
         Length len = this;
         if (this.unit.equals(FOOT)) {
-            if (u.equals(YARD)) {
-                len = new Length(this.value / 3, u);
-            } else if (u.equals(INCH)) {
-                len = new Length(this.value * 12, u);
+            if (to.equals(YARD)) {
+                len = new Length(this.value / 3, to);
+            } else if (to.equals(INCH)) {
+                len = new Length(this.value * 12, to);
             }
         }
 
         if (this.unit.equals(YARD)) {
-            if (u.equals(INCH)) {
-                len = new Length(this.value * 36, u);
-            } else if (u.equals(FOOT)) {
-                len = new Length(this.value * 3, u);
+            if (to.equals(INCH)) {
+                len = new Length(this.value * 36, to);
+            } else if (to.equals(FOOT)) {
+                len = new Length(this.value * 3, to);
             }
         }
 
         if (this.unit.equals(INCH)) {
-            if (u.equals(FOOT)) {
-                len = new Length(this.value / 12, u);
-            } else if (u.equals(YARD)) {
-                len = new Length(this.value / 36, u);
+            if (to.equals(FOOT)) {
+                len = new Length(this.value / 12, to);
+            } else if (to.equals(YARD)) {
+                len = new Length(this.value / 36, to);
             }
         }
 
