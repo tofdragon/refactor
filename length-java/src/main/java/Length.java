@@ -14,7 +14,7 @@ public class Length {
 
     public Length as(Unit to) {
         if (this.unit == Unit.FOOT) {
-            return footTo(to);
+            return new Length(Converter.to(this.unit, to, this.value), to);
         }
 
         if (this.unit == Unit.YARD) {
