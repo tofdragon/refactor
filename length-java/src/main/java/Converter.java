@@ -14,6 +14,14 @@ public class Converter {
         pairs.add(Pair.create(Unit.FOOT, Unit.YARD, 1/3d));
         pairs.add(Pair.create(Unit.FOOT, Unit.INCH, 12d));
         pairs.add(Pair.create(Unit.FOOT, Unit.FOOT, 1d));
+
+        pairs.add(Pair.create(Unit.YARD, Unit.INCH, 36d));
+        pairs.add(Pair.create(Unit.YARD, Unit.FOOT, 3d));
+        pairs.add(Pair.create(Unit.YARD, Unit.YARD, 1d));
+
+        pairs.add(Pair.create(Unit.INCH, Unit.FOOT, 1/12d));
+        pairs.add(Pair.create(Unit.INCH, Unit.YARD, 1/36d));
+        pairs.add(Pair.create(Unit.INCH, Unit.INCH, 1d));
     }
 
     public static double to(Unit from, Unit to, double value) {
