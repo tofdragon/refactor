@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 转换器
  *
@@ -5,19 +8,25 @@
  */
 public class Converter {
 
+    private static List<Pair> pairs = new ArrayList<>();
+
+    static {
+        pairs.add(Pair.create(Unit.FOOT, Unit.YARD, 1/3d));
+        pairs.add(Pair.create(Unit.FOOT, Unit.INCH, 12d));
+        pairs.add(Pair.create(Unit.FOOT, Unit.FOOT, 1d));
+    }
+
     public static double to(Unit from, Unit to, double value) {
-        if (to == Unit.YARD) {
-            return value / 3;
-        }
+        Pair pair = findBy(from, to);
+        return value * pair.getRadio();
+    }
 
-        if (to == Unit.INCH) {
-            return value * 12;
+    private static Pair findBy(Unit from, Unit to) {
+        for (Pair pair : pairs) {
+            if (pair.equalsFormAndTo(from, to)) {
+                return pair;
+            }
         }
-
-        if (from == to) {
-            return value;
-        }
-
-        return 0d;
+        return null;
     }
 }
