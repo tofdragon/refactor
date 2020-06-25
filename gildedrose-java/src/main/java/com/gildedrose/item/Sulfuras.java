@@ -3,7 +3,6 @@ package com.gildedrose.item;
 import com.gildedrose.Item;
 
 /**
- *
  * @author sunjing
  */
 public class Sulfuras extends Item {
