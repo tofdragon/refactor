@@ -46,6 +46,32 @@ public class Item {
         }
     }
 
+    void updateSellIn() {
+        if (!name.equals(SULFURAS)) {
+            sellIn = sellIn - 1;
+        }
+    }
+
+    void expired() {
+        if (sellIn < 0) {
+            if (!name.equals(AGED_BRIE)) {
+                if (!name.equals(BACKSTAGE)) {
+                    if (quality > 0) {
+                        if (!name.equals(SULFURAS)) {
+                            quality = quality - 1;
+                        }
+                    }
+                } else {
+                    quality = quality - quality;
+                }
+            } else {
+                if (quality < 50) {
+                    quality = quality + 1;
+                }
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
