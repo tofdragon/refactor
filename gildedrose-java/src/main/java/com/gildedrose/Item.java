@@ -53,9 +53,11 @@ public class Item {
     }
 
     private void updateSellIn() {
-        if (!name.equals(SULFURAS)) {
-            sellIn = sellIn - 1;
+        if (name.equals(SULFURAS)) {
+            return;
         }
+
+        sellIn = sellIn - 1;
     }
 
     private void expired() {
