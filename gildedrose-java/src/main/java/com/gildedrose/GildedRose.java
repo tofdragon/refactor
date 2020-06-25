@@ -12,18 +12,18 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            updateQuality(item, AGED_BRIE, BACKSTAGE, SULFURAS);
-            updateSellIn(item, SULFURAS);
-            sellInLessZero(item, AGED_BRIE, BACKSTAGE, SULFURAS);
+            updateQuality(item);
+            updateSellIn(item);
+            sellInLessZero(item);
         }
     }
 
-    private void sellInLessZero(Item item, String agedBrie, String backstage, String sulfuras) {
+    private void sellInLessZero(Item item) {
         if (item.sell_in < 0) {
-            if (!item.name.equals(agedBrie)) {
-                if (!item.name.equals(backstage)) {
+            if (!item.name.equals(AGED_BRIE)) {
+                if (!item.name.equals(BACKSTAGE)) {
                     if (item.quality > 0) {
-                        if (!item.name.equals(sulfuras)) {
+                        if (!item.name.equals(SULFURAS)) {
                             item.quality = item.quality - 1;
                         }
                     }
@@ -38,16 +38,16 @@ class GildedRose {
         }
     }
 
-    private void updateSellIn(Item item, String sulfuras) {
-        if (!item.name.equals(sulfuras)) {
+    private void updateSellIn(Item item) {
+        if (!item.name.equals(SULFURAS)) {
             item.sell_in = item.sell_in - 1;
         }
     }
 
-    private void updateQuality(Item item, String agedBrie, String backstage, String sulfuras) {
-        if (!item.name.equals(agedBrie) && !item.name.equals(backstage)) {
+    private void updateQuality(Item item) {
+        if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE)) {
             if (item.quality > 0) {
-                if (!item.name.equals(sulfuras)) {
+                if (!item.name.equals(SULFURAS)) {
                     item.quality = item.quality - 1;
                 }
             }
@@ -55,7 +55,7 @@ class GildedRose {
             if (item.quality < 50) {
                 item.quality = item.quality + 1;
 
-                if (item.name.equals(backstage)) {
+                if (item.name.equals(BACKSTAGE)) {
                     if (item.sell_in < 11) {
                         if (item.quality < 50) {
                             item.quality = item.quality + 1;
