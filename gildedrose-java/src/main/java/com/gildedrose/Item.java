@@ -26,6 +26,10 @@ public abstract class Item {
     protected void updateSellIn() {
     }
 
+    protected final void sellInDecrement() {
+        sellIn = sellIn - 1;
+    }
+
     protected void expired() {
     }
 
