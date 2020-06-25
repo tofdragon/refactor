@@ -2,6 +2,9 @@ package com.gildedrose;
 
 class GildedRose {
     Item[] items;
+    private static final String AGED_BRIE = "Aged Brie";
+    private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";;
+    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -9,13 +12,9 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            String agedBrie = "Aged Brie";
-            String backstage = "Backstage passes to a TAFKAL80ETC concert";
-            String sulfuras = "Sulfuras, Hand of Ragnaros";
-
-            updateQuality(item, agedBrie, backstage, sulfuras);
-            updateSellIn(item, sulfuras);
-            sellInLessZero(item, agedBrie, backstage, sulfuras);
+            updateQuality(item, AGED_BRIE, BACKSTAGE, SULFURAS);
+            updateSellIn(item, SULFURAS);
+            sellInLessZero(item, AGED_BRIE, BACKSTAGE, SULFURAS);
         }
     }
 
