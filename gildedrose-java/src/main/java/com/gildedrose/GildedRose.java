@@ -12,7 +12,7 @@ class GildedRose {
 
     public void passOneDay() {
         for (Item item : items) {
-            passOneDay(item);
+            updateQuality(item);
             updateSellIn(item);
             expired(item);
         }
@@ -44,7 +44,7 @@ class GildedRose {
         }
     }
 
-    private void passOneDay(Item item) {
+    private void updateQuality(Item item) {
         if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE)) {
             if (item.quality > 0) {
                 if (!item.name.equals(SULFURAS)) {
