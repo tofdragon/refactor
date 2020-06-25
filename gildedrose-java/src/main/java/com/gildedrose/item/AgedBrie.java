@@ -19,7 +19,7 @@ public class AgedBrie extends Item {
             return;
         }
 
-        quality = quality + 1;
+        qualityIncrement();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class AgedBrie extends Item {
         }
 
         if (quality < 50) {
-            quality = quality + 1;
+            qualityIncrement();
         }
     }
 

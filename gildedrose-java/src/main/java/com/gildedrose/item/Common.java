@@ -16,7 +16,7 @@ public class Common extends Item {
         if (quality <= 0) {
             return;
         }
-        quality = quality - 1;
+        qualityDecrement();
     }
 
     @Override
@@ -34,6 +34,6 @@ public class Common extends Item {
             return;
         }
 
-        quality = quality - 1;
+        qualityDecrement();
     }
 }

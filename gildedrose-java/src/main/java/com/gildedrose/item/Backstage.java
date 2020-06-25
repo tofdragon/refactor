@@ -19,17 +19,17 @@ public class Backstage extends Item {
             return;
         }
 
-        quality = quality + 1;
+        qualityIncrement();
 
         if (sellIn < 11) {
             if (quality < 50) {
-                quality = quality + 1;
+                qualityIncrement();
             }
         }
 
         if (sellIn < 6) {
             if (quality < 50) {
-                quality = quality + 1;
+                qualityIncrement();
             }
         }
     }

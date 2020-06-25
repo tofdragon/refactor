@@ -23,6 +23,14 @@ public abstract class Item {
     protected void updateQuality() {
     }
 
+    protected final void qualityDecrement() {
+        quality = quality - 1;
+    }
+
+    protected final void qualityIncrement() {
+        quality = quality + 1;
+    }
+
     protected void updateSellIn() {
     }
 
