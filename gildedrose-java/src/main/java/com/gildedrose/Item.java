@@ -27,22 +27,31 @@ public class Item {
     }
 
     private void updateQuality() {
-        if (name.equals(AGED_BRIE) || name.equals(BACKSTAGE)) {
-            if (quality < 50) {
-                quality = quality + 1;
+        if (name.equals(AGED_BRIE)) {
+            if (quality >= 50) {
+                return;
+            }
 
-                if (name.equals(BACKSTAGE)) {
-                    if (sellIn < 11) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
+            quality = quality + 1;
+            return;
+        }
 
-                    if (sellIn < 6) {
-                        if (quality < 50) {
-                            quality = quality + 1;
-                        }
-                    }
+        if (name.equals(BACKSTAGE)) {
+            if (quality >= 50) {
+                return;
+            }
+
+            quality = quality + 1;
+
+            if (sellIn < 11) {
+                if (quality < 50) {
+                    quality = quality + 1;
+                }
+            }
+
+            if (sellIn < 6) {
+                if (quality < 50) {
+                    quality = quality + 1;
                 }
             }
             return;
