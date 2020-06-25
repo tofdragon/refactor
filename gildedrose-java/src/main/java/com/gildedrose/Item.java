@@ -18,7 +18,13 @@ public class Item {
         this.quality = quality;
     }
 
-    void updateQuality() {
+    void passOneDay() {
+        updateQuality();
+        updateSellIn();
+        expired();
+    }
+
+    private void updateQuality() {
         if (!name.equals(AGED_BRIE) && !name.equals(BACKSTAGE)) {
             if (quality > 0) {
                 if (!name.equals(SULFURAS)) {
@@ -46,13 +52,13 @@ public class Item {
         }
     }
 
-    void updateSellIn() {
+    private void updateSellIn() {
         if (!name.equals(SULFURAS)) {
             sellIn = sellIn - 1;
         }
     }
 
-    void expired() {
+    private void expired() {
         if (sellIn < 0) {
             if (!name.equals(AGED_BRIE)) {
                 if (!name.equals(BACKSTAGE)) {
