@@ -26,16 +26,7 @@ public class Item {
         expired();
     }
 
-    private void updateQuality() {
-        if (name.equals(AGED_BRIE)) {
-            if (quality >= 50) {
-                return;
-            }
-
-            quality = quality + 1;
-            return;
-        }
-
+    protected void updateQuality() {
         if (name.equals(BACKSTAGE)) {
             if (quality >= 50) {
                 return;
@@ -68,7 +59,7 @@ public class Item {
         quality = quality - 1;
     }
 
-    private void updateSellIn() {
+    protected void updateSellIn() {
         if (name.equals(SULFURAS)) {
             return;
         }
@@ -76,15 +67,8 @@ public class Item {
         sellIn = sellIn - 1;
     }
 
-    private void expired() {
+    protected void expired() {
         if (sellIn >= 0) {
-            return;
-        }
-
-        if (name.equals(AGED_BRIE)) {
-            if (quality < 50) {
-                quality = quality + 1;
-            }
             return;
         }
 
