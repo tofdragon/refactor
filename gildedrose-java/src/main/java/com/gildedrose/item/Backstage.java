@@ -7,10 +7,10 @@ import com.gildedrose.Item;
  */
 public class Backstage extends Item {
 
-    private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String NAME = "Backstage passes to a TAFKAL80ETC concert";
 
     public Backstage(int sellIn, int quality) {
-        super(BACKSTAGE, sellIn, quality);
+        super(NAME, sellIn, quality);
     }
 
     @Override

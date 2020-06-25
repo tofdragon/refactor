@@ -8,9 +8,9 @@ import com.gildedrose.Item;
  */
 public class Sulfuras extends Item {
 
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String NAME = "Sulfuras, Hand of Ragnaros";
 
     public Sulfuras(int sellIn, int quality) {
-        super(SULFURAS, sellIn, quality);
+        super(NAME, sellIn, quality);
     }
 }

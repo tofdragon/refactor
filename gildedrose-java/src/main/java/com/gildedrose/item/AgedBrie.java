@@ -7,10 +7,10 @@ import com.gildedrose.Item;
  */
 public class AgedBrie extends Item {
 
-    private static final String AGED_BRIE = "Aged Brie";
+    private static final String NAME = "Aged Brie";
 
     public AgedBrie(int sellIn, int quality) {
-        super(AGED_BRIE, sellIn, quality);
+        super(NAME, sellIn, quality);
     }
 
     @Override
