@@ -10,9 +10,9 @@ class GildedRose {
         this.items = items;
     }
 
-    public void updateQuality() {
+    public void passOneDay() {
         for (Item item : items) {
-            updateQuality(item);
+            passOneDay(item);
             updateSellIn(item);
             sellInLessZero(item);
         }
@@ -44,7 +44,7 @@ class GildedRose {
         }
     }
 
-    private void updateQuality(Item item) {
+    private void passOneDay(Item item) {
         if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE)) {
             if (item.quality > 0) {
                 if (!item.name.equals(SULFURAS)) {
