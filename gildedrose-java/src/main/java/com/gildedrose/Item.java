@@ -27,13 +27,7 @@ public class Item {
     }
 
     private void updateQuality() {
-        if (!name.equals(AGED_BRIE) && !name.equals(BACKSTAGE)) {
-            if (quality > 0) {
-                if (!name.equals(SULFURAS)) {
-                    quality = quality - 1;
-                }
-            }
-        } else {
+        if (name.equals(AGED_BRIE) || name.equals(BACKSTAGE)) {
             if (quality < 50) {
                 quality = quality + 1;
 
@@ -51,7 +45,18 @@ public class Item {
                     }
                 }
             }
+            return;
         }
+
+        if (quality <= 0) {
+            return;
+        }
+
+        if (name.equals(SULFURAS)) {
+            return;
+        }
+
+        quality = quality - 1;
     }
 
     private void updateSellIn() {
