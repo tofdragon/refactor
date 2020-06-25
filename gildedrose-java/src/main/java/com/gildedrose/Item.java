@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Item {
+public abstract class Item {
 
     public String name;
 
@@ -21,26 +21,12 @@ public class Item {
     }
 
     protected void updateQuality() {
-        if (quality <= 0) {
-            return;
-        }
-        quality = quality - 1;
     }
 
     protected void updateSellIn() {
-        sellIn = sellIn - 1;
     }
 
     protected void expired() {
-        if (sellIn >= 0) {
-            return;
-        }
-
-        if (quality <= 0) {
-            return;
-        }
-
-        quality = quality - 1;
     }
 
     @Override

@@ -35,6 +35,11 @@ public class Backstage extends Item {
     }
 
     @Override
+    protected void updateSellIn() {
+        sellIn = sellIn - 1;
+    }
+
+    @Override
     protected void expired() {
         if (sellIn >= 0) {
             return;

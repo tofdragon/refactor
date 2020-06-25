@@ -5,21 +5,18 @@ import com.gildedrose.Item;
 /**
  * @author sunjing
  */
-public class AgedBrie extends Item {
+public class Common extends Item {
 
-    private static final String AGED_BRIE = "Aged Brie";
-
-    public AgedBrie(int sellIn, int quality) {
-        super(AGED_BRIE, sellIn, quality);
+    public Common(String name, int sellIn, int quality) {
+        super(name, sellIn, quality);
     }
 
     @Override
     protected void updateQuality() {
-        if (quality >= 50) {
+        if (quality <= 0) {
             return;
         }
-
-        quality = quality + 1;
+        quality = quality - 1;
     }
 
     @Override
@@ -33,9 +30,10 @@ public class AgedBrie extends Item {
             return;
         }
 
-        if (quality < 50) {
-            quality = quality + 1;
+        if (quality <= 0) {
+            return;
         }
-    }
 
+        quality = quality - 1;
+    }
 }
