@@ -14,11 +14,11 @@ class GildedRose {
         for (Item item : items) {
             passOneDay(item);
             updateSellIn(item);
-            sellInLessZero(item);
+            expired(item);
         }
     }
 
-    private void sellInLessZero(Item item) {
+    private void expired(Item item) {
         if (item.sellIn < 0) {
             if (!item.name.equals(AGED_BRIE)) {
                 if (!item.name.equals(BACKSTAGE)) {
