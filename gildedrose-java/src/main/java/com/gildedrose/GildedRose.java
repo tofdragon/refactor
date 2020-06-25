@@ -19,7 +19,7 @@ class GildedRose {
     }
 
     private void sellInLessZero(Item item) {
-        if (item.sell_in < 0) {
+        if (item.sellIn < 0) {
             if (!item.name.equals(AGED_BRIE)) {
                 if (!item.name.equals(BACKSTAGE)) {
                     if (item.quality > 0) {
@@ -40,7 +40,7 @@ class GildedRose {
 
     private void updateSellIn(Item item) {
         if (!item.name.equals(SULFURAS)) {
-            item.sell_in = item.sell_in - 1;
+            item.sellIn = item.sellIn - 1;
         }
     }
 
@@ -56,13 +56,13 @@ class GildedRose {
                 item.quality = item.quality + 1;
 
                 if (item.name.equals(BACKSTAGE)) {
-                    if (item.sell_in < 11) {
+                    if (item.sellIn < 11) {
                         if (item.quality < 50) {
                             item.quality = item.quality + 1;
                         }
                     }
 
-                    if (item.sell_in < 6) {
+                    if (item.sellIn < 6) {
                         if (item.quality < 50) {
                             item.quality = item.quality + 1;
                         }
