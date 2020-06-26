@@ -8,6 +8,11 @@ import java.util.LinkedList;
  */
 public class Questions {
 
+    private final String POP_QUESTION = "Pop";
+    private final String SCIENCE_QUESTION = "Science";
+    private final String SPORTS_QUESTION = "Sports";
+    private final String ROCK_QUESTION = "Rock";
+
     private LinkedList popQuestions = new LinkedList();
 
     private LinkedList scienceQuestions = new LinkedList();
@@ -25,19 +30,50 @@ public class Questions {
         }
     }
 
-    public void removeFirstOfPopQuestion() {
+    public void removeQuestion(String currentCategory) {
+        if (currentCategory == POP_QUESTION) {
+            removeFirstOfPopQuestion();
+        }
+        if (currentCategory == SCIENCE_QUESTION) {
+            removeFirstOfScienceQuestion();
+        }
+        if (currentCategory == SPORTS_QUESTION) {
+            removeFirstOfSportsQuestion();
+        }
+        if (currentCategory == ROCK_QUESTION) {
+            removeFirstOfRockQuestion();
+        }
+    }
+
+    public String currentCategory(int currentPlace) {
+        if (currentPlace == 0 || currentPlace == 4 || currentPlace == 8) {
+            return POP_QUESTION;
+        }
+
+        if (currentPlace == 1 || currentPlace == 5 || currentPlace == 9) {
+            return SCIENCE_QUESTION;
+        }
+
+        if (currentPlace == 2 || currentPlace == 6 || currentPlace == 10) {
+            return SPORTS_QUESTION;
+        }
+
+        return ROCK_QUESTION;
+    }
+
+    private void removeFirstOfPopQuestion() {
         System.out.println(popQuestions.removeFirst());
     }
 
-    public void removeFirstOfScienceQuestion() {
+    private void removeFirstOfScienceQuestion() {
         System.out.println(scienceQuestions.removeFirst());
     }
 
-    public void removeFirstOfSportsQuestion() {
+    private void removeFirstOfSportsQuestion() {
         System.out.println(sportsQuestions.removeFirst());
     }
 
-    public void removeFirstOfRockQuestion() {
+    private void removeFirstOfRockQuestion() {
         System.out.println(rockQuestions.removeFirst());
     }
 

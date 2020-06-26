@@ -8,10 +8,7 @@ import java.util.List;
  * @author sj
  */
 public class Game {
-	private final String POP_QUESTION = "Pop";
-	private final String SCIENCE_QUESTION = "Science";
-	private final String SPORTS_QUESTION = "Sports";
-	private final String ROCK_QUESTION = "Rock";
+
 	List players = new ArrayList();
     int[] places = new int[6];
     int[] purses  = new int[6];
@@ -93,37 +90,12 @@ public class Game {
 	}
 
 	private void askQuestion() {
-		if (currentCategory() == POP_QUESTION) {
-			questions.removeFirstOfPopQuestion();
-		}
-		if (currentCategory() == SCIENCE_QUESTION) {
-			questions.removeFirstOfScienceQuestion();
-		}
-		if (currentCategory() == SPORTS_QUESTION) {
-			questions.removeFirstOfSportsQuestion();
-		}
-		if (currentCategory() == ROCK_QUESTION) {
-			questions.removeFirstOfRockQuestion();
-		}
+		questions.removeQuestion(currentCategory());
 	}
-
 
 	private String currentCategory() {
 		int currentPlace = placeOfCurrentPlayer();
-
-		if (currentPlace == 0 || currentPlace == 4 || currentPlace == 8) {
-			return POP_QUESTION;
-		}
-
-		if (currentPlace == 1 || currentPlace == 5 || currentPlace == 9) {
-			return SCIENCE_QUESTION;
-		}
-
-		if (currentPlace == 2 || currentPlace == 6 || currentPlace == 10) {
-			return SPORTS_QUESTION;
-		}
-
-		return ROCK_QUESTION;
+		return questions.currentCategory(currentPlace);
 	}
 
 	public boolean wasCorrectlyAnswered() {
