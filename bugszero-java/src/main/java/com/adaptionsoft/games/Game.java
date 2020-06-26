@@ -105,31 +105,32 @@ public class Game {
 
 
 	private String currentCategory() {
-		if (places[currentPlayer] == 0) {
+		int currentPlace = places[currentPlayer];
+		if (currentPlace == 0) {
 			return POP_QUESTION;
 		}
-		if (places[currentPlayer] == 4) {
+		if (currentPlace == 4) {
 			return POP_QUESTION;
 		}
-		if (places[currentPlayer] == 8) {
+		if (currentPlace == 8) {
 			return POP_QUESTION;
 		}
-		if (places[currentPlayer] == 1) {
+		if (currentPlace == 1) {
 			return SCIENCE_QUESTION;
 		}
-		if (places[currentPlayer] == 5) {
+		if (currentPlace == 5) {
 			return SCIENCE_QUESTION;
 		}
-		if (places[currentPlayer] == 9) {
+		if (currentPlace == 9) {
 			return SCIENCE_QUESTION;
 		}
-		if (places[currentPlayer] == 2) {
+		if (currentPlace == 2) {
 			return SPORTS_QUESTION;
 		}
-		if (places[currentPlayer] == 6) {
+		if (currentPlace == 6) {
 			return SPORTS_QUESTION;
 		}
-		if (places[currentPlayer] == 10) {
+		if (currentPlace == 10) {
 			return SPORTS_QUESTION;
 		}
 		return ROCK_QUESTION;
