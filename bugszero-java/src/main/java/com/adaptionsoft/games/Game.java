@@ -8,11 +8,10 @@ import java.util.List;
  */
 public class Game {
 
-	private int[] places = new int[6];
+	private List<Player> players = new ArrayList<>();
+
 	private int[] purses  = new int[6];
 	private boolean[] inPenaltyBox  = new boolean[6];
-
-	private List<Player> players = new ArrayList<>();
 
     private Questions questions = new Questions();
 
@@ -26,7 +25,6 @@ public class Game {
 	public boolean add(String playerName) {
 	    players.add(Player.create(playerName));
 
-	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
 	    inPenaltyBox[howManyPlayers()] = false;
 
@@ -69,6 +67,10 @@ public class Game {
 		return players.get(currentPlayer).getName();
 	}
 
+	private Player tempCurrentPlayer() {
+		return players.get(currentPlayer);
+	}
+
 	private void movePlayerAndAskQuestion(int roll) {
 		setPlaceOfCurrentPlayer(placeOfCurrentPlayer() + roll);
 		if (placeOfCurrentPlayer() > 11){
@@ -80,11 +82,11 @@ public class Game {
 	}
 
 	private void setPlaceOfCurrentPlayer(int place) {
-		places[currentPlayer] = place;
+		tempCurrentPlayer().setPlace(place);
 	}
 
 	private int placeOfCurrentPlayer() {
-		return places[currentPlayer];
+		return tempCurrentPlayer().getPlace();
 	}
 
 	private void askQuestion() {

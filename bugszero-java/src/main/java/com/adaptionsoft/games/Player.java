@@ -27,4 +27,8 @@ public class Player {
     public int getPlace() {
         return place;
     }
+
+    public void setPlace(int place) {
+        this.place = place;
+    }
 }
