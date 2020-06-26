@@ -18,25 +18,13 @@ public class Game {
     boolean[] inPenaltyBox  = new boolean[6];
 
     private Questions questions = new Questions();
-    LinkedList scienceQuestions = new LinkedList();
-    LinkedList sportsQuestions = new LinkedList();
-    LinkedList rockQuestions = new LinkedList();
 
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
 	public Game(){
-    	for (int i = 0; i < 50; i++) {
-			scienceQuestions.addLast(("Science Question " + i));
-			sportsQuestions.addLast(("Sports Question " + i));
-			rockQuestions.addLast(createRockQuestion(i));
-    	}
 		questions.create();
     }
-
-	public String createRockQuestion(int index){
-		return "Rock Question " + index;
-	}
 
 	public boolean add(String playerName) {
 	    players.add(playerName);
@@ -109,13 +97,13 @@ public class Game {
 			questions.removeFirstOfPopQuestion();
 		}
 		if (currentCategory() == SCIENCE_QUESTION) {
-			System.out.println(scienceQuestions.removeFirst());
+			questions.removeFirstOfScienceQuestion();
 		}
 		if (currentCategory() == SPORTS_QUESTION) {
-			System.out.println(sportsQuestions.removeFirst());
+			questions.removeFirstOfSportsQuestion();
 		}
 		if (currentCategory() == ROCK_QUESTION) {
-			System.out.println(rockQuestions.removeFirst());
+			questions.removeFirstOfRockQuestion();
 		}
 	}
 
