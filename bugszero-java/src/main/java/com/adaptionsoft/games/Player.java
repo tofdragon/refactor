@@ -31,10 +31,6 @@ public class Player {
         return place;
     }
 
-    void setPlace(int place) {
-        this.place = place;
-    }
-
     int incrementPurse() {
         return purse ++;
     }
@@ -57,5 +53,12 @@ public class Player {
 
     void goOutInPenaltyBox() {
         inPenaltyBox = false;
+    }
+
+    void move(int roll) {
+        place += roll;
+        if (place > 11) {
+            place -= 12;
+        }
     }
 }

@@ -42,10 +42,7 @@ public class Game {
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
-		currentPlayer().setPlace(currentPlayer().getPlace() + roll);
-		if (currentPlayer().getPlace() > 11){
-			currentPlayer().setPlace(currentPlayer().getPlace() - 12);
-		}
+		currentPlayer().move(roll);
 
 		System.out.println(currentPlayer().getName() + "'s new location is " + currentPlayer().getPlace());
 		questions.askQuestion(currentPlayer().getPlace());
@@ -53,21 +50,15 @@ public class Game {
 
 	public boolean wasCorrectlyAnswered() {
 		if (currentPlayer().inPenaltyBox()) {
-			goNextPlayer();
 			return true;
 		}
 		System.out.println("Answer was corrent!!!!");
 		currentPlayer().incrementPurse();
 		System.out.println(currentPlayer().getName() + " now has " + currentPlayer().getPurse() + " Gold Coins.");
-
-		boolean winner = didPlayerWin();
-		goNextPlayer();
-
-		return winner;
-
+		return didPlayerWin();
 	}
 
-	private void goNextPlayer() {
+	void goNextPlayer() {
 		currentPlayer++;
 		if (currentPlayer == players.size()) {
 			currentPlayer = 0;
@@ -79,7 +70,6 @@ public class Game {
 		System.out.println(currentPlayer().getName() + " was sent to the penalty box");
 		currentPlayer().goInPenaltyBox();
 
-		goNextPlayer();
 		return true;
 	}
 

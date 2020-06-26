@@ -21,7 +21,6 @@ public class GameRunner {
 		aGame.add("Sue");
 
 		boolean notAWinner;
-
 		do {
 			aGame.roll(rand.nextInt(5) + 1);
 			if (rand.nextInt(9) == 7) {
@@ -29,6 +28,7 @@ public class GameRunner {
 			} else {
 				notAWinner = aGame.wasCorrectlyAnswered();
 			}
+			aGame.goNextPlayer();
 		} while (notAWinner);
 	}
 }
