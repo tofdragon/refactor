@@ -12,6 +12,8 @@ public class Player {
 
     private int purse = 0;
 
+    private boolean inPenaltyBox = false;
+
     private Player() {
 
     }
@@ -40,5 +42,13 @@ public class Player {
 
     public int getPurse() {
         return purse;
+    }
+
+    boolean inPenaltyBox() {
+        return inPenaltyBox;
+    }
+
+    void goInPenaltyBox() {
+        inPenaltyBox = true;
     }
 }

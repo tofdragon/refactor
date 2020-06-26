@@ -10,8 +10,6 @@ public class Game {
 
 	private List<Player> players = new ArrayList<>();
 
-	private boolean[] inPenaltyBox  = new boolean[6];
-
     private Questions questions = new Questions();
 
 	private int currentPlayer = 0;
@@ -23,8 +21,6 @@ public class Game {
 
 	public boolean add(String playerName) {
 	    players.add(Player.create(playerName));
-
-	    inPenaltyBox[howManyPlayers()] = false;
 
 	    System.out.println(playerName + " was added");
 	    System.out.println("They are player number " + players.size());
@@ -58,7 +54,7 @@ public class Game {
 	}
 
 	private boolean isInPenaltyBoxOfCurrentPlayer() {
-		return inPenaltyBox[currentPlayer];
+		return tempCurrentPlayer().inPenaltyBox();
 	}
 
 	private Object currentPlayer() {
@@ -142,7 +138,7 @@ public class Game {
 	}
 
 	private void goInPenaltyBoxOfCurrentPlayer() {
-		inPenaltyBox[currentPlayer] = true;
+		tempCurrentPlayer().goInPenaltyBox();
 	}
 
 	private boolean didPlayerWin() {
