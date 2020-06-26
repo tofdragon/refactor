@@ -30,13 +30,11 @@ public class Game {
 
 		if (roll % 2 != 0) {
 			currentPlayer().goOutInPenaltyBox();
-
 			System.out.println(currentPlayer().getName() + " is getting out of the penalty box");
 			movePlayerAndAskQuestion(roll);
 			return;
 		}
 		System.out.println(currentPlayer().getName() + " is not getting out of the penalty box");
-
 	}
 
 	private Player currentPlayer() {
@@ -54,19 +52,19 @@ public class Game {
 	}
 
 	public boolean wasCorrectlyAnswered() {
-		if (currentPlayer().inPenaltyBox()){
+		if (currentPlayer().inPenaltyBox()) {
 			goNextPlayer();
 			return true;
-		} else {
-			System.out.println("Answer was corrent!!!!");
-			currentPlayer().incrementPurse();
-			System.out.println(currentPlayer().getName() + " now has " + currentPlayer().getPurse() + " Gold Coins.");
-
-			boolean winner = didPlayerWin();
-			goNextPlayer();
-
-			return winner;
 		}
+		System.out.println("Answer was corrent!!!!");
+		currentPlayer().incrementPurse();
+		System.out.println(currentPlayer().getName() + " now has " + currentPlayer().getPurse() + " Gold Coins.");
+
+		boolean winner = didPlayerWin();
+		goNextPlayer();
+
+		return winner;
+
 	}
 
 	private void goNextPlayer() {
