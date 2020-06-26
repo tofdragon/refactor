@@ -19,7 +19,7 @@ public class Players {
         return players.size();
     }
 
-    Player player(int playerIndex) {
+    Player of(int playerIndex) {
         return players.get(playerIndex);
     }
 }

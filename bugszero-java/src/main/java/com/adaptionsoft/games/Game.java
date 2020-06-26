@@ -46,7 +46,7 @@ public class Game {
 	}
 
 	private Player currentPlayer() {
-		return players.player(currentPlayer);
+		return players.of(currentPlayer);
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
