@@ -20,12 +20,12 @@ public class Questions {
     }
 
     void askQuestion(int place) {
-        removeQuestion(place);
+        currentCategoryToQuestion.get(categoryOf(place)).removeQuestion();
     }
 
-    private void removeQuestion(int currentPlace) {
-        Category currentCategory = Category.values()[currentPlace % Category.values().length];
+    private Category categoryOf(int place) {
+        Category currentCategory = Category.values()[place % Category.values().length];
         System.out.println("The category is " + currentCategory.getName());
-        currentCategoryToQuestion.get(currentCategory).removeQuestion();
+        return currentCategory;
     }
 }
