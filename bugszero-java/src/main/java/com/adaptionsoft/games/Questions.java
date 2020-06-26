@@ -1,26 +1,24 @@
 package com.adaptionsoft.games;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author sunjing
  */
 public class Questions {
 
-    private Map<Category, Question> currentCategoryToQuestion = new HashMap<>();
+    private List<Question> questions = new ArrayList<>();
 
     void create() {
-        currentCategoryToQuestion.put(Category.POP, new Question(Category.POP.getName()));
-        currentCategoryToQuestion.put(Category.SCIENCE, new Question(Category.SCIENCE.getName()));
-        currentCategoryToQuestion.put(Category.SPORTS, new Question(Category.SPORTS.getName()));
-        currentCategoryToQuestion.put(Category.ROCK, new Question(Category.ROCK.getName()));
-        currentCategoryToQuestion.put(Category.BLUES, new Question(Category.BLUES.getName()));
-        currentCategoryToQuestion.put(Category.HISTORY, new Question(Category.HISTORY.getName()));
+        for (Category category : Category.values()) {
+            questions.add(new Question(category));
+        }
     }
 
     void askQuestion(int place) {
-        currentCategoryToQuestion.get(categoryOf(place)).removeQuestion();
+        Category category = categoryOf(place);
+        questions.stream().filter(question -> question.equalsCategory(category)).findAny().get().removeQuestion();
     }
 
     private Category categoryOf(int place) {
