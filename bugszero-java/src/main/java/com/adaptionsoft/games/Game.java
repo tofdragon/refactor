@@ -1,16 +1,11 @@
 package com.adaptionsoft.games;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author sj
  */
 public class Game {
 
-	private List<Player> players = new ArrayList<>();
-
-	private Players tempPlayers = new Players();
+	private Players players = new Players();
 
     private Questions questions = new Questions();
 
@@ -22,10 +17,9 @@ public class Game {
     }
 
 	public boolean add(String playerName) {
-	    players.add(Player.create(playerName));
-		tempPlayers.addPlayer(playerName);
+		players.addPlayer(playerName);
 	    System.out.println(playerName + " was added");
-	    System.out.println("They are player number " + tempPlayers.size());
+	    System.out.println("They are player number " + players.size());
 		return true;
 	}
 
@@ -52,7 +46,7 @@ public class Game {
 	}
 
 	private Player currentPlayer() {
-		return tempPlayers.player(currentPlayer);
+		return players.player(currentPlayer);
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
@@ -96,7 +90,7 @@ public class Game {
 
 	private void goNextPlayer() {
 		currentPlayer++;
-		if (currentPlayer == tempPlayers.size()) {
+		if (currentPlayer == players.size()) {
 			currentPlayer = 0;
 		}
 	}
