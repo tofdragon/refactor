@@ -9,6 +9,8 @@ import java.util.List;
  */
 public class Players {
 
+    private int currentPlayer = 0;
+
     private List<Player> players = new ArrayList<>();
 
     void addPlayer(String playerName) {
@@ -24,4 +26,16 @@ public class Players {
     Player of(int playerIndex) {
         return players.get(playerIndex);
     }
+
+    Player currentPlayer() {
+        return of(currentPlayer);
+    }
+
+    void goNextPlayer() {
+        currentPlayer++;
+        if (currentPlayer == players.size()) {
+            currentPlayer = 0;
+        }
+    }
+
 }
