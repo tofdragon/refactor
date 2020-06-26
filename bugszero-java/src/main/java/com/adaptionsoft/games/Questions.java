@@ -16,52 +16,52 @@ public class Questions {
     private final String BLUES_QUESTION = "Blues";
     private final String HISTORY_QUESTION = "History";
 
-    private Map<String, Question> currentCategoryToQuestion = new HashMap<>();
+    private Map<Category, Question> currentCategoryToQuestion = new HashMap<>();
 
     void create() {
-        currentCategoryToQuestion.put(POP_QUESTION, new Question(POP_QUESTION));
-        currentCategoryToQuestion.put(SCIENCE_QUESTION, new Question(SCIENCE_QUESTION));
-        currentCategoryToQuestion.put(SPORTS_QUESTION, new Question(SPORTS_QUESTION));
-        currentCategoryToQuestion.put(ROCK_QUESTION, new Question(ROCK_QUESTION));
-        currentCategoryToQuestion.put(BLUES_QUESTION, new Question(BLUES_QUESTION));
-        currentCategoryToQuestion.put(HISTORY_QUESTION, new Question(HISTORY_QUESTION));
+        currentCategoryToQuestion.put(Category.POP, new Question(Category.POP.getName()));
+        currentCategoryToQuestion.put(Category.SCIENCE, new Question(Category.SCIENCE.getName()));
+        currentCategoryToQuestion.put(Category.SPORTS, new Question(Category.SPORTS.getName()));
+        currentCategoryToQuestion.put(Category.ROCK, new Question(Category.ROCK.getName()));
+        currentCategoryToQuestion.put(Category.BLUES, new Question(Category.BLUES.getName()));
+        currentCategoryToQuestion.put(Category.HISTORY, new Question(Category.HISTORY.getName()));
     }
 
     void askQuestion(int place) {
         removeQuestion(place);
     }
 
-    private void removeQuestion(String currentCategory) {
+    private void removeQuestion(Category currentCategory) {
         currentCategoryToQuestion.get(currentCategory).removeQuestion();
     }
 
     private void removeQuestion(int currentPlace) {
-        String currentCategory = currentCategory(currentPlace);
-        System.out.println("The category is " + currentCategory);
+        Category currentCategory = currentCategory(currentPlace);
+        System.out.println("The category is " + currentCategory.getName());
         removeQuestion(currentCategory);
     }
 
-    private String currentCategory(int currentPlace) {
+    private Category currentCategory(int currentPlace) {
         if (currentPlace % 6 == 0) {
-            return POP_QUESTION;
+            return Category.POP;
         }
 
         if (currentPlace % 6 == 1) {
-            return SCIENCE_QUESTION;
+            return Category.SCIENCE;
         }
 
         if (currentPlace % 6 == 2) {
-            return SPORTS_QUESTION;
+            return Category.SPORTS;
         }
 
         if (currentPlace % 6 == 3) {
-            return ROCK_QUESTION;
+            return Category.ROCK;
         }
 
         if (currentPlace % 6 == 4) {
-            return BLUES_QUESTION;
+            return Category.BLUES;
         }
 
-        return HISTORY_QUESTION;
+        return Category.HISTORY;
     }
 }
