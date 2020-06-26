@@ -51,4 +51,8 @@ public class Player {
     void goInPenaltyBox() {
         inPenaltyBox = true;
     }
+
+    void goOutInPenaltyBox() {
+        inPenaltyBox = false;
+    }
 }
