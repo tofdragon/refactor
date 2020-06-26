@@ -19,12 +19,17 @@ public class Game {
 		boolean notAWinner;
 		do {
 			roll(rand.nextInt(5) + 1);
-			if (rand.nextInt(9) == 7) {
-				notAWinner = wrongAnswer();
-			} else {
-				notAWinner = wasCorrectlyAnswered();
+			final boolean isWrongAnswer = rand.nextInt(9) == 7;
+
+			if (players.currentPlayer().notInPenaltyBox()) {
+				if (isWrongAnswer) {
+					wrongAnswer();
+				} else {
+					wasCorrectlyAnswered();
+				}
 			}
-			goNextPlayer();
+			notAWinner = didPlayerWin();
+			players.goNextPlayer();
 		} while (notAWinner);
 	}
 
@@ -47,6 +52,7 @@ public class Game {
 			return;
 		}
 		System.out.println(players.currentPlayer().getName() + " is not getting out of the penalty box");
+		players.currentPlayer().goInPenaltyBox();
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
@@ -56,26 +62,16 @@ public class Game {
 		questions.askQuestion(players.currentPlayer().getPlace());
 	}
 
-	public boolean wasCorrectlyAnswered() {
-		if (players.currentPlayer().inPenaltyBox()) {
-			return true;
-		}
+	public void wasCorrectlyAnswered() {
 		System.out.println("Answer was corrent!!!!");
 		players.currentPlayer().incrementPurse();
 		System.out.println(players.currentPlayer().getName() + " now has " + players.currentPlayer().getPurse() + " Gold Coins.");
-		return didPlayerWin();
 	}
 
-	void goNextPlayer() {
-		players.goNextPlayer();
-	}
-
-	public boolean wrongAnswer(){
+	public void wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
 		System.out.println(players.currentPlayer().getName() + " was sent to the penalty box");
 		players.currentPlayer().goInPenaltyBox();
-
-		return true;
 	}
 
 	private boolean didPlayerWin() {
