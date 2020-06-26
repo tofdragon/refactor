@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class Game {
 
-	private List players = new ArrayList();
 	private int[] places = new int[6];
 	private int[] purses  = new int[6];
 	private boolean[] inPenaltyBox  = new boolean[6];
@@ -26,7 +25,6 @@ public class Game {
     }
 
 	public boolean add(String playerName) {
-	    players.add(playerName);
 	    tempPlayers.add(Player.create(playerName));
 
 	    places[howManyPlayers()] = 0;
@@ -39,7 +37,7 @@ public class Game {
 	}
 
 	public int howManyPlayers() {
-		return players.size();
+		return tempPlayers.size();
 	}
 
 	public void roll(int roll) {
@@ -69,7 +67,7 @@ public class Game {
 	}
 
 	private Object currentPlayer() {
-		return players.get(currentPlayer);
+		return tempPlayers.get(currentPlayer).getName();
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
@@ -121,7 +119,7 @@ public class Game {
 
 	private void goNextPlayer() {
 		currentPlayer++;
-		if (currentPlayer == players.size()) {
+		if (currentPlayer == tempPlayers.size()) {
 			currentPlayer = 0;
 		}
 	}
