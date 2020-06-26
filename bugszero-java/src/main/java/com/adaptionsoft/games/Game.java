@@ -106,33 +106,19 @@ public class Game {
 
 	private String currentCategory() {
 		int currentPlace = places[currentPlayer];
-		if (currentPlace == 0) {
+
+		if (currentPlace == 0 || currentPlace == 4 || currentPlace == 8) {
 			return POP_QUESTION;
 		}
-		if (currentPlace == 4) {
-			return POP_QUESTION;
-		}
-		if (currentPlace == 8) {
-			return POP_QUESTION;
-		}
-		if (currentPlace == 1) {
+
+		if (currentPlace == 1 || currentPlace == 5 || currentPlace == 9) {
 			return SCIENCE_QUESTION;
 		}
-		if (currentPlace == 5) {
-			return SCIENCE_QUESTION;
-		}
-		if (currentPlace == 9) {
-			return SCIENCE_QUESTION;
-		}
-		if (currentPlace == 2) {
+
+		if (currentPlace == 2 || currentPlace == 6 || currentPlace == 10) {
 			return SPORTS_QUESTION;
 		}
-		if (currentPlace == 6) {
-			return SPORTS_QUESTION;
-		}
-		if (currentPlace == 10) {
-			return SPORTS_QUESTION;
-		}
+
 		return ROCK_QUESTION;
 	}
 
