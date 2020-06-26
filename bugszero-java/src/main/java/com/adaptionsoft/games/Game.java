@@ -80,16 +80,20 @@ public class Game {
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
-		places[currentPlayer] = places[currentPlayer] + roll;
-		if (places[currentPlayer] > 11){
-			places[currentPlayer] = places[currentPlayer] - 12;
+		places[currentPlayer] = placeOfCurrentPlayer() + roll;
+		if (placeOfCurrentPlayer() > 11){
+			places[currentPlayer] = placeOfCurrentPlayer() - 12;
 		}
 
 		System.out.println(currentPlayer()
                 + "'s new location is "
-                + places[currentPlayer]);
+                + placeOfCurrentPlayer());
 		System.out.println("The category is " + currentCategory());
 		askQuestion();
+	}
+
+	private int placeOfCurrentPlayer() {
+		return places[currentPlayer];
 	}
 
 	private void askQuestion() {
@@ -109,7 +113,7 @@ public class Game {
 
 
 	private String currentCategory() {
-		int currentPlace = places[currentPlayer];
+		int currentPlace = placeOfCurrentPlayer();
 
 		if (currentPlace == 0 || currentPlace == 4 || currentPlace == 8) {
 			return POP_QUESTION;
