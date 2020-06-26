@@ -84,9 +84,9 @@ public class Game {
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
-		places[currentPlayer] = placeOfCurrentPlayer() + roll;
+		setPlaceOfCurrentPlayer(placeOfCurrentPlayer() + roll);
 		if (placeOfCurrentPlayer() > 11){
-			places[currentPlayer] = placeOfCurrentPlayer() - 12;
+			setPlaceOfCurrentPlayer(placeOfCurrentPlayer() - 12);
 		}
 
 		System.out.println(currentPlayer()
@@ -94,6 +94,10 @@ public class Game {
                 + placeOfCurrentPlayer());
 		System.out.println("The category is " + currentCategory());
 		askQuestion();
+	}
+
+	private void setPlaceOfCurrentPlayer(int place) {
+		places[currentPlayer] = place;
 	}
 
 	private int placeOfCurrentPlayer() {
