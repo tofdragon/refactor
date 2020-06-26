@@ -10,7 +10,6 @@ public class Game {
 
 	private List<Player> players = new ArrayList<>();
 
-	private int[] purses  = new int[6];
 	private boolean[] inPenaltyBox  = new boolean[6];
 
     private Questions questions = new Questions();
@@ -25,7 +24,6 @@ public class Game {
 	public boolean add(String playerName) {
 	    players.add(Player.create(playerName));
 
-	    purses[howManyPlayers()] = 0;
 	    inPenaltyBox[howManyPlayers()] = false;
 
 	    System.out.println(playerName + " was added");
@@ -126,11 +124,12 @@ public class Game {
 	}
 
 	private int incrementPurseOfCurrentPlayer() {
-		return purses[currentPlayer]++;
+		tempCurrentPlayer().incrementPurse();
+		return purseOfCurrentPlayer();
 	}
 
 	private int purseOfCurrentPlayer() {
-		return purses[currentPlayer];
+		return tempCurrentPlayer().getPurse();
 	}
 
 	public boolean wrongAnswer(){

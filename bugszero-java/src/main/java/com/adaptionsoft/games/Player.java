@@ -10,6 +10,8 @@ public class Player {
 
     private int place = 0;
 
+    private int purse = 0;
+
     private Player() {
 
     }
@@ -30,5 +32,13 @@ public class Player {
 
     public void setPlace(int place) {
         this.place = place;
+    }
+
+    int incrementPurse() {
+        return purse ++;
+    }
+
+    public int getPurse() {
+        return purse;
     }
 }
