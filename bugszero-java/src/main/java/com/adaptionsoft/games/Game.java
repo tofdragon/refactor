@@ -31,7 +31,7 @@ public class Game {
 		System.out.println(currentPlayer() + " is the current player");
 		System.out.println("They have rolled a " + roll);
 
-		if (isInPenaltyBoxOfCurrentPlayer()) {
+		if (tempCurrentPlayer().inPenaltyBox()) {
 			if (roll % 2 != 0) {
 				isGettingOutOfPenaltyBox = true;
 
@@ -49,10 +49,6 @@ public class Game {
 
 	}
 
-	private boolean isInPenaltyBoxOfCurrentPlayer() {
-		return tempCurrentPlayer().inPenaltyBox();
-	}
-
 	private Object currentPlayer() {
 		return players.get(currentPlayer).getName();
 	}
@@ -62,29 +58,21 @@ public class Game {
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
-		setPlaceOfCurrentPlayer(placeOfCurrentPlayer() + roll);
-		if (placeOfCurrentPlayer() > 11){
-			setPlaceOfCurrentPlayer(placeOfCurrentPlayer() - 12);
+		tempCurrentPlayer().setPlace(tempCurrentPlayer().getPlace() + roll);
+		if (tempCurrentPlayer().getPlace() > 11){
+			tempCurrentPlayer().setPlace(tempCurrentPlayer().getPlace() - 12);
 		}
 
-		System.out.println(currentPlayer() + "'s new location is " + placeOfCurrentPlayer());
+		System.out.println(currentPlayer() + "'s new location is " + tempCurrentPlayer().getPlace());
 		askQuestion();
 	}
 
-	private void setPlaceOfCurrentPlayer(int place) {
-		tempCurrentPlayer().setPlace(place);
-	}
-
-	private int placeOfCurrentPlayer() {
-		return tempCurrentPlayer().getPlace();
-	}
-
 	private void askQuestion() {
-		questions.removeQuestion(placeOfCurrentPlayer());
+		questions.removeQuestion(tempCurrentPlayer().getPlace());
 	}
 
 	public boolean wasCorrectlyAnswered() {
-		if (isInPenaltyBoxOfCurrentPlayer()){
+		if (tempCurrentPlayer().inPenaltyBox()){
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
 				goNextPlayer();
