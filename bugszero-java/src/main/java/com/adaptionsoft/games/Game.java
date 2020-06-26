@@ -74,9 +74,7 @@ public class Game {
 			setPlaceOfCurrentPlayer(placeOfCurrentPlayer() - 12);
 		}
 
-		System.out.println(currentPlayer()
-                + "'s new location is "
-                + placeOfCurrentPlayer());
+		System.out.println(currentPlayer() + "'s new location is " + placeOfCurrentPlayer());
 		System.out.println("The category is " + currentCategory());
 		askQuestion();
 	}
@@ -104,29 +102,17 @@ public class Game {
 				System.out.println("Answer was correct!!!!");
 				goNextPlayer();
 				incrementPurseOfCurrentPlayer();
-				System.out.println(currentPlayer()
-						+ " now has "
-						+ purseOfCurrentPlayer()
-						+ " Gold Coins.");
-
+				System.out.println(currentPlayer() + " now has " + purseOfCurrentPlayer() + " Gold Coins.");
 				boolean winner = didPlayerWin();
-
 				return winner;
 			} else {
 				goNextPlayer();
 				return true;
 			}
-
-
-
 		} else {
-
 			System.out.println("Answer was corrent!!!!");
 			incrementPurseOfCurrentPlayer();
-			System.out.println(currentPlayer()
-					+ " now has "
-					+ purseOfCurrentPlayer()
-					+ " Gold Coins.");
+			System.out.println(currentPlayer() + " now has " + purseOfCurrentPlayer() + " Gold Coins.");
 
 			boolean winner = didPlayerWin();
 			goNextPlayer();
