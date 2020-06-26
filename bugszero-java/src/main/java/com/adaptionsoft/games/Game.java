@@ -10,6 +10,8 @@ public class Game {
 
 	private List<Player> players = new ArrayList<>();
 
+	private Players tempPlayers = new Players();
+
     private Questions questions = new Questions();
 
 	private int currentPlayer = 0;
@@ -21,9 +23,9 @@ public class Game {
 
 	public boolean add(String playerName) {
 	    players.add(Player.create(playerName));
-
+		tempPlayers.addPlayer(playerName);
 	    System.out.println(playerName + " was added");
-	    System.out.println("They are player number " + players.size());
+	    System.out.println("They are player number " + tempPlayers.size());
 		return true;
 	}
 
@@ -50,7 +52,7 @@ public class Game {
 	}
 
 	private Player currentPlayer() {
-		return players.get(currentPlayer);
+		return tempPlayers.player(currentPlayer);
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
@@ -94,7 +96,7 @@ public class Game {
 
 	private void goNextPlayer() {
 		currentPlayer++;
-		if (currentPlayer == players.size()) {
+		if (currentPlayer == tempPlayers.size()) {
 			currentPlayer = 0;
 		}
 	}
