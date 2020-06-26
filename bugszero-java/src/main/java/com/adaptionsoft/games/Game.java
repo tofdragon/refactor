@@ -1,5 +1,7 @@
 package com.adaptionsoft.games;
 
+import java.util.Random;
+
 /**
  * @author sj
  */
@@ -12,6 +14,19 @@ public class Game {
 	public Game(){
 		questions.create();
     }
+
+	public void playGame(Random rand) {
+		boolean notAWinner;
+		do {
+			roll(rand.nextInt(5) + 1);
+			if (rand.nextInt(9) == 7) {
+				notAWinner = wrongAnswer();
+			} else {
+				notAWinner = wasCorrectlyAnswered();
+			}
+			goNextPlayer();
+		} while (notAWinner);
+	}
 
 	public void add(String playerName) {
 		players.addPlayer(playerName);
