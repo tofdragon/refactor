@@ -1,7 +1,6 @@
 package com.adaptionsoft.games;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ public class Game {
 	private int[] purses  = new int[6];
 	private boolean[] inPenaltyBox  = new boolean[6];
 
-	private List<Player> tempPlayers = new ArrayList<>();
+	private List<Player> players = new ArrayList<>();
 
     private Questions questions = new Questions();
 
@@ -25,19 +24,19 @@ public class Game {
     }
 
 	public boolean add(String playerName) {
-	    tempPlayers.add(Player.create(playerName));
+	    players.add(Player.create(playerName));
 
 	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
 	    inPenaltyBox[howManyPlayers()] = false;
 
 	    System.out.println(playerName + " was added");
-	    System.out.println("They are player number " + tempPlayers.size());
+	    System.out.println("They are player number " + players.size());
 		return true;
 	}
 
 	public int howManyPlayers() {
-		return tempPlayers.size();
+		return players.size();
 	}
 
 	public void roll(int roll) {
@@ -67,7 +66,7 @@ public class Game {
 	}
 
 	private Object currentPlayer() {
-		return tempPlayers.get(currentPlayer).getName();
+		return players.get(currentPlayer).getName();
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
@@ -119,7 +118,7 @@ public class Game {
 
 	private void goNextPlayer() {
 		currentPlayer++;
-		if (currentPlayer == tempPlayers.size()) {
+		if (currentPlayer == players.size()) {
 			currentPlayer = 0;
 		}
 	}
