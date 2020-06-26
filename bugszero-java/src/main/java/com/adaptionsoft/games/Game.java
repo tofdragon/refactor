@@ -92,7 +92,7 @@ public class Game {
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
 				goNextPlayer();
-				incrementPurseOfCurrentPlayer();
+				tempCurrentPlayer().incrementPurse();
 				System.out.println(currentPlayer() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
 				boolean winner = didPlayerWin();
 				return winner;
@@ -102,7 +102,7 @@ public class Game {
 			}
 		} else {
 			System.out.println("Answer was corrent!!!!");
-			incrementPurseOfCurrentPlayer();
+			tempCurrentPlayer().incrementPurse();
 			System.out.println(currentPlayer() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
 
 			boolean winner = didPlayerWin();
@@ -117,10 +117,6 @@ public class Game {
 		if (currentPlayer == players.size()) {
 			currentPlayer = 0;
 		}
-	}
-
-	private void incrementPurseOfCurrentPlayer() {
-		tempCurrentPlayer().incrementPurse();
 	}
 
 	public boolean wrongAnswer(){
