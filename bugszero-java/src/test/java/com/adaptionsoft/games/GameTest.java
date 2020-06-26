@@ -17,7 +17,15 @@ public class GameTest {
         ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(resultStream));
 
-        IntStream.range(1,15).forEach(i -> GameRunner.playGame(randomizer));
+        IntStream.range(1,15).forEach(i -> {
+            Game aGame = new Game();
+
+            aGame.add("Chet");
+            aGame.add("Pat");
+            aGame.add("Sue");
+
+            aGame.playGame(randomizer);
+        });
 
         Approvals.verify(resultStream.toString());
 
