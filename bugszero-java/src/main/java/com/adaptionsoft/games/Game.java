@@ -75,7 +75,6 @@ public class Game {
 		}
 
 		System.out.println(currentPlayer() + "'s new location is " + placeOfCurrentPlayer());
-		System.out.println("The category is " + currentCategory());
 		askQuestion();
 	}
 
@@ -88,12 +87,7 @@ public class Game {
 	}
 
 	private void askQuestion() {
-		questions.removeQuestion(currentCategory());
-	}
-
-	private String currentCategory() {
-		int currentPlace = placeOfCurrentPlayer();
-		return questions.currentCategory(currentPlace);
+		questions.removeQuestion(placeOfCurrentPlayer());
 	}
 
 	public boolean wasCorrectlyAnswered() {

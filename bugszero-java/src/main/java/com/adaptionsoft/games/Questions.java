@@ -45,7 +45,13 @@ public class Questions {
         }
     }
 
-    public String currentCategory(int currentPlace) {
+    public void removeQuestion(int currentPlace) {
+        String currentCategory = currentCategory(currentPlace);
+        System.out.println("The category is " + currentCategory);
+        removeQuestion(currentCategory);
+    }
+
+    private String currentCategory(int currentPlace) {
         if (currentPlace == 0 || currentPlace == 4 || currentPlace == 8) {
             return POP_QUESTION;
         }
