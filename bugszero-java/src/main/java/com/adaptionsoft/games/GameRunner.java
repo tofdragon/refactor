@@ -3,7 +3,9 @@ package com.adaptionsoft.games;
 
 import java.util.Random;
 
-
+/**
+ * @author sj
+ */
 public class GameRunner {
 
 	private static boolean notAWinner;

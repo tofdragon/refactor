@@ -2,14 +2,18 @@ package com.adaptionsoft.games;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
+/**
+ * @author sj
+ */
 public class Game {
-    ArrayList players = new ArrayList();
+    List players = new ArrayList();
     int[] places = new int[6];
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
 
-    LinkedList popQuestions = new LinkedList();
+	LinkedList popQuestions = new LinkedList();
     LinkedList scienceQuestions = new LinkedList();
     LinkedList sportsQuestions = new LinkedList();
     LinkedList rockQuestions = new LinkedList();
@@ -30,13 +34,7 @@ public class Game {
 		return "Rock Question " + index;
 	}
 
-	public boolean isPlayable() {
-		return (howManyPlayers() >= 2);
-	}
-
 	public boolean add(String playerName) {
-
-
 	    players.add(playerName);
 	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
@@ -75,7 +73,9 @@ public class Game {
 
 	private void movePlayerAndAskQuestion(int roll) {
 		places[currentPlayer] = places[currentPlayer] + roll;
-		if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
+		if (places[currentPlayer] > 11){
+			places[currentPlayer] = places[currentPlayer] - 12;
+		}
 
 		System.out.println(players.get(currentPlayer)
                 + "'s new location is "
@@ -97,15 +97,33 @@ public class Game {
 
 
 	private String currentCategory() {
-		if (places[currentPlayer] == 0) return "Pop";
-		if (places[currentPlayer] == 4) return "Pop";
-		if (places[currentPlayer] == 8) return "Pop";
-		if (places[currentPlayer] == 1) return "Science";
-		if (places[currentPlayer] == 5) return "Science";
-		if (places[currentPlayer] == 9) return "Science";
-		if (places[currentPlayer] == 2) return "Sports";
-		if (places[currentPlayer] == 6) return "Sports";
-		if (places[currentPlayer] == 10) return "Sports";
+		if (places[currentPlayer] == 0) {
+			return "Pop";
+		}
+		if (places[currentPlayer] == 4) {
+			return "Pop";
+		}
+		if (places[currentPlayer] == 8) {
+			return "Pop";
+		}
+		if (places[currentPlayer] == 1) {
+			return "Science";
+		}
+		if (places[currentPlayer] == 5) {
+			return "Science";
+		}
+		if (places[currentPlayer] == 9) {
+			return "Science";
+		}
+		if (places[currentPlayer] == 2) {
+			return "Sports";
+		}
+		if (places[currentPlayer] == 6) {
+			return "Sports";
+		}
+		if (places[currentPlayer] == 10) {
+			return "Sports";
+		}
 		return "Rock";
 	}
 
@@ -114,7 +132,9 @@ public class Game {
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
 				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
+				if (currentPlayer == players.size()){
+					currentPlayer = 0;
+				}
 				purses[currentPlayer]++;
 				System.out.println(players.get(currentPlayer)
 						+ " now has "
@@ -126,7 +146,9 @@ public class Game {
 				return winner;
 			} else {
 				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
+				if (currentPlayer == players.size()) {
+					currentPlayer = 0;
+				}
 				return true;
 			}
 
@@ -155,12 +177,14 @@ public class Game {
 		inPenaltyBox[currentPlayer] = true;
 
 		currentPlayer++;
-		if (currentPlayer == players.size()) currentPlayer = 0;
+		if (currentPlayer == players.size()) {
+			currentPlayer = 0;
+		}
 		return true;
 	}
 
 
 	private boolean didPlayerWin() {
-		return !(purses[currentPlayer] == 6);
+		return purses[currentPlayer] != 6;
 	}
 }
