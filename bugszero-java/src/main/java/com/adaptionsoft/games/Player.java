@@ -15,7 +15,6 @@ public class Player {
     private boolean inPenaltyBox = false;
 
     private Player() {
-
     }
 
     public static Player create(String name) {
@@ -24,15 +23,15 @@ public class Player {
         return player;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getPlace() {
+    int getPlace() {
         return place;
     }
 
-    public void setPlace(int place) {
+    void setPlace(int place) {
         this.place = place;
     }
 
@@ -40,7 +39,7 @@ public class Player {
         return purse ++;
     }
 
-    public int getPurse() {
+    int getPurse() {
         return purse;
     }
 
