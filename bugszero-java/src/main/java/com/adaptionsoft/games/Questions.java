@@ -1,9 +1,10 @@
 package com.adaptionsoft.games;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
- *
  * @author sunjing
  */
 public class Questions {
@@ -15,21 +16,15 @@ public class Questions {
     private final String BLUES_QUESTION = "Blues";
     private final String HISTORY_QUESTION = "History";
 
-    private LinkedList popQuestions = new LinkedList();
-
-    private LinkedList scienceQuestions = new LinkedList();
-
-    private LinkedList sportsQuestions = new LinkedList();
-
-    private LinkedList rockQuestions = new LinkedList();
+    private Map<String, Question> currentCategoryToQuestion = new HashMap<>();
 
     void create() {
-        for (int i = 0; i < 50; i++) {
-            popQuestions.addLast("Pop Question " + i);
-            scienceQuestions.addLast("Science Question " + i);
-            sportsQuestions.addLast("Sports Question " + i);
-            rockQuestions.addLast("Rock Question " + i);
-        }
+        currentCategoryToQuestion.put(POP_QUESTION, new Question(POP_QUESTION));
+        currentCategoryToQuestion.put(SCIENCE_QUESTION, new Question(SCIENCE_QUESTION));
+        currentCategoryToQuestion.put(SPORTS_QUESTION, new Question(SPORTS_QUESTION));
+        currentCategoryToQuestion.put(ROCK_QUESTION, new Question(ROCK_QUESTION));
+        currentCategoryToQuestion.put(BLUES_QUESTION, new Question(BLUES_QUESTION));
+        currentCategoryToQuestion.put(HISTORY_QUESTION, new Question(HISTORY_QUESTION));
     }
 
     void askQuestion(int place) {
@@ -37,18 +32,7 @@ public class Questions {
     }
 
     private void removeQuestion(String currentCategory) {
-        if (currentCategory == POP_QUESTION) {
-            removeFirstOfPopQuestion();
-        }
-        if (currentCategory == SCIENCE_QUESTION) {
-            removeFirstOfScienceQuestion();
-        }
-        if (currentCategory == SPORTS_QUESTION) {
-            removeFirstOfSportsQuestion();
-        }
-        if (currentCategory == ROCK_QUESTION) {
-            removeFirstOfRockQuestion();
-        }
+        currentCategoryToQuestion.get(currentCategory).removeQuestion();
     }
 
     private void removeQuestion(int currentPlace) {
@@ -80,21 +64,4 @@ public class Questions {
 
         return HISTORY_QUESTION;
     }
-
-    private void removeFirstOfPopQuestion() {
-        System.out.println(popQuestions.removeFirst());
-    }
-
-    private void removeFirstOfScienceQuestion() {
-        System.out.println(scienceQuestions.removeFirst());
-    }
-
-    private void removeFirstOfSportsQuestion() {
-        System.out.println(sportsQuestions.removeFirst());
-    }
-
-    private void removeFirstOfRockQuestion() {
-        System.out.println(rockQuestions.removeFirst());
-    }
-
 }
