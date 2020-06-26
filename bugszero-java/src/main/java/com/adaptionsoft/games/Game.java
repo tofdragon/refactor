@@ -93,7 +93,7 @@ public class Game {
 				System.out.println("Answer was correct!!!!");
 				goNextPlayer();
 				incrementPurseOfCurrentPlayer();
-				System.out.println(currentPlayer() + " now has " + purseOfCurrentPlayer() + " Gold Coins.");
+				System.out.println(currentPlayer() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
 				boolean winner = didPlayerWin();
 				return winner;
 			} else {
@@ -103,7 +103,7 @@ public class Game {
 		} else {
 			System.out.println("Answer was corrent!!!!");
 			incrementPurseOfCurrentPlayer();
-			System.out.println(currentPlayer() + " now has " + purseOfCurrentPlayer() + " Gold Coins.");
+			System.out.println(currentPlayer() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
 
 			boolean winner = didPlayerWin();
 			goNextPlayer();
@@ -121,27 +121,19 @@ public class Game {
 
 	private int incrementPurseOfCurrentPlayer() {
 		tempCurrentPlayer().incrementPurse();
-		return purseOfCurrentPlayer();
-	}
-
-	private int purseOfCurrentPlayer() {
 		return tempCurrentPlayer().getPurse();
 	}
 
 	public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
 		System.out.println(currentPlayer() + " was sent to the penalty box");
-		goInPenaltyBoxOfCurrentPlayer();
+		tempCurrentPlayer().goInPenaltyBox();
 
 		goNextPlayer();
 		return true;
 	}
 
-	private void goInPenaltyBoxOfCurrentPlayer() {
-		tempCurrentPlayer().goInPenaltyBox();
-	}
-
 	private boolean didPlayerWin() {
-		return purseOfCurrentPlayer() != 6;
+		return tempCurrentPlayer().getPurse() != 6;
 	}
 }
