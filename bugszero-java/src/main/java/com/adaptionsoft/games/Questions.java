@@ -21,7 +21,7 @@ public class Questions {
 
     private LinkedList rockQuestions = new LinkedList();
 
-    public void create() {
+    void create() {
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast("Pop Question " + i);
             scienceQuestions.addLast("Science Question " + i);
@@ -30,7 +30,11 @@ public class Questions {
         }
     }
 
-    public void removeQuestion(String currentCategory) {
+    void askQuestion(int place) {
+        removeQuestion(place);
+    }
+
+    private void removeQuestion(String currentCategory) {
         if (currentCategory == POP_QUESTION) {
             removeFirstOfPopQuestion();
         }
@@ -45,7 +49,7 @@ public class Questions {
         }
     }
 
-    public void removeQuestion(int currentPlace) {
+    private void removeQuestion(int currentPlace) {
         String currentCategory = currentCategory(currentPlace);
         System.out.println("The category is " + currentCategory);
         removeQuestion(currentCategory);

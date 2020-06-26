@@ -10,6 +10,7 @@ public class Game {
     private Questions questions = new Questions();
 
 	private int currentPlayer = 0;
+
 	private boolean isGettingOutOfPenaltyBox;
 
 	public Game(){
@@ -36,13 +37,10 @@ public class Game {
 			} else {
 				System.out.println(currentPlayer().getName() + " is not getting out of the penalty box");
 				isGettingOutOfPenaltyBox = false;
-				}
-
+			}
 		} else {
-
 			movePlayerAndAskQuestion(roll);
 		}
-
 	}
 
 	private Player currentPlayer() {
@@ -56,11 +54,7 @@ public class Game {
 		}
 
 		System.out.println(currentPlayer().getName() + "'s new location is " + currentPlayer().getPlace());
-		askQuestion();
-	}
-
-	private void askQuestion() {
-		questions.removeQuestion(currentPlayer().getPlace());
+		questions.askQuestion(currentPlayer().getPlace());
 	}
 
 	public boolean wasCorrectlyAnswered() {
