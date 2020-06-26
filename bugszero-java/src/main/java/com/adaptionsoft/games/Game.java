@@ -146,7 +146,7 @@ public class Game {
 				if (currentPlayer == players.size()){
 					currentPlayer = 0;
 				}
-				purses[currentPlayer]++;
+				incrementPurseOfCurrentPlayer();
 				System.out.println(currentPlayer()
 						+ " now has "
 						+ purseOfCurrentPlayer()
@@ -168,7 +168,7 @@ public class Game {
 		} else {
 
 			System.out.println("Answer was corrent!!!!");
-			purses[currentPlayer]++;
+			incrementPurseOfCurrentPlayer();
 			System.out.println(currentPlayer()
 					+ " now has "
 					+ purseOfCurrentPlayer()
@@ -176,10 +176,16 @@ public class Game {
 
 			boolean winner = didPlayerWin();
 			currentPlayer++;
-			if (currentPlayer == players.size()) currentPlayer = 0;
+			if (currentPlayer == players.size()) {
+				currentPlayer = 0;
+			}
 
 			return winner;
 		}
+	}
+
+	private int incrementPurseOfCurrentPlayer() {
+		return purses[currentPlayer]++;
 	}
 
 	private int purseOfCurrentPlayer() {
