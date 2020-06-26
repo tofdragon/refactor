@@ -12,6 +12,8 @@ public class Questions {
     private final String SCIENCE_QUESTION = "Science";
     private final String SPORTS_QUESTION = "Sports";
     private final String ROCK_QUESTION = "Rock";
+    private final String BLUES_QUESTION = "Blues";
+    private final String HISTORY_QUESTION = "History";
 
     private LinkedList popQuestions = new LinkedList();
 
@@ -56,19 +58,27 @@ public class Questions {
     }
 
     private String currentCategory(int currentPlace) {
-        if (currentPlace == 0 || currentPlace == 4 || currentPlace == 8) {
+        if (currentPlace % 6 == 0) {
             return POP_QUESTION;
         }
 
-        if (currentPlace == 1 || currentPlace == 5 || currentPlace == 9) {
+        if (currentPlace % 6 == 1) {
             return SCIENCE_QUESTION;
         }
 
-        if (currentPlace == 2 || currentPlace == 6 || currentPlace == 10) {
+        if (currentPlace % 6 == 2) {
             return SPORTS_QUESTION;
         }
 
-        return ROCK_QUESTION;
+        if (currentPlace % 6 == 3) {
+            return ROCK_QUESTION;
+        }
+
+        if (currentPlace % 6 == 4) {
+            return BLUES_QUESTION;
+        }
+
+        return HISTORY_QUESTION;
     }
 
     private void removeFirstOfPopQuestion() {
