@@ -119,9 +119,8 @@ public class Game {
 		}
 	}
 
-	private int incrementPurseOfCurrentPlayer() {
+	private void incrementPurseOfCurrentPlayer() {
 		tempCurrentPlayer().incrementPurse();
-		return tempCurrentPlayer().getPurse();
 	}
 
 	public boolean wrongAnswer(){
