@@ -28,17 +28,17 @@ public class Game {
 	}
 
 	public void roll(int roll) {
-		System.out.println(currentPlayer() + " is the current player");
+		System.out.println(tempCurrentPlayer().getName() + " is the current player");
 		System.out.println("They have rolled a " + roll);
 
 		if (tempCurrentPlayer().inPenaltyBox()) {
 			if (roll % 2 != 0) {
 				isGettingOutOfPenaltyBox = true;
 
-				System.out.println(currentPlayer() + " is getting out of the penalty box");
+				System.out.println(tempCurrentPlayer().getName() + " is getting out of the penalty box");
 				movePlayerAndAskQuestion(roll);
 			} else {
-				System.out.println(currentPlayer() + " is not getting out of the penalty box");
+				System.out.println(tempCurrentPlayer().getName() + " is not getting out of the penalty box");
 				isGettingOutOfPenaltyBox = false;
 				}
 
@@ -47,10 +47,6 @@ public class Game {
 			movePlayerAndAskQuestion(roll);
 		}
 
-	}
-
-	private Object currentPlayer() {
-		return players.get(currentPlayer).getName();
 	}
 
 	private Player tempCurrentPlayer() {
@@ -63,7 +59,7 @@ public class Game {
 			tempCurrentPlayer().setPlace(tempCurrentPlayer().getPlace() - 12);
 		}
 
-		System.out.println(currentPlayer() + "'s new location is " + tempCurrentPlayer().getPlace());
+		System.out.println(tempCurrentPlayer().getName() + "'s new location is " + tempCurrentPlayer().getPlace());
 		askQuestion();
 	}
 
@@ -77,7 +73,7 @@ public class Game {
 				System.out.println("Answer was correct!!!!");
 				goNextPlayer();
 				tempCurrentPlayer().incrementPurse();
-				System.out.println(currentPlayer() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
+				System.out.println(tempCurrentPlayer().getName() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
 				boolean winner = didPlayerWin();
 				return winner;
 			} else {
@@ -87,7 +83,7 @@ public class Game {
 		} else {
 			System.out.println("Answer was corrent!!!!");
 			tempCurrentPlayer().incrementPurse();
-			System.out.println(currentPlayer() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
+			System.out.println(tempCurrentPlayer().getName() + " now has " + tempCurrentPlayer().getPurse() + " Gold Coins.");
 
 			boolean winner = didPlayerWin();
 			goNextPlayer();
@@ -105,7 +101,7 @@ public class Game {
 
 	public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
-		System.out.println(currentPlayer() + " was sent to the penalty box");
+		System.out.println(tempCurrentPlayer().getName() + " was sent to the penalty box");
 		tempCurrentPlayer().goInPenaltyBox();
 
 		goNextPlayer();
