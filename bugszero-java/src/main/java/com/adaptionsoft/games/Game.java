@@ -149,7 +149,7 @@ public class Game {
 				purses[currentPlayer]++;
 				System.out.println(currentPlayer()
 						+ " now has "
-						+ purses[currentPlayer]
+						+ purseOfCurrentPlayer()
 						+ " Gold Coins.");
 
 				boolean winner = didPlayerWin();
@@ -171,7 +171,7 @@ public class Game {
 			purses[currentPlayer]++;
 			System.out.println(currentPlayer()
 					+ " now has "
-					+ purses[currentPlayer]
+					+ purseOfCurrentPlayer()
 					+ " Gold Coins.");
 
 			boolean winner = didPlayerWin();
@@ -180,6 +180,10 @@ public class Game {
 
 			return winner;
 		}
+	}
+
+	private int purseOfCurrentPlayer() {
+		return purses[currentPlayer];
 	}
 
 	public boolean wrongAnswer(){
@@ -196,6 +200,6 @@ public class Game {
 
 
 	private boolean didPlayerWin() {
-		return purses[currentPlayer] != 6;
+		return purseOfCurrentPlayer() != 6;
 	}
 }
