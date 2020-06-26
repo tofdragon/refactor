@@ -193,12 +193,15 @@ public class Game {
 	public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
 		System.out.println(currentPlayer() + " was sent to the penalty box");
-		inPenaltyBox[currentPlayer] = true;
+		goInPenaltyBoxOfCurrentPlayer();
 
 		goNextPlayer();
 		return true;
 	}
 
+	private void goInPenaltyBoxOfCurrentPlayer() {
+		inPenaltyBox[currentPlayer] = true;
+	}
 
 	private boolean didPlayerWin() {
 		return purseOfCurrentPlayer() != 6;
