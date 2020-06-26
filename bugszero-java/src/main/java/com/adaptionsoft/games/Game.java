@@ -17,27 +17,26 @@ public class Game {
 
 	public boolean add(String playerName) {
 		players.addPlayer(playerName);
-	    System.out.println(playerName + " was added");
-	    System.out.println("They are player number " + players.size());
 		return true;
 	}
 
 	public void roll(int roll) {
 		System.out.println(currentPlayer().getName() + " is the current player");
 		System.out.println("They have rolled a " + roll);
-
-		if (currentPlayer().inPenaltyBox()) {
-			if (roll % 2 != 0) {
-				currentPlayer().goOutInPenaltyBox();
-
-				System.out.println(currentPlayer().getName() + " is getting out of the penalty box");
-				movePlayerAndAskQuestion(roll);
-			} else {
-				System.out.println(currentPlayer().getName() + " is not getting out of the penalty box");
-			}
-		} else {
+		if (currentPlayer().notInPenaltyBox()) {
 			movePlayerAndAskQuestion(roll);
+			return;
 		}
+
+		if (roll % 2 != 0) {
+			currentPlayer().goOutInPenaltyBox();
+
+			System.out.println(currentPlayer().getName() + " is getting out of the penalty box");
+			movePlayerAndAskQuestion(roll);
+			return;
+		}
+		System.out.println(currentPlayer().getName() + " is not getting out of the penalty box");
+
 	}
 
 	private Player currentPlayer() {

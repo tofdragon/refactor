@@ -13,6 +13,8 @@ public class Players {
 
     void addPlayer(String playerName) {
         players.add(Player.create(playerName));
+        System.out.println(playerName + " was added");
+        System.out.println("They are player number " + players.size());
     }
 
     int size() {
