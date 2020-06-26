@@ -9,15 +9,15 @@ import java.util.List;
  */
 public class Game {
 
-	List players = new ArrayList();
-    int[] places = new int[6];
-    int[] purses  = new int[6];
-    boolean[] inPenaltyBox  = new boolean[6];
+	private List players = new ArrayList();
+	private int[] places = new int[6];
+	private int[] purses  = new int[6];
+	private boolean[] inPenaltyBox  = new boolean[6];
 
     private Questions questions = new Questions();
 
-    int currentPlayer = 0;
-    boolean isGettingOutOfPenaltyBox;
+	private int currentPlayer = 0;
+	private boolean isGettingOutOfPenaltyBox;
 
 	public Game(){
 		questions.create();
