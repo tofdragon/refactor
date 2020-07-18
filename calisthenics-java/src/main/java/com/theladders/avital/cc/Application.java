@@ -18,24 +18,11 @@ public class Application {
 
     private final SaveJobs saveJobs = new SaveJobs();
 
-    private final FailedApplications failedApplications = new FailedApplications();
-
     private final JobApplications jobApplications = new JobApplications();
 
     void apply(Employer employer, Job job, JobSeeker jobSeeker, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {
-        String resumeApplicantName = jobSeeker.getResume() == null ? null : jobSeeker.getResume().getName();
-
-        if (JobType.JREQ == job.getJobType() && resumeApplicantName == null) {
-            failedApplications.add(job, employer.getName(), applicationTime);
-            throw new RequiresResumeForJReqJobException();
-        }
-
-        if (JobType.JREQ == job.getJobType() && !resumeApplicantName.equals(jobSeeker.getName())) {
-            throw new InvalidResumeException();
-        }
-
-        jobApplications.addJobApplication(jobSeeker.getName(), job, employer.getName(), applicationTime);
+        jobApplications.addJobApplication(jobSeeker, job, employer.getName(), applicationTime);
     }
 
     void save(JobSeeker jobSeeker, Job job) {
@@ -244,6 +231,6 @@ public class Application {
     }
 
     public int getUnsuccessfulApplications(String employerName, String jobName) {
-        return failedApplications.getUnsuccessfulApplications(employerName, jobName);
+        return jobApplications.getUnsuccessfulApplications(employerName, jobName);
     }
 }
