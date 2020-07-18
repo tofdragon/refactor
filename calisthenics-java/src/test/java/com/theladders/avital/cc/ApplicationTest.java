@@ -27,11 +27,8 @@ public class ApplicationTest {
         return JobApplication.create(employerName, job, LocalDate.parse(applicationTime));
     }
 
-    private ArrayList<String> createNewJob(final String jobName, final JobType jobType) {
-        return new ArrayList<String>() {{
-            add(jobName);
-            add(jobType.getType());
-        }};
+    private Job createNewJob(final String jobName, final JobType jobType) {
+        return Job.create(jobName, jobType);
     }
 
 
@@ -45,8 +42,8 @@ public class ApplicationTest {
         String employerName = "";
         String jobName = "高级前端开发";
         application.publish(Employer.create(employerName), Job.create(jobName, JobType.JREQ));
-        List<List<String>> jobs = application.getPublishedJobs(employerName);
-        List<List<String>> expected = new ArrayList<List<String>>() {{
+        List<Job> jobs = application.getPublishedJobs(employerName);
+        List<Job> expected = new ArrayList() {{
             add(createNewJob("高级前端开发", JobType.JREQ));
         }};
 
@@ -61,8 +58,8 @@ public class ApplicationTest {
         String juniorJavaDevJob = "Java开发";
         application.publish(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.JREQ));
         application.publish(Employer.create(employerTencent), Job.create(juniorJavaDevJob, JobType.JREQ));
-        List<List<String>> jobs = application.getPublishedJobs(employerAlibaba);
-        List<List<String>> expected = new ArrayList<List<String>>() {{
+        List<Job> jobs = application.getPublishedJobs(employerAlibaba);
+        List<Job> expected = new ArrayList() {{
             add(createNewJob("高级Java开发", JobType.JREQ));
         }};
 
@@ -75,8 +72,8 @@ public class ApplicationTest {
         String seniorJavaDevJob = "高级Java开发";
 
         application.publish(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.ATS));
-        List<List<String>> jobs = application.getPublishedJobs(employerAlibaba);
-        List<List<String>> expected = new ArrayList<List<String>>() {{
+        List<Job> jobs = application.getPublishedJobs(employerAlibaba);
+        List<Job> expected = new ArrayList() {{
             add(createNewJob("高级Java开发", JobType.ATS));
         }};
 
@@ -98,8 +95,8 @@ public class ApplicationTest {
         String jobName = "高级Java开发";
         application.publish(Employer.create(employerAlibaba), Job.create(jobName, JobType.JREQ));
         application.save(JobSeeker.create(jobSeekerName), Job.create(jobName, JobType.JREQ));
-        List<List<String>> savedJobs = application.getPublishedJobs(jobSeekerName);
-        List<List<String>> expected = new ArrayList<List<String>>() {{
+        List<Job> savedJobs = application.getPublishedJobs(employerAlibaba);
+        List<Job> expected = new ArrayList() {{
             add(createNewJob("高级Java开发", JobType.JREQ));
         }};
 

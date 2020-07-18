@@ -14,7 +14,9 @@ import static java.util.Map.Entry;
  */
 public class Application {
 
-    private final HashMap<String, List<List<String>>> jobs = new HashMap<>();
+    private final PublishJobs publishJobs = new PublishJobs();
+
+    private final SaveJobs saveJobs = new SaveJobs();
 
     private final FailedApplications failedApplications = new FailedApplications();
 
@@ -37,31 +39,15 @@ public class Application {
     }
 
     void save(JobSeeker jobSeeker, Job job) {
-        List<List<String>> saved = jobs.getOrDefault(jobSeeker.getName(), new ArrayList<>());
-
-        saved.add(new ArrayList<String>() {{
-            add(job.getJobName());
-            add(job.getJobType().getType());
-        }});
-        jobs.put(jobSeeker.getName(), saved);
+        saveJobs.add(jobSeeker.getName(), job);
     }
 
     void publish(Employer employer, Job job) throws NotSupportedJobTypeException {
-        if (!(JobType.JREQ == job.getJobType()) && ! (JobType.ATS == job.getJobType())) {
-            throw new NotSupportedJobTypeException();
-        }
-
-        List<List<String>> alreadyPublished = jobs.getOrDefault(employer.getName(), new ArrayList<>());
-
-        alreadyPublished.add(new ArrayList<String>() {{
-            add(job.getJobName());
-            add(job.getJobType().getType());
-        }});
-        jobs.put(employer.getName(), alreadyPublished);
+        publishJobs.add(employer.getName(), job);
     }
 
-    public List<List<String>> getPublishedJobs(String employerName) {
-        return jobs.get(employerName);
+    public List<Job> getPublishedJobs(String employerName) {
+        return publishJobs.get(employerName);
     }
 
     public List<JobApplication> getAppliedJobs(String jobSeekerName) {
