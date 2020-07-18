@@ -49,6 +49,12 @@ public class Application {
         applied.put(jobSeekerName, saved);
     }
 
+    void apply(String employerName, String jobName, JobType jobType,
+               String jobSeekerName, String resumeApplicantName, LocalDate applicationTime)
+            throws RequiresResumeForJReqJobException, InvalidResumeException {
+        this.apply(employerName,jobName, jobType.getType(), jobSeekerName, resumeApplicantName, applicationTime);
+    }
+
     void save(String employerName, String jobName, String jobType) {
         List<List<String>> saved = jobs.getOrDefault(employerName, new ArrayList<>());
 
