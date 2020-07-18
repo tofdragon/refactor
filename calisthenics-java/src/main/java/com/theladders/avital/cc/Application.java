@@ -32,7 +32,7 @@ public final class Application {
     }
 
     Jobs getPublishedJobs(String employerName) {
-        return publishJobs.jobsBy(employerName);
+        return publishJobs.get(employerName);
     }
 
     public List<JobApplication> getAppliedJobs(String jobSeekerName) {
