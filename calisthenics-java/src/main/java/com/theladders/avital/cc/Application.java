@@ -21,13 +21,13 @@ public class Application {
 
     private final List<List<String>> failedApplications = new ArrayList<>();
 
-    void apply(String employerName, String jobName, String jobType,
+    void apply(String employerName, String jobName, JobType jobType,
                        String jobSeekerName, String resumeApplicantName, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {
-        if (JobType.isJReq(jobType) && resumeApplicantName == null) {
+        if (JobType.JREQ == jobType && resumeApplicantName == null) {
             List<String> failedApplication = new ArrayList<String>() {{
                 add(jobName);
-                add(jobType);
+                add(jobType.getType());
                 add(applicationTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
                 add(employerName);
             }};
@@ -35,24 +35,18 @@ public class Application {
             throw new RequiresResumeForJReqJobException();
         }
 
-        if (JobType.isJReq(jobType) && !resumeApplicantName.equals(jobSeekerName)) {
+        if (JobType.JREQ == jobType && !resumeApplicantName.equals(jobSeekerName)) {
             throw new InvalidResumeException();
         }
         List<List<String>> saved = this.applied.getOrDefault(jobSeekerName, new ArrayList<>());
 
         saved.add(new ArrayList<String>() {{
             add(jobName);
-            add(jobType);
+            add(jobType.getType());
             add(applicationTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             add(employerName);
         }});
         applied.put(jobSeekerName, saved);
-    }
-
-    void apply(String employerName, String jobName, JobType jobType,
-               String jobSeekerName, String resumeApplicantName, LocalDate applicationTime)
-            throws RequiresResumeForJReqJobException, InvalidResumeException {
-        this.apply(employerName,jobName, jobType.getType(), jobSeekerName, resumeApplicantName, applicationTime);
     }
 
     void save(String employerName, String jobName, String jobType) {
