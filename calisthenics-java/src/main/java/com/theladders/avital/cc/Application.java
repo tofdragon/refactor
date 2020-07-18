@@ -28,11 +28,6 @@ public class Application {
             publish(employerName, jobName, jobType);
             return;
         }
-
-        if (command.equals("save")) {
-            save(employerName, jobName, jobType);
-            return;
-        }
     }
 
     void apply(String employerName, String jobName, String jobType,
@@ -63,7 +58,7 @@ public class Application {
         applied.put(jobSeekerName, saved);
     }
 
-    private void save(String employerName, String jobName, String jobType) {
+    void save(String employerName, String jobName, String jobType) {
         List<List<String>> saved = jobs.getOrDefault(employerName, new ArrayList<>());
 
         saved.add(new ArrayList<String>() {{
