@@ -21,15 +21,6 @@ public class Application {
 
     private final List<List<String>> failedApplications = new ArrayList<>();
 
-    public void execute(String command, String employerName, String jobName, String jobType,
-                        String jobSeekerName, String resumeApplicantName, LocalDate applicationTime)
-            throws NotSupportedJobTypeException, RequiresResumeForJReqJobException, InvalidResumeException {
-        if (command.equals("publish")) {
-            publish(employerName, jobName, jobType);
-            return;
-        }
-    }
-
     void apply(String employerName, String jobName, String jobType,
                        String jobSeekerName, String resumeApplicantName, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {
@@ -68,7 +59,7 @@ public class Application {
         jobs.put(employerName, saved);
     }
 
-    private void publish(String employerName, String jobName, String jobType) throws NotSupportedJobTypeException {
+    void publish(String employerName, String jobName, String jobType) throws NotSupportedJobTypeException {
         if (!JobType.isJReq(jobType) && !JobType.isAts(jobType)) {
             throw new NotSupportedJobTypeException();
         }
