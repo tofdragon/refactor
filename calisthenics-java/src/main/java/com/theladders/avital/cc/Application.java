@@ -16,7 +16,7 @@ public class Application {
 
     private final HashMap<String, List<List<String>>> jobs = new HashMap<>();
 
-    private final List<List<String>> failedApplications = new ArrayList<>();
+    private final FailedApplications failedApplications = new FailedApplications();
 
     private final JobApplications jobApplications = new JobApplications();
 
@@ -25,13 +25,7 @@ public class Application {
         String resumeApplicantName = jobSeeker.getResume() == null ? null : jobSeeker.getResume().getName();
 
         if (JobType.JREQ == job.getJobType() && resumeApplicantName == null) {
-            List<String> failedApplication = new ArrayList<String>() {{
-                add(job.getJobName());
-                add(job.getJobType().getType());
-                add(applicationTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-                add(employer.getName());
-            }};
-            failedApplications.add(failedApplication);
+            failedApplications.add(job, employer.getName(), applicationTime);
             throw new RequiresResumeForJReqJobException();
         }
 
@@ -264,6 +258,6 @@ public class Application {
     }
 
     public int getUnsuccessfulApplications(String employerName, String jobName) {
-        return (int) failedApplications.stream().filter(job -> job.get(0).equals(jobName) && job.get(3).equals(employerName)).count();
+        return failedApplications.getUnsuccessfulApplications(employerName, jobName);
     }
 }
