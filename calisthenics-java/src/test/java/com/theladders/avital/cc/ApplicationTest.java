@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -20,6 +21,10 @@ public class ApplicationTest {
             add(applicationTime);
             add(employerName);
         }};
+    }
+
+    private JobApplication createApplyJob(String employerName, Job job, String applicationTime) {
+        return JobApplication.create(employerName, job, LocalDate.parse(applicationTime));
     }
 
     private ArrayList<String> createNewJob(final String jobName, final JobType jobType) {
@@ -114,10 +119,11 @@ public class ApplicationTest {
                 JobSeeker.create(jobSeekerName), LocalDate.parse("2020-01-01"));
         application.apply(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.ATS),
                 JobSeeker.create(jobSeekerName), LocalDate.parse("2020-01-01"));
-        List<List<String>> appliedJobs = application.getAppliedJobs(jobSeekerName);
-        List<List<String>> expected = new ArrayList<List<String>>() {{
-            add(createNewJob("Java开发", JobType.ATS, "Alibaba", "2020-01-01"));
-            add(createNewJob("高级Java开发", JobType.ATS, "Alibaba", "2020-01-01"));
+        List<JobApplication> appliedJobs = application.getAppliedJobs(jobSeekerName);
+
+        List<JobApplication> expected = new ArrayList<JobApplication>() {{
+            add(createApplyJob( "Alibaba", Job.create("Java开发", JobType.ATS),"2020-01-01"));
+            add(createApplyJob("Alibaba", Job.create("高级Java开发", JobType.ATS), "2020-01-01"));
         }};
 
         assertThat(appliedJobs, is(expected));

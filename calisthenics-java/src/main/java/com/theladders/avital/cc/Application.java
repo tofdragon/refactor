@@ -81,8 +81,8 @@ public class Application {
         return jobs.get(employerName);
     }
 
-    public List<List<String>> getAppliedJobs(String jobSeekerName) {
-        return applied.get(jobSeekerName);
+    public List<JobApplication> getAppliedJobs(String jobSeekerName) {
+        return jobApplications.get(jobSeekerName);
     }
 
     public List<String> findApplicants(String jobName) {

@@ -1,5 +1,7 @@
 package com.theladders.avital.cc;
 
+import java.util.Objects;
+
 /**
  * @author sunjing
  */
@@ -25,5 +27,25 @@ final class Job {
 
     public JobType getJobType() {
         return jobType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Job job = (Job) o;
+        return Objects.equals(jobName, job.jobName) &&
+                jobType == job.jobType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(jobName, jobType);
     }
 }
