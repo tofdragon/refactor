@@ -1,9 +1,12 @@
 package com.theladders.avital.cc;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.theladders.avital.cc.exception.InvalidResumeException;
+import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
+import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
 
 import static java.util.Map.Entry;
 
@@ -40,124 +43,15 @@ public final class Application {
     }
 
     public List<String> findApplicants(String jobName) {
-        return findApplicants(jobName, null);
+        return jobApplications.findApplicants(jobName);
     }
 
     public List<String> findApplicants(String jobName, LocalDate from) {
-        return findApplicants(jobName, from, null);
+        return jobApplications.findApplicants(jobName, from);
     }
 
     public List<String> findApplicants(String jobName, LocalDate from, LocalDate to) {
-        if (from == null && to == null) {
-            return findApplicantsWhenFromAndToIsNull(jobName);
-        }
-
-        if (jobName == null && to == null) {
-            return findApplicantsWhenJobNameAndToIsNull(from);
-        }
-
-        if (jobName == null && from == null) {
-            return findApplicantsWhenJobNameAndFromIsNull(to);
-        }
-
-        if (jobName == null) {
-            return findApplicantsWhenJobNameIsNull(from, to);
-        }
-
-        if (to != null) {
-            return findApplicantsWhenToIsNotNull(jobName, to);
-        }
-
-        return findApplicantsOthers(jobName, from);
-    }
-
-    private List<String> findApplicantsOthers(String jobName, LocalDate from) {
-        List<String> result = new ArrayList<String>() {
-        };
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs = set.getValue();
-            boolean isAppliedThisDate = jobs.stream().anyMatch(job -> job.getJob().getJobName().equals(jobName)
-                    && !from.isAfter(job.getApplicationTime()));
-            if (isAppliedThisDate) {
-                result.add(applicant);
-            }
-        }
-        return result;
-    }
-
-    private List<String> findApplicantsWhenToIsNotNull(String jobName, LocalDate to) {
-        List<String> result = new ArrayList<String>() {
-        };
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs = set.getValue();
-            boolean isAppliedThisDate = jobs.stream().anyMatch(job -> job.getJob().getJobName().equals(jobName)
-                    && !to.isBefore(job.getApplicationTime()));
-            if (isAppliedThisDate) {
-                result.add(applicant);
-            }
-        }
-        return result;
-    }
-
-    private List<String> findApplicantsWhenJobNameIsNull(LocalDate from, LocalDate to) {
-        List<String> result = new ArrayList<String>() {
-        };
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs = set.getValue();
-            boolean isAppliedThisDate = jobs.stream().anyMatch(job ->
-                    !from.isAfter(job.getApplicationTime()) && !to.isBefore(job.getApplicationTime()));
-            if (isAppliedThisDate) {
-                result.add(applicant);
-            }
-        }
-        return result;
-    }
-
-    private List<String> findApplicantsWhenJobNameAndFromIsNull(LocalDate to) {
-        List<String> result = new ArrayList<String>() {
-        };
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs = set.getValue();
-            boolean isAppliedThisDate = jobs.stream().anyMatch(job ->
-                    !to.isBefore(job.getApplicationTime()));
-            if (isAppliedThisDate) {
-                result.add(applicant);
-            }
-        }
-        return result;
-    }
-
-    private List<String> findApplicantsWhenJobNameAndToIsNull(LocalDate from) {
-        List<String> result = new ArrayList<String>() {
-        };
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs = set.getValue();
-            boolean isAppliedThisDate = jobs.stream().anyMatch(job ->
-                    !from.isAfter(job.getApplicationTime()));
-            if (isAppliedThisDate) {
-                result.add(applicant);
-            }
-        }
-        return result;
-    }
-
-    private List<String> findApplicantsWhenFromAndToIsNull(String jobName) {
-        List<String> result = new ArrayList<String>() {
-        };
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs = set.getValue();
-            boolean hasAppliedToThisJob = jobs.stream().anyMatch(job -> job.getJob().getJobName().equals(jobName));
-            if (hasAppliedToThisJob) {
-                result.add(applicant);
-            }
-        }
-        return result;
+        return jobApplications.findApplicants(jobName, from, to);
     }
 
     public String export(String type, LocalDate date) {

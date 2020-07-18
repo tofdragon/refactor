@@ -5,8 +5,11 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+
+import com.theladders.avital.cc.exception.InvalidResumeException;
+import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
+import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

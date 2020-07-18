@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.theladders.avital.cc.exception.InvalidResumeException;
+import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
+
 /**
  * @author sunjing
  */
@@ -42,6 +45,47 @@ class JobApplications {
 
     Map<String, List<JobApplication>> getNameToJobApplications() {
         return nameToJobApplications;
+    }
+
+    List<String> findApplicants(String jobName) {
+        return this.findApplicants(jobName, null, null);
+    }
+
+    List<String> findApplicants(String jobName, LocalDate from) {
+        return this.findApplicants(jobName, from, null);
+    }
+
+    List<String> findApplicants(String jobName, LocalDate from, LocalDate to) {
+        List<String> result = new ArrayList<>();
+        for (Map.Entry<String, List<JobApplication>> set : getNameToJobApplications().entrySet()) {
+            String applicant = set.getKey();
+            List<JobApplication> jobs = set.getValue();
+            boolean isAppliedThisDate = jobs.stream().anyMatch(job -> {
+                if (jobName != null) {
+                    if (!job.getJob().getJobName().equals(jobName)) {
+                        return false;
+                    }
+                }
+
+                if (from != null) {
+                    if (from.isAfter(job.getApplicationTime())) {
+                        return false;
+                    }
+                }
+
+                if (to != null) {
+                    if (to.isBefore(job.getApplicationTime())) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+            if (isAppliedThisDate) {
+                result.add(applicant);
+            }
+        }
+        return result;
     }
 
     int getUnsuccessfulApplications(String employerName, String jobName) {

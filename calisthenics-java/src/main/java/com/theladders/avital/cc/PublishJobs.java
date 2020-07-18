@@ -3,6 +3,8 @@ package com.theladders.avital.cc;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
+
 /**
  * @author sunjing
  */
