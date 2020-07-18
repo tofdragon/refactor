@@ -49,28 +49,28 @@ public class Application {
         applied.put(jobSeeker.getName(), saved);
     }
 
-    void save(String employerName, String jobName, JobType jobType) {
-        List<List<String>> saved = jobs.getOrDefault(employerName, new ArrayList<>());
+    void save(Employer employer, Job job) {
+        List<List<String>> saved = jobs.getOrDefault(employer.getName(), new ArrayList<>());
 
         saved.add(new ArrayList<String>() {{
-            add(jobName);
-            add(jobType.getType());
+            add(job.getJobName());
+            add(job.getJobType().getType());
         }});
-        jobs.put(employerName, saved);
+        jobs.put(employer.getName(), saved);
     }
 
-    void publish(String employerName, String jobName, JobType jobType) throws NotSupportedJobTypeException {
-        if (!(JobType.JREQ == jobType) && ! (JobType.ATS == jobType)) {
+    void publish(Employer employer, Job job) throws NotSupportedJobTypeException {
+        if (!(JobType.JREQ == job.getJobType()) && ! (JobType.ATS == job.getJobType())) {
             throw new NotSupportedJobTypeException();
         }
 
-        List<List<String>> alreadyPublished = jobs.getOrDefault(employerName, new ArrayList<>());
+        List<List<String>> alreadyPublished = jobs.getOrDefault(employer.getName(), new ArrayList<>());
 
         alreadyPublished.add(new ArrayList<String>() {{
-            add(jobName);
-            add(jobType.getType());
+            add(job.getJobName());
+            add(job.getJobType().getType());
         }});
-        jobs.put(employerName, alreadyPublished);
+        jobs.put(employer.getName(), alreadyPublished);
     }
 
     public List<List<String>> getJobs(String employerName, String type) {
