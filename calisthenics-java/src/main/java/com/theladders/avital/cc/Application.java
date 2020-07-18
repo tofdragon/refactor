@@ -217,48 +217,55 @@ public class Application {
 
     public String export(String type, LocalDate date) {
         if (type.equals("csv")) {
-            String result = "Employer,Job,Job Type,Applicants,Date" + "\n";
-            for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
-                String applicant = set.getKey();
-                List<List<String>> jobs1 = set.getValue();
-                List<List<String>> appliedOnDate = jobs1.stream().filter(job -> job.get(2).equals(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))).collect(Collectors.toList());
+            return exportCsv(date);
+        }
+        return exportHtml(date);
+    }
 
-                for (List<String> job : appliedOnDate) {
-                    result = result.concat(job.get(3) + "," + job.get(0) + "," + job.get(1) + "," + applicant + "," + job.get(2) + "\n");
-                }
+    private String exportHtml(LocalDate date) {
+        String content = "";
+        for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
+            String applicant = set.getKey();
+            List<List<String>> jobs1 = set.getValue();
+            List<List<String>> appliedOnDate = jobs1.stream().filter(job -> job.get(2).equals(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))).collect(Collectors.toList());
+
+            for (List<String> job : appliedOnDate) {
+                content = content.concat("<tr>" + "<td>" + job.get(3) + "</td>" + "<td>" + job.get(0) + "</td>" + "<td>" + job.get(1) + "</td>" + "<td>" + applicant + "</td>" + "<td>" + job.get(2) + "</td>" + "</tr>");
             }
-            return result;
         }
 
-            String content = "";
-            for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
-                String applicant = set.getKey();
-                List<List<String>> jobs1 = set.getValue();
-                List<List<String>> appliedOnDate = jobs1.stream().filter(job -> job.get(2).equals(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))).collect(Collectors.toList());
+        return "<!DOCTYPE html>"
+                + "<body>"
+                + "<table>"
+                + "<thead>"
+                + "<tr>"
+                + "<th>Employer</th>"
+                + "<th>Job</th>"
+                + "<th>Job Type</th>"
+                + "<th>Applicants</th>"
+                + "<th>Date</th>"
+                + "</tr>"
+                + "</thead>"
+                + "<tbody>"
+                + content
+                + "</tbody>"
+                + "</table>"
+                + "</body>"
+                + "</html>";
+    }
 
-                for (List<String> job : appliedOnDate) {
-                    content = content.concat("<tr>" + "<td>" + job.get(3) + "</td>" + "<td>" + job.get(0) + "</td>" + "<td>" + job.get(1) + "</td>" + "<td>" + applicant + "</td>" + "<td>" + job.get(2) + "</td>" + "</tr>");
-                }
+    private String exportCsv(LocalDate date) {
+        String result = "Employer,Job,Job Type,Applicants,Date" + "\n";
+        for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
+            String applicant = set.getKey();
+            List<List<String>> jobs1 = set.getValue();
+            List<List<String>> appliedOnDate = jobs1.stream().filter(job -> job.get(2).equals(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))).collect(Collectors.toList());
+
+            for (List<String> job : appliedOnDate) {
+                result = result.concat(job.get(3) + "," + job.get(0) + "," + job.get(1) + "," + applicant + "," + job.get(2) + "\n");
             }
-
-            return "<!DOCTYPE html>"
-                    + "<body>"
-                    + "<table>"
-                    + "<thead>"
-                    + "<tr>"
-                    + "<th>Employer</th>"
-                    + "<th>Job</th>"
-                    + "<th>Job Type</th>"
-                    + "<th>Applicants</th>"
-                    + "<th>Date</th>"
-                    + "</tr>"
-                    + "</thead>"
-                    + "<tbody>"
-                    + content
-                    + "</tbody>"
-                    + "</table>"
-                    + "</body>"
-                    + "</html>";
+        }
+        return result;
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
