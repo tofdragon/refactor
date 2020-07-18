@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.Map.Entry;
@@ -21,32 +20,33 @@ public class Application {
 
     private final List<List<String>> failedApplications = new ArrayList<>();
 
-    void apply(String employerName, String jobName, JobType jobType,
-                       String jobSeekerName, String resumeApplicantName, LocalDate applicationTime)
+    void apply(Employer employer, Job job, JobSeeker jobSeeker, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {
-        if (JobType.JREQ == jobType && resumeApplicantName == null) {
+        String resumeApplicantName = jobSeeker.getResume() == null ? null : jobSeeker.getResume().getName();
+
+        if (JobType.JREQ == job.getJobType() && resumeApplicantName == null) {
             List<String> failedApplication = new ArrayList<String>() {{
-                add(jobName);
-                add(jobType.getType());
+                add(job.getJobName());
+                add(job.getJobType().getType());
                 add(applicationTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-                add(employerName);
+                add(employer.getName());
             }};
             failedApplications.add(failedApplication);
             throw new RequiresResumeForJReqJobException();
         }
 
-        if (JobType.JREQ == jobType && !resumeApplicantName.equals(jobSeekerName)) {
+        if (JobType.JREQ == job.getJobType() && !resumeApplicantName.equals(jobSeeker.getName())) {
             throw new InvalidResumeException();
         }
-        List<List<String>> saved = this.applied.getOrDefault(jobSeekerName, new ArrayList<>());
+        List<List<String>> saved = this.applied.getOrDefault(jobSeeker.getName(), new ArrayList<>());
 
         saved.add(new ArrayList<String>() {{
-            add(jobName);
-            add(jobType.getType());
+            add(job.getJobName());
+            add(job.getJobType().getType());
             add(applicationTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-            add(employerName);
+            add(employer.getName());
         }});
-        applied.put(jobSeekerName, saved);
+        applied.put(jobSeeker.getName(), saved);
     }
 
     void save(String employerName, String jobName, JobType jobType) {
