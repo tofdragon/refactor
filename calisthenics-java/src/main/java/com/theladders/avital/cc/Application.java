@@ -36,7 +36,10 @@ public class Application {
                 add(jobType);
             }});
             jobs.put(employerName, alreadyPublished);
-        } else if (command.equals("save")) {
+            return;
+        }
+
+        if (command.equals("save")) {
             List<List<String>> saved = jobs.getOrDefault(employerName, new ArrayList<>());
 
             saved.add(new ArrayList<String>() {{
@@ -44,7 +47,10 @@ public class Application {
                 add(jobType);
             }});
             jobs.put(employerName, saved);
-        } else if (command.equals("apply")) {
+            return;
+        }
+
+        if (command.equals("apply")) {
             if (jobType.equals("JReq") && resumeApplicantName == null) {
                 List<String> failedApplication = new ArrayList<String>() {{
                     add(jobName);
@@ -100,7 +106,9 @@ public class Application {
                 }
             }
             return result;
-        } else if (jobName == null && to == null) {
+        }
+
+        if (jobName == null && to == null) {
             List<String> result = new ArrayList<String>() {
             };
             for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
@@ -113,7 +121,9 @@ public class Application {
                 }
             }
             return result;
-        } else if (jobName == null && from == null) {
+        }
+
+        if (jobName == null && from == null) {
             List<String> result = new ArrayList<String>() {
             };
             for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
@@ -127,7 +137,9 @@ public class Application {
             }
             return result;
 
-        } else if (jobName == null) {
+        }
+
+        if (jobName == null) {
             List<String> result = new ArrayList<String>() {
             };
             for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
@@ -140,7 +152,9 @@ public class Application {
             }
             return result;
 
-        } else if (to != null) {
+        }
+
+        if (to != null) {
             List<String> result = new ArrayList<String>() {
             };
             for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
@@ -152,19 +166,19 @@ public class Application {
                 }
             }
             return result;
-        } else {
-            List<String> result = new ArrayList<String>() {
-            };
-            for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
-                String applicant = set.getKey();
-                List<List<String>> jobs = set.getValue();
-                boolean isAppliedThisDate = jobs.stream().anyMatch(job -> job.get(0).equals(jobName) && !from.isAfter(LocalDate.parse(job.get(2), DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
-                if (isAppliedThisDate) {
-                    result.add(applicant);
-                }
-            }
-            return result;
         }
+
+        List<String> result = new ArrayList<String>() {
+        };
+        for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
+            String applicant = set.getKey();
+            List<List<String>> jobs = set.getValue();
+            boolean isAppliedThisDate = jobs.stream().anyMatch(job -> job.get(0).equals(jobName) && !from.isAfter(LocalDate.parse(job.get(2), DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
+            if (isAppliedThisDate) {
+                result.add(applicant);
+            }
+        }
+        return result;
     }
 
     public String export(String type, LocalDate date) {
@@ -180,7 +194,8 @@ public class Application {
                 }
             }
             return result;
-        } else {
+        }
+
             String content = "";
             for (Entry<String, List<List<String>>> set : this.applied.entrySet()) {
                 String applicant = set.getKey();
@@ -210,7 +225,6 @@ public class Application {
                     + "</table>"
                     + "</body>"
                     + "</html>";
-        }
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
