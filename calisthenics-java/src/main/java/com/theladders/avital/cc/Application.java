@@ -40,7 +40,7 @@ public class Application {
     }
 
     private void apply(String employerName, String jobName, String jobType, String jobSeekerName, String resumeApplicantName, LocalDate applicationTime) throws RequiresResumeForJReqJobException, InvalidResumeException {
-        if (jobType.equals("JReq") && resumeApplicantName == null) {
+        if (JobType.isJReq(jobType) && resumeApplicantName == null) {
             List<String> failedApplication = new ArrayList<String>() {{
                 add(jobName);
                 add(jobType);
@@ -51,7 +51,7 @@ public class Application {
             throw new RequiresResumeForJReqJobException();
         }
 
-        if (jobType.equals("JReq") && !resumeApplicantName.equals(jobSeekerName)) {
+        if (JobType.isJReq(jobType) && !resumeApplicantName.equals(jobSeekerName)) {
             throw new InvalidResumeException();
         }
         List<List<String>> saved = this.applied.getOrDefault(jobSeekerName, new ArrayList<>());
@@ -76,7 +76,7 @@ public class Application {
     }
 
     private void publish(String employerName, String jobName, String jobType) throws NotSupportedJobTypeException {
-        if (!jobType.equals("JReq") && !jobType.equals("ATS")) {
+        if (!JobType.isJReq(jobType) && !JobType.isAts(jobType)) {
             throw new NotSupportedJobTypeException();
         }
 
