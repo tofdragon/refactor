@@ -49,14 +49,14 @@ public class Application {
         applied.put(jobSeeker.getName(), saved);
     }
 
-    void save(Employer employer, Job job) {
-        List<List<String>> saved = jobs.getOrDefault(employer.getName(), new ArrayList<>());
+    void save(JobSeeker jobSeeker, Job job) {
+        List<List<String>> saved = jobs.getOrDefault(jobSeeker.getName(), new ArrayList<>());
 
         saved.add(new ArrayList<String>() {{
             add(job.getJobName());
             add(job.getJobType().getType());
         }});
-        jobs.put(employer.getName(), saved);
+        jobs.put(jobSeeker.getName(), saved);
     }
 
     void publish(Employer employer, Job job) throws NotSupportedJobTypeException {
