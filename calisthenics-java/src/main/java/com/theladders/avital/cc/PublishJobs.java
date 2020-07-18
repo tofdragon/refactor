@@ -13,7 +13,7 @@ final class PublishJobs {
     private Map<String, List<Job>> employeeNameToJobs = new HashMap<>();
 
     void add(String employerName, Job job) throws NotSupportedJobTypeException {
-        if (!(JobType.JREQ == job.getJobType()) && ! (JobType.ATS == job.getJobType())) {
+        if (!(JobType.JREQ == job.getJobType()) && !(JobType.ATS == job.getJobType())) {
             throw new NotSupportedJobTypeException();
         }
 

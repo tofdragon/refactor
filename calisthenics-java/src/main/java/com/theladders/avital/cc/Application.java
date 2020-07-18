@@ -1,9 +1,7 @@
 package com.theladders.avital.cc;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -178,7 +176,7 @@ public class Application {
                     job.getApplicationTime().isEqual(date)).collect(Collectors.toList());
 
             for (JobApplication job : appliedOnDate) {
-                content = content.concat("<tr>" + "<td>" + job.getEmployerName()+ "</td>" + "<td>" + job.getJob().getJobName()
+                content = content.concat("<tr>" + "<td>" + job.getEmployerName() + "</td>" + "<td>" + job.getJob().getJobName()
                         + "</td>" + "<td>" + job.getJob().getJobType().getType() + "</td>" + "<td>" + applicant + "</td>"
                         + "<td>" + job.getApplicationTime() + "</td>" + "</tr>");
             }

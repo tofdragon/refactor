@@ -1,7 +1,6 @@
 package com.theladders.avital.cc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**

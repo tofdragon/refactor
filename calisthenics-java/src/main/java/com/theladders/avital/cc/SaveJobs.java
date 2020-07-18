@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author sunjing
  */
 final class SaveJobs {
