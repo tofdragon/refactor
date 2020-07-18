@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class ApplicationTest {
     Application application;
@@ -42,12 +43,9 @@ public class ApplicationTest {
         String employerName = "";
         String jobName = "高级前端开发";
         application.publish(Employer.create(employerName), Job.create(jobName, JobType.JREQ));
-        List<Job> jobs = application.getPublishedJobs(employerName);
-        List<Job> expected = new ArrayList() {{
-            add(createNewJob("高级前端开发", JobType.JREQ));
-        }};
 
-        assertThat(jobs, is(expected));
+        Jobs tempJobs = application.getPublishedJobs(employerName);
+        assertTrue(tempJobs.includeJob(createNewJob("高级前端开发", JobType.JREQ)));
     }
 
     @Test
@@ -58,12 +56,9 @@ public class ApplicationTest {
         String juniorJavaDevJob = "Java开发";
         application.publish(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.JREQ));
         application.publish(Employer.create(employerTencent), Job.create(juniorJavaDevJob, JobType.JREQ));
-        List<Job> jobs = application.getPublishedJobs(employerAlibaba);
-        List<Job> expected = new ArrayList() {{
-            add(createNewJob("高级Java开发", JobType.JREQ));
-        }};
 
-        assertThat(jobs, is(expected));
+        Jobs jobs = application.getPublishedJobs(employerAlibaba);
+        assertTrue(jobs.includeJob(createNewJob("高级Java开发", JobType.JREQ)));
     }
 
     @Test
@@ -72,12 +67,8 @@ public class ApplicationTest {
         String seniorJavaDevJob = "高级Java开发";
 
         application.publish(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.ATS));
-        List<Job> jobs = application.getPublishedJobs(employerAlibaba);
-        List<Job> expected = new ArrayList() {{
-            add(createNewJob("高级Java开发", JobType.ATS));
-        }};
-
-        assertThat(jobs, is(expected));
+        Jobs jobs = application.getPublishedJobs(employerAlibaba);
+        assertTrue(jobs.includeJob(createNewJob("高级Java开发", JobType.ATS)));
     }
 
     @Test(expected = NotSupportedJobTypeException.class)
@@ -95,12 +86,9 @@ public class ApplicationTest {
         String jobName = "高级Java开发";
         application.publish(Employer.create(employerAlibaba), Job.create(jobName, JobType.JREQ));
         application.save(JobSeeker.create(jobSeekerName), Job.create(jobName, JobType.JREQ));
-        List<Job> savedJobs = application.getPublishedJobs(employerAlibaba);
-        List<Job> expected = new ArrayList() {{
-            add(createNewJob("高级Java开发", JobType.JREQ));
-        }};
 
-        assertThat(savedJobs, is(expected));
+        Jobs savedJobs = application.getPublishedJobs(employerAlibaba);
+        assertTrue(savedJobs.includeJob(createNewJob("高级Java开发", JobType.JREQ)));
     }
 
     @Test

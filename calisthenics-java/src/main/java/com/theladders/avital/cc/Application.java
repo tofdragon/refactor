@@ -10,7 +10,7 @@ import static java.util.Map.Entry;
 /**
  * @author sunjing
  */
-public class Application {
+public final class Application {
 
     private final PublishJobs publishJobs = new PublishJobs();
 
@@ -31,8 +31,8 @@ public class Application {
         publishJobs.add(employer.getName(), job);
     }
 
-    public List<Job> getPublishedJobs(String employerName) {
-        return publishJobs.get(employerName);
+    Jobs getPublishedJobs(String employerName) {
+        return publishJobs.jobsBy(employerName);
     }
 
     public List<JobApplication> getAppliedJobs(String jobSeekerName) {

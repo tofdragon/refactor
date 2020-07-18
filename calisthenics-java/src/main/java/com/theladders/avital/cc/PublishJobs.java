@@ -28,4 +28,8 @@ final class PublishJobs {
     List<Job> get(String employerName) {
         return employeeNameToJobs.get(employerName);
     }
+
+    Jobs jobsBy(String employerName) {
+        return Jobs.create(get(employerName));
+    }
 }

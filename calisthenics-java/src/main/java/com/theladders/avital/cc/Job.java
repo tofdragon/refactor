@@ -21,12 +21,16 @@ final class Job {
         return job;
     }
 
-    public String getJobName() {
+    String getJobName() {
         return jobName;
     }
 
-    public JobType getJobType() {
+    JobType getJobType() {
         return jobType;
+    }
+
+    boolean equalsJob(Job otherJob) {
+        return this.getJobName().equals(otherJob.getJobName()) && this.getJobType() == otherJob.getJobType();
     }
 
     @Override
