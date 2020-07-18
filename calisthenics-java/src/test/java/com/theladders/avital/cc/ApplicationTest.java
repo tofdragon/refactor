@@ -40,7 +40,7 @@ public class ApplicationTest {
         String employerName = "";
         String jobName = "高级前端开发";
         application.publish(Employer.create(employerName), Job.create(jobName, JobType.JREQ));
-        List<List<String>> jobs = application.getJobs(employerName, "published");
+        List<List<String>> jobs = application.getPublishedJobs(employerName);
         List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级前端开发", JobType.JREQ));
         }};
@@ -56,7 +56,7 @@ public class ApplicationTest {
         String juniorJavaDevJob = "Java开发";
         application.publish(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.JREQ));
         application.publish(Employer.create(employerTencent), Job.create(juniorJavaDevJob, JobType.JREQ));
-        List<List<String>> jobs = application.getJobs(employerAlibaba, "published");
+        List<List<String>> jobs = application.getPublishedJobs(employerAlibaba);
         List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级Java开发", JobType.JREQ));
         }};
@@ -70,7 +70,7 @@ public class ApplicationTest {
         String seniorJavaDevJob = "高级Java开发";
 
         application.publish(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.ATS));
-        List<List<String>> jobs = application.getJobs(employerAlibaba, "published");
+        List<List<String>> jobs = application.getPublishedJobs(employerAlibaba);
         List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级Java开发", JobType.ATS));
         }};
@@ -93,7 +93,7 @@ public class ApplicationTest {
         String jobName = "高级Java开发";
         application.publish(Employer.create(employerAlibaba), Job.create(jobName, JobType.JREQ));
         application.save(JobSeeker.create(jobSeekerName), Job.create(jobName, JobType.JREQ));
-        List<List<String>> savedJobs = application.getJobs(jobSeekerName, "published");
+        List<List<String>> savedJobs = application.getPublishedJobs(jobSeekerName);
         List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级Java开发", JobType.JREQ));
         }};
@@ -114,7 +114,7 @@ public class ApplicationTest {
                 JobSeeker.create(jobSeekerName), LocalDate.parse("2020-01-01"));
         application.apply(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.ATS),
                 JobSeeker.create(jobSeekerName), LocalDate.parse("2020-01-01"));
-        List<List<String>> appliedJobs = application.getJobs(jobSeekerName, "applied");
+        List<List<String>> appliedJobs = application.getAppliedJobs(jobSeekerName);
         List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("Java开发", JobType.ATS, "Alibaba", "2020-01-01"));
             add(createNewJob("高级Java开发", JobType.ATS, "Alibaba", "2020-01-01"));

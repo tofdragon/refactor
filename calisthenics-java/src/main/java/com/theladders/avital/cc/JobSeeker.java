@@ -1,5 +1,9 @@
 package com.theladders.avital.cc;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * @author sunjing
  */
@@ -8,6 +12,8 @@ final class JobSeeker {
     private String name;
 
     private Resume resume;
+
+    private final List<JobApplication> applied = new ArrayList<>();
 
     private JobSeeker() {
     }

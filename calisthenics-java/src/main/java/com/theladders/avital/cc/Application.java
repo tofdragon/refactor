@@ -20,6 +20,8 @@ public class Application {
 
     private final List<List<String>> failedApplications = new ArrayList<>();
 
+    private final JobApplications jobApplications = new JobApplications();
+
     void apply(Employer employer, Job job, JobSeeker jobSeeker, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {
         String resumeApplicantName = jobSeeker.getResume() == null ? null : jobSeeker.getResume().getName();
@@ -47,6 +49,8 @@ public class Application {
             add(employer.getName());
         }});
         applied.put(jobSeeker.getName(), saved);
+
+        jobApplications.addJobApplication(jobSeeker.getName(), job, employer.getName(), applicationTime);
     }
 
     void save(JobSeeker jobSeeker, Job job) {
@@ -73,12 +77,12 @@ public class Application {
         jobs.put(employer.getName(), alreadyPublished);
     }
 
-    public List<List<String>> getJobs(String employerName, String type) {
-        if (type.equals("applied")) {
-            return applied.get(employerName);
-        }
-
+    public List<List<String>> getPublishedJobs(String employerName) {
         return jobs.get(employerName);
+    }
+
+    public List<List<String>> getAppliedJobs(String jobSeekerName) {
+        return applied.get(jobSeekerName);
     }
 
     public List<String> findApplicants(String jobName) {
