@@ -33,13 +33,11 @@ public class Application {
             save(employerName, jobName, jobType);
             return;
         }
-
-        if (command.equals("apply")) {
-            apply(employerName, jobName, jobType, jobSeekerName, resumeApplicantName, applicationTime);
-        }
     }
 
-    private void apply(String employerName, String jobName, String jobType, String jobSeekerName, String resumeApplicantName, LocalDate applicationTime) throws RequiresResumeForJReqJobException, InvalidResumeException {
+    void apply(String employerName, String jobName, String jobType,
+                       String jobSeekerName, String resumeApplicantName, LocalDate applicationTime)
+            throws RequiresResumeForJReqJobException, InvalidResumeException {
         if (JobType.isJReq(jobType) && resumeApplicantName == null) {
             List<String> failedApplication = new ArrayList<String>() {{
                 add(jobName);
