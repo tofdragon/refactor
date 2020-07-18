@@ -7,7 +7,9 @@ enum JobType {
 
     JREQ("JReq"),
 
-    ATS("ATS");
+    ATS("ATS"),
+
+    RJEQ("RJeq");
 
     private String type;
 
@@ -17,19 +19,5 @@ enum JobType {
 
     String getType() {
         return type;
-    }
-
-    static boolean isJReq(String type) {
-        if (type == null || type.equals("")) {
-            return false;
-        }
-        return type.equals(JREQ.getType());
-    }
-
-    static boolean isAts(String type) {
-        if (type == null || type.equals("")) {
-            return false;
-        }
-        return type.equals(ATS.getType());
     }
 }

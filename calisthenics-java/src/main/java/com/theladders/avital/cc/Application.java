@@ -49,18 +49,18 @@ public class Application {
         applied.put(jobSeekerName, saved);
     }
 
-    void save(String employerName, String jobName, String jobType) {
+    void save(String employerName, String jobName, JobType jobType) {
         List<List<String>> saved = jobs.getOrDefault(employerName, new ArrayList<>());
 
         saved.add(new ArrayList<String>() {{
             add(jobName);
-            add(jobType);
+            add(jobType.getType());
         }});
         jobs.put(employerName, saved);
     }
 
-    void publish(String employerName, String jobName, String jobType) throws NotSupportedJobTypeException {
-        if (!JobType.isJReq(jobType) && !JobType.isAts(jobType)) {
+    void publish(String employerName, String jobName, JobType jobType) throws NotSupportedJobTypeException {
+        if (!(JobType.JREQ == jobType) && ! (JobType.ATS == jobType)) {
             throw new NotSupportedJobTypeException();
         }
 
@@ -68,7 +68,7 @@ public class Application {
 
         alreadyPublished.add(new ArrayList<String>() {{
             add(jobName);
-            add(jobType);
+            add(jobType.getType());
         }});
         jobs.put(employerName, alreadyPublished);
     }
