@@ -9,8 +9,6 @@ import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
 import com.theladders.avital.cc.export.ExportType;
 import com.theladders.avital.cc.export.Exporter;
 
-import static java.util.Map.Entry;
-
 /**
  * @author sunjing
  */
@@ -56,8 +54,7 @@ public final class Application {
     }
 
     public String export(ExportType type, LocalDate date) {
-        Exporter exporter = new Exporter();
-        return exporter.export(type, this.jobSeekerJobApplications.findApplicants(date));
+        return new Exporter().export(type, this.jobSeekerJobApplications.findApplicants(date));
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
