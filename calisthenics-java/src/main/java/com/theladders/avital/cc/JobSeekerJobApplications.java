@@ -39,8 +39,7 @@ class JobSeekerJobApplications {
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
-        return successApplications.getJobApplications().getJobApplications().stream().filter(job ->
-                    job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)).collect(Collectors.toList()).size();
+        return successApplications.getSuccessfulApplications(employerName, jobName);
     }
 
     List<String> findApplicants(String jobName) {
@@ -52,33 +51,11 @@ class JobSeekerJobApplications {
     }
 
     List<String> findApplicants(String jobName, LocalDate from, LocalDate to) {
-        return successApplications.getJobApplications().getJobApplications().stream().filter(job -> {
-            if (jobName != null) {
-                if (!job.getJob().getJobName().equals(jobName)) {
-                    return false;
-                }
-            }
-
-            if (from != null) {
-                if (from.isAfter(job.getApplicationTime())) {
-                    return false;
-                }
-            }
-
-            if (to != null) {
-                if (to.isBefore(job.getApplicationTime())) {
-                    return false;
-                }
-            }
-
-            return true;
-        }).map(jobApplication -> jobApplication.getJobSeekerName()).collect(toList());
-
+        return this.successApplications.findApplicants(jobName, from, to);
     }
 
     List<JobApplication> findApplicants(LocalDate date) {
-        return successApplications.getJobApplications().getJobApplications().stream().filter(job ->
-                    job.getApplicationTime().isEqual(date)).collect(toList());
+        return successApplications.findApplicants(date);
     }
 
     int getUnsuccessfulApplications(String employerName, String jobName) {
