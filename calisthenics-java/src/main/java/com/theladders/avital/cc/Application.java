@@ -61,13 +61,7 @@ public final class Application {
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
-        int result = 0;
-        for (Entry<String, List<JobApplication>> set : this.jobSeekerJobApplications.getNameToJobApplications().entrySet()) {
-            List<JobApplication> jobs = set.getValue();
-
-            result += jobs.stream().anyMatch(job -> job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)) ? 1 : 0;
-        }
-        return result;
+       return jobSeekerJobApplications.getSuccessfulApplications(employerName, jobName);
     }
 
     public int getUnsuccessfulApplications(String employerName, String jobName) {

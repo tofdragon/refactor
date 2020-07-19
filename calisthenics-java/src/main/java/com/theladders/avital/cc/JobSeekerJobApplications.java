@@ -53,8 +53,18 @@ class JobSeekerJobApplications {
         return temp_nameToJobApplications.get(jobSeekerName);
     }
 
-    Map<String, List<JobApplication>> getNameToJobApplications() {
+    private Map<String, List<JobApplication>> getNameToJobApplications() {
         return nameToJobApplications;
+    }
+
+    public int getSuccessfulApplications(String employerName, String jobName) {
+        int result = 0;
+        for (Map.Entry<String, List<JobApplication>> set : getNameToJobApplications().entrySet()) {
+            List<JobApplication> jobs = set.getValue();
+
+            result += jobs.stream().anyMatch(job -> job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)) ? 1 : 0;
+        }
+        return result;
     }
 
     List<String> findApplicants(String jobName) {
