@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
@@ -23,7 +24,7 @@ class JobApplications {
         String resumeApplicantName = jobSeeker.getResume() == null ? null : jobSeeker.getResume().getName();
 
         if (JobType.JREQ == job.getJobType() && resumeApplicantName == null) {
-            failedApplications.add(job, employerName, applicationTime);
+            failedApplications.add(jobSeeker.getName(), job, employerName, applicationTime);
             throw new RequiresResumeForJReqJobException();
         }
 
@@ -36,7 +37,7 @@ class JobApplications {
             jobApplications = new ArrayList<>();
             nameToJobApplications.put(jobSeeker.getName(), jobApplications);
         }
-        jobApplications.add(JobApplication.create(employerName, job, applicationTime));
+        jobApplications.add(JobApplication.create(jobSeeker.getName(), employerName, job, applicationTime));
     }
 
     List<JobApplication> get(String jobSeekerName) {
@@ -84,6 +85,17 @@ class JobApplications {
             if (isAppliedThisDate) {
                 result.add(applicant);
             }
+        }
+        return result;
+    }
+
+    List<JobApplication> findApplicants(LocalDate date) {
+        List<JobApplication> result = new ArrayList<>();
+        for (Map.Entry<String, List<JobApplication>> set : getNameToJobApplications().entrySet()) {
+            List<JobApplication> jobs1 = set.getValue();
+            List<JobApplication> found = jobs1.stream().filter(job ->
+                    job.getApplicationTime().isEqual(date)).collect(Collectors.toList());
+            result.addAll(found);
         }
         return result;
     }

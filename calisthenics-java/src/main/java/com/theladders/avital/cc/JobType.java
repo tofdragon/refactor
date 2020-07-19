@@ -3,7 +3,7 @@ package com.theladders.avital.cc;
 /**
  * @author sunjing
  */
-enum JobType {
+public enum JobType {
 
     JREQ("JReq"),
 
@@ -17,7 +17,7 @@ enum JobType {
         this.type = type;
     }
 
-    String getType() {
+    public String getType() {
         return type;
     }
 }

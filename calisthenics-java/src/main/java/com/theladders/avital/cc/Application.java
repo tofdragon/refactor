@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
 import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
+import com.theladders.avital.cc.export.ExportType;
+import com.theladders.avital.cc.export.Exporter;
 
 import static java.util.Map.Entry;
 
@@ -54,62 +56,9 @@ public final class Application {
         return jobApplications.findApplicants(jobName, from, to);
     }
 
-    public String export(String type, LocalDate date) {
-        if (type.equals("csv")) {
-            return exportCsv(date);
-        }
-        return exportHtml(date);
-    }
-
-    private String exportHtml(LocalDate date) {
-        String content = "";
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs1 = set.getValue();
-            List<JobApplication> appliedOnDate = jobs1.stream().filter(job ->
-                    job.getApplicationTime().isEqual(date)).collect(Collectors.toList());
-
-            for (JobApplication job : appliedOnDate) {
-                content = content.concat("<tr>" + "<td>" + job.getEmployerName() + "</td>" + "<td>" + job.getJob().getJobName()
-                        + "</td>" + "<td>" + job.getJob().getJobType().getType() + "</td>" + "<td>" + applicant + "</td>"
-                        + "<td>" + job.getApplicationTime() + "</td>" + "</tr>");
-            }
-        }
-
-        return "<!DOCTYPE html>"
-                + "<body>"
-                + "<table>"
-                + "<thead>"
-                + "<tr>"
-                + "<th>Employer</th>"
-                + "<th>Job</th>"
-                + "<th>Job Type</th>"
-                + "<th>Applicants</th>"
-                + "<th>Date</th>"
-                + "</tr>"
-                + "</thead>"
-                + "<tbody>"
-                + content
-                + "</tbody>"
-                + "</table>"
-                + "</body>"
-                + "</html>";
-    }
-
-    private String exportCsv(LocalDate date) {
-        String result = "Employer,Job,Job Type,Applicants,Date" + "\n";
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            List<JobApplication> jobs1 = set.getValue();
-            List<JobApplication> appliedOnDate = jobs1.stream().filter(job ->
-                    job.getApplicationTime().isEqual(date)).collect(Collectors.toList());
-
-            for (JobApplication job : appliedOnDate) {
-                result = result.concat(job.getEmployerName() + "," + job.getJob().getJobName() + ","
-                        + job.getJob().getJobType().getType() + "," + applicant + "," + job.getApplicationTime() + "\n");
-            }
-        }
-        return result;
+    public String export(ExportType type, LocalDate date) {
+        Exporter exporter = new Exporter();
+        return exporter.export(type, this.jobApplications.findApplicants(date));
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {

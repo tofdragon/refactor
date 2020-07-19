@@ -6,7 +6,9 @@ import java.util.Objects;
 /**
  * @author sunjing
  */
-final class JobApplication {
+public final class JobApplication {
+
+    private String jobSeekerName;
 
     private String employerName;
 
@@ -25,11 +27,24 @@ final class JobApplication {
         return jobApplication;
     }
 
-    Job getJob() {
+    static JobApplication create(String jobSeekerName, String employerName, Job job, LocalDate applicationTime) {
+        JobApplication jobApplication = new JobApplication();
+        jobApplication.jobSeekerName = jobSeekerName;
+        jobApplication.employerName = employerName;
+        jobApplication.job = job;
+        jobApplication.applicationTime = applicationTime;
+        return jobApplication;
+    }
+
+    public String getJobSeekerName() {
+        return jobSeekerName;
+    }
+
+    public Job getJob() {
         return job;
     }
 
-    LocalDate getApplicationTime() {
+    public LocalDate getApplicationTime() {
         return applicationTime;
     }
 

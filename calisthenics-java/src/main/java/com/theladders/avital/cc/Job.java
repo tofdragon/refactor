@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * @author sunjing
  */
-final class Job {
+public final class Job {
 
     private String jobName;
 
@@ -21,11 +21,11 @@ final class Job {
         return job;
     }
 
-    String getJobName() {
+    public String getJobName() {
         return jobName;
     }
 
-    JobType getJobType() {
+    public JobType getJobType() {
         return jobType;
     }
 

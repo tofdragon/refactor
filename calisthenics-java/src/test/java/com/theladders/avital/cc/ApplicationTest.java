@@ -10,6 +10,7 @@ import java.util.List;
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
 import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
+import com.theladders.avital.cc.export.ExportType;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -311,7 +312,7 @@ public class ApplicationTest {
         application.apply(Employer.create(employerAlibaba), Job.create(juniorJavaDevJob, JobType.ATS), JobSeeker.create(jobSeekerLam), LocalDate.parse("1999-12-20"));
         application.apply(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.JREQ), JobSeeker.create(jobSeekerLam, lamResume), LocalDate.parse("1999-12-20"));
 
-        String csv = application.export("csv", LocalDate.parse("1999-12-20"));
+        String csv = application.export(ExportType.CSV, LocalDate.parse("1999-12-20"));
         String expected = "Employer,Job,Job Type,Applicants,Date" + "\n" + "Alibaba,Java开发,ATS,Ho,1999-12-20" + "\n" + "Alibaba,Java开发,ATS,Lam,1999-12-20" + "\n" + "Alibaba,高级Java开发,JReq,Lam,1999-12-20" + "\n" + "Alibaba,高级Java开发,JReq,Jacky,1999-12-20" + "\n";
 
         assertThat(csv, is(expected));
@@ -336,7 +337,7 @@ public class ApplicationTest {
         application.apply(Employer.create(employerAlibaba), Job.create(juniorJavaDevJob, JobType.ATS), JobSeeker.create(jobSeekerLam), LocalDate.parse("1999-12-20"));
         application.apply(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.JREQ), JobSeeker.create(jobSeekerLam, lamResume), LocalDate.parse("1999-12-20"));
 
-        String csv = application.export("html", LocalDate.parse("1999-12-20"));
+        String csv = application.export(ExportType.HTML, LocalDate.parse("1999-12-20"));
         String expected = "<!DOCTYPE html>"
                 + "<body>"
                 + "<table>"

@@ -11,8 +11,8 @@ final class FailedApplications {
 
     private final List<JobApplication> failedApplications = new ArrayList<>();
 
-    void add(Job job, String employerName, LocalDate applicationTime) {
-        failedApplications.add(JobApplication.create(employerName, job, applicationTime));
+    void add(String jobSeekerName, Job job, String employerName, LocalDate applicationTime) {
+        failedApplications.add(JobApplication.create(jobSeekerName, employerName, job, applicationTime));
     }
 
     int getUnsuccessfulApplications(String employerName, String jobName) {
