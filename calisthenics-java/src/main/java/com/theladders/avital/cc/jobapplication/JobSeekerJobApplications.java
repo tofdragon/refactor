@@ -42,7 +42,6 @@ public class JobSeekerJobApplications {
 
     public List<String> findApplicants(String jobName) {
         return this.findApplicants(jobName, null, null);
-
     }
 
     public List<String> findApplicants(String jobName, LocalDate from) {

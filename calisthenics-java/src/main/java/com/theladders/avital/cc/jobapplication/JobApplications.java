@@ -1,5 +1,7 @@
 package com.theladders.avital.cc.jobapplication;
 
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -22,11 +24,15 @@ public final class JobApplications {
     }
 
     public boolean equalsTo(JobApplications that) {
-        return Objects.equals(jobApplications, that.jobApplications);
+        return Objects.equals(getJobApplications(), that.getJobApplications());
     }
 
     public List<JobApplication> getJobApplications() {
-        return jobApplications;
+        return Collections.unmodifiableList(jobApplications);
+    }
+
+    private void addAll(List<JobApplication> jobApplications) {
+        this.jobApplications.addAll(jobApplications);
     }
 
     JobApplications findApplicantsBy(Predicate<JobApplication> predicate) {
@@ -34,7 +40,7 @@ public final class JobApplications {
                 getJobApplications().stream().filter(predicate).collect(Collectors.toList());
 
         JobApplications jobApplications = new JobApplications();
-        jobApplications.getJobApplications().addAll(foundJobApplications);
+        jobApplications.addAll(foundJobApplications);
         return jobApplications;
     }
 

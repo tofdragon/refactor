@@ -17,7 +17,6 @@ public class JobSeekerJobApplication {
     }
 
     int getUnsuccessfulApplications(String employerName, String jobName) {
-        ;
         return jobApplications.countFindApplicantsBy(jobApplication -> jobApplication.getJob().getJobName().equals(jobName)
                 && jobApplication.getEmployerName().equals(employerName));
     }
