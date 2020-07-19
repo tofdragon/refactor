@@ -17,7 +17,7 @@ class JobSeekerJobApplications {
 
     private Map<String, JobApplications> nameToJobApplications = new HashMap<>();
 
-    private final FailedApplications failedApplications = new FailedApplications();
+    private final JobSeekerJobApplication failedApplications = new JobSeekerJobApplication();
 
     void addJobApplication(JobSeeker jobSeeker, Job job, String employerName, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {

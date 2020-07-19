@@ -5,16 +5,16 @@ import java.time.LocalDate;
 /**
  * @author sunjing
  */
-final class FailedApplications {
+public class JobSeekerJobApplication {
 
-    private final JobApplications failedApplications = new JobApplications();
+    private final JobApplications jobApplications = new JobApplications();
 
     void add(String jobSeekerName, Job job, String employerName, LocalDate applicationTime) {
-        failedApplications.add(JobApplication.create(jobSeekerName, employerName, job, applicationTime));
+        jobApplications.add(JobApplication.create(jobSeekerName, employerName, job, applicationTime));
     }
 
     int getUnsuccessfulApplications(String employerName, String jobName) {
-        return (int) failedApplications.getJobApplications().stream().filter(job -> job.getJob().getJobName().equals(jobName)
+        return (int) jobApplications.getJobApplications().stream().filter(job -> job.getJob().getJobName().equals(jobName)
                 && job.getEmployerName().equals(employerName)).count();
     }
 }
