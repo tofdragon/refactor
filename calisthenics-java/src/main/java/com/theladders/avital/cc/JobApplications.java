@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public final class JobApplications {
 
-    List<JobApplication> jobApplications;
+    private List<JobApplication> jobApplications;
 
     public JobApplications() {
         jobApplications = new ArrayList<>();
@@ -21,5 +21,9 @@ public final class JobApplications {
 
     public boolean equalsTo(JobApplications that) {
         return Objects.equals(jobApplications, that.jobApplications);
+    }
+
+    public List<JobApplication> getJobApplications() {
+        return jobApplications;
     }
 }

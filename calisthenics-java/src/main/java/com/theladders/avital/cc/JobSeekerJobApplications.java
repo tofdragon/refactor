@@ -15,9 +15,7 @@ import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
  */
 class JobSeekerJobApplications {
 
-    private Map<String, List<JobApplication>> nameToJobApplications = new HashMap<>();
-
-    private Map<String, JobApplications> temp_nameToJobApplications = new HashMap<>();
+    private Map<String, JobApplications> nameToJobApplications = new HashMap<>();
 
     private final FailedApplications failedApplications = new FailedApplications();
 
@@ -34,35 +32,28 @@ class JobSeekerJobApplications {
             throw new InvalidResumeException();
         }
 
-        List<JobApplication> jobApplications = nameToJobApplications.get(jobSeeker.getName());
-        if (jobApplications == null) {
-            jobApplications = new ArrayList<>();
-            nameToJobApplications.put(jobSeeker.getName(), jobApplications);
-        }
-        jobApplications.add(JobApplication.create(jobSeeker.getName(), employerName, job, applicationTime));
-
-        JobApplications jobApplications1 = temp_nameToJobApplications.get(jobSeeker.getName());
+        JobApplications jobApplications1 = nameToJobApplications.get(jobSeeker.getName());
         if (jobApplications1 == null) {
             jobApplications1 = new JobApplications();
-            temp_nameToJobApplications.put(jobSeeker.getName(), jobApplications1);
+            nameToJobApplications.put(jobSeeker.getName(), jobApplications1);
         }
         jobApplications1.add(JobApplication.create(jobSeeker.getName(), employerName, job, applicationTime));
     }
 
     JobApplications get(String jobSeekerName) {
-        return temp_nameToJobApplications.get(jobSeekerName);
+        return nameToJobApplications.get(jobSeekerName);
     }
 
-    private Map<String, List<JobApplication>> getNameToJobApplications() {
+    private Map<String, JobApplications> getNameToJobApplications() {
         return nameToJobApplications;
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
         int result = 0;
-        for (Map.Entry<String, List<JobApplication>> set : getNameToJobApplications().entrySet()) {
-            List<JobApplication> jobs = set.getValue();
+        for (Map.Entry<String, JobApplications> set : getNameToJobApplications().entrySet()) {
+            JobApplications jobs = set.getValue();
 
-            result += jobs.stream().anyMatch(job -> job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)) ? 1 : 0;
+            result += jobs.getJobApplications().stream().anyMatch(job -> job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)) ? 1 : 0;
         }
         return result;
     }
@@ -77,10 +68,10 @@ class JobSeekerJobApplications {
 
     List<String> findApplicants(String jobName, LocalDate from, LocalDate to) {
         List<String> result = new ArrayList<>();
-        for (Map.Entry<String, List<JobApplication>> set : getNameToJobApplications().entrySet()) {
+        for (Map.Entry<String, JobApplications> set : getNameToJobApplications().entrySet()) {
             String applicant = set.getKey();
-            List<JobApplication> jobs = set.getValue();
-            boolean isAppliedThisDate = jobs.stream().anyMatch(job -> {
+            JobApplications jobs = set.getValue();
+            boolean isAppliedThisDate = jobs.getJobApplications().stream().anyMatch(job -> {
                 if (jobName != null) {
                     if (!job.getJob().getJobName().equals(jobName)) {
                         return false;
@@ -110,9 +101,9 @@ class JobSeekerJobApplications {
 
     List<JobApplication> findApplicants(LocalDate date) {
         List<JobApplication> result = new ArrayList<>();
-        for (Map.Entry<String, List<JobApplication>> set : getNameToJobApplications().entrySet()) {
-            List<JobApplication> jobs1 = set.getValue();
-            List<JobApplication> found = jobs1.stream().filter(job ->
+        for (Map.Entry<String, JobApplications> set : getNameToJobApplications().entrySet()) {
+            JobApplications jobs1 = set.getValue();
+            List<JobApplication> found = jobs1.getJobApplications().stream().filter(job ->
                     job.getApplicationTime().isEqual(date)).collect(Collectors.toList());
             result.addAll(found);
         }
