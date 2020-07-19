@@ -17,6 +17,8 @@ class JobSeekerJobApplications {
 
     private Map<String, List<JobApplication>> nameToJobApplications = new HashMap<>();
 
+    private Map<String, JobApplications> temp_nameToJobApplications = new HashMap<>();
+
     private final FailedApplications failedApplications = new FailedApplications();
 
     void addJobApplication(JobSeeker jobSeeker, Job job, String employerName, LocalDate applicationTime)
@@ -38,10 +40,17 @@ class JobSeekerJobApplications {
             nameToJobApplications.put(jobSeeker.getName(), jobApplications);
         }
         jobApplications.add(JobApplication.create(jobSeeker.getName(), employerName, job, applicationTime));
+
+        JobApplications jobApplications1 = temp_nameToJobApplications.get(jobSeeker.getName());
+        if (jobApplications1 == null) {
+            jobApplications1 = new JobApplications();
+            temp_nameToJobApplications.put(jobSeeker.getName(), jobApplications1);
+        }
+        jobApplications1.add(JobApplication.create(jobSeeker.getName(), employerName, job, applicationTime));
     }
 
-    List<JobApplication> get(String jobSeekerName) {
-        return nameToJobApplications.get(jobSeekerName);
+    JobApplications get(String jobSeekerName) {
+        return temp_nameToJobApplications.get(jobSeekerName);
     }
 
     Map<String, List<JobApplication>> getNameToJobApplications() {

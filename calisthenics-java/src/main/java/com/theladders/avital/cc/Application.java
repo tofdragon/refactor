@@ -39,7 +39,7 @@ public final class Application {
         return publishJobs.get(employerName);
     }
 
-    public List<JobApplication> getAppliedJobs(String jobSeekerName) {
+    public JobApplications getAppliedJobs(String jobSeekerName) {
         return jobSeekerJobApplications.get(jobSeekerName);
     }
 

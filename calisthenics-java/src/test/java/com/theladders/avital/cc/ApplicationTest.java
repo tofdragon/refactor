@@ -108,14 +108,14 @@ public class ApplicationTest {
                 JobSeeker.create(jobSeekerName), LocalDate.parse("2020-01-01"));
         application.apply(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.ATS),
                 JobSeeker.create(jobSeekerName), LocalDate.parse("2020-01-01"));
-        List<JobApplication> appliedJobs = application.getAppliedJobs(jobSeekerName);
 
-        List<JobApplication> expected = new ArrayList<JobApplication>() {{
-            add(createApplyJob( "Alibaba", Job.create("Java开发", JobType.ATS),"2020-01-01"));
-            add(createApplyJob("Alibaba", Job.create("高级Java开发", JobType.ATS), "2020-01-01"));
-        }};
+        JobApplications appliedJobs = application.getAppliedJobs(jobSeekerName);
 
-        assertThat(appliedJobs, is(expected));
+        JobApplications expected = new JobApplications();
+        expected.add(createApplyJob( "Alibaba", Job.create("Java开发", JobType.ATS),"2020-01-01"));
+        expected.add(createApplyJob("Alibaba", Job.create("高级Java开发", JobType.ATS), "2020-01-01"));
+
+        assertTrue(appliedJobs.equalsTo(expected));
     }
 
     @Test(expected = RequiresResumeForJReqJobException.class)
