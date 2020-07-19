@@ -1,4 +1,4 @@
-package com.theladders.avital.cc;
+package com.theladders.avital.cc.jobapplication;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +17,7 @@ public final class JobApplications {
         jobApplications = new LinkedList<>();
     }
 
-    void add(JobApplication jobApplication) {
+    public void add(JobApplication jobApplication) {
         this.jobApplications.add(jobApplication);
     }
 
@@ -44,6 +44,6 @@ public final class JobApplications {
     }
 
     int countFindApplicantsBy(Predicate<JobApplication> predicate) {
-       return (int)getJobApplications().stream().filter(predicate).count();
+        return (int) getJobApplications().stream().filter(predicate).count();
     }
 }

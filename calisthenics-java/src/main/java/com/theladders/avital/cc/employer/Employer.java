@@ -1,22 +1,22 @@
-package com.theladders.avital.cc;
+package com.theladders.avital.cc.employer;
 
 /**
  * @author sunjing
  */
-class Employer {
+public class Employer {
 
     private String name;
 
     private Employer() {
     }
 
-    static Employer create(String name) {
+    public static Employer create(String name) {
         Employer employer = new Employer();
         employer.name = name;
         return employer;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 }

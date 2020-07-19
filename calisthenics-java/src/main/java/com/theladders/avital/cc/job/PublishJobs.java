@@ -1,4 +1,4 @@
-package com.theladders.avital.cc;
+package com.theladders.avital.cc.job;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,11 +8,11 @@ import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
 /**
  * @author sunjing
  */
-final class PublishJobs {
+public final class PublishJobs {
 
     private Map<String, Jobs> employeeNameToJobs = new HashMap<>();
 
-    void add(String employerName, Job job) throws NotSupportedJobTypeException {
+    public void add(String employerName, Job job) throws NotSupportedJobTypeException {
         if (!(JobType.JREQ == job.getJobType()) && !(JobType.ATS == job.getJobType())) {
             throw new NotSupportedJobTypeException();
         }
@@ -25,7 +25,7 @@ final class PublishJobs {
         jobs.add(job);
     }
 
-    Jobs get(String employerName) {
+    public Jobs get(String employerName) {
         return employeeNameToJobs.get(employerName);
     }
 }

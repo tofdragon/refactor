@@ -1,4 +1,4 @@
-package com.theladders.avital.cc;
+package com.theladders.avital.cc.job;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author sunjing
  */
-final class Jobs {
+public final class Jobs {
 
     private List<Job> jobs;
 
@@ -14,17 +14,17 @@ final class Jobs {
         jobs = new ArrayList<>();
     }
 
-    static Jobs create(Job addJobs) {
+    public static Jobs create(Job addJobs) {
         Jobs jobs = new Jobs();
         jobs.add(addJobs);
         return jobs;
     }
 
-    boolean includeJob(Job otherJob) {
+    public boolean includeJob(Job otherJob) {
         return jobs.stream().filter(job -> job.equalsJob(otherJob)).findAny().isPresent();
     }
 
-    void add(Job job) {
+    public void add(Job job) {
         this.jobs.add(job);
     }
 }

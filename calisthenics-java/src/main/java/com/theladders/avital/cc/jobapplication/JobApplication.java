@@ -1,7 +1,9 @@
-package com.theladders.avital.cc;
+package com.theladders.avital.cc.jobapplication;
 
 import java.time.LocalDate;
 import java.util.Objects;
+
+import com.theladders.avital.cc.job.Job;
 
 /**
  * @author sunjing
@@ -19,7 +21,7 @@ public final class JobApplication {
     private JobApplication() {
     }
 
-    static JobApplication create(String employerName, Job job, LocalDate applicationTime) {
+    public static JobApplication create(String employerName, Job job, LocalDate applicationTime) {
         JobApplication jobApplication = new JobApplication();
         jobApplication.employerName = employerName;
         jobApplication.job = job;
@@ -27,7 +29,7 @@ public final class JobApplication {
         return jobApplication;
     }
 
-    static JobApplication create(String jobSeekerName, String employerName, Job job, LocalDate applicationTime) {
+    public static JobApplication create(String jobSeekerName, String employerName, Job job, LocalDate applicationTime) {
         JobApplication jobApplication = new JobApplication();
         jobApplication.jobSeekerName = jobSeekerName;
         jobApplication.employerName = employerName;

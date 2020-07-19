@@ -3,11 +3,19 @@ package com.theladders.avital.cc;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.theladders.avital.cc.employer.Employer;
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
 import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
 import com.theladders.avital.cc.export.ExportType;
 import com.theladders.avital.cc.export.Exporter;
+import com.theladders.avital.cc.job.Job;
+import com.theladders.avital.cc.job.Jobs;
+import com.theladders.avital.cc.job.PublishJobs;
+import com.theladders.avital.cc.job.SaveJobs;
+import com.theladders.avital.cc.jobapplication.JobApplications;
+import com.theladders.avital.cc.jobapplication.JobSeekerJobApplications;
+import com.theladders.avital.cc.jobseeker.JobSeeker;
 
 /**
  * @author sunjing
@@ -58,7 +66,7 @@ public final class Application {
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
-       return jobSeekerJobApplications.getSuccessfulApplications(employerName, jobName);
+        return jobSeekerJobApplications.getSuccessfulApplications(employerName, jobName);
     }
 
     public int getUnsuccessfulApplications(String employerName, String jobName) {

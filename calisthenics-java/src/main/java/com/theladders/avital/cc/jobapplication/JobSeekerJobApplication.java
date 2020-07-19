@@ -1,7 +1,9 @@
-package com.theladders.avital.cc;
+package com.theladders.avital.cc.jobapplication;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import com.theladders.avital.cc.job.Job;
 
 /**
  * @author sunjing
@@ -14,7 +16,8 @@ public class JobSeekerJobApplication {
         jobApplications.add(JobApplication.create(jobSeekerName, employerName, job, applicationTime));
     }
 
-    int getUnsuccessfulApplications(String employerName, String jobName) { ;
+    int getUnsuccessfulApplications(String employerName, String jobName) {
+        ;
         return jobApplications.countFindApplicantsBy(jobApplication -> jobApplication.getJob().getJobName().equals(jobName)
                 && jobApplication.getEmployerName().equals(employerName));
     }

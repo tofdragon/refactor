@@ -1,12 +1,9 @@
-package com.theladders.avital.cc;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.theladders.avital.cc.jobseeker;
 
 /**
  * @author sunjing
  */
-final class JobSeeker {
+public final class JobSeeker {
 
     private String name;
 
@@ -15,24 +12,24 @@ final class JobSeeker {
     private JobSeeker() {
     }
 
-    static JobSeeker create(String name) {
+    public static JobSeeker create(String name) {
         JobSeeker jobSeeker = new JobSeeker();
         jobSeeker.name = name;
         return jobSeeker;
     }
 
-    static JobSeeker create(String name, String resumeName) {
+    public static JobSeeker create(String name, String resumeName) {
         JobSeeker jobSeeker = new JobSeeker();
         jobSeeker.name = name;
         jobSeeker.resume = Resume.create(resumeName);
         return jobSeeker;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    Resume getResume() {
+    public Resume getResume() {
         return resume;
     }
 

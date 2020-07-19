@@ -1,4 +1,4 @@
-package com.theladders.avital.cc;
+package com.theladders.avital.cc.job;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ public final class Job {
     private Job() {
     }
 
-    static Job create(String jobName, JobType jobType) {
+    public static Job create(String jobName, JobType jobType) {
         Job job = new Job();
         job.jobName = jobName;
         job.jobType = jobType;
@@ -29,7 +29,7 @@ public final class Job {
         return jobType;
     }
 
-    boolean equalsJob(Job otherJob) {
+    public boolean equalsJob(Job otherJob) {
         return this.getJobName().equals(otherJob.getJobName()) && this.getJobType() == otherJob.getJobType();
     }
 

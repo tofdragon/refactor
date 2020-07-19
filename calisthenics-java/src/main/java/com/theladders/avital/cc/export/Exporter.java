@@ -1,9 +1,7 @@
 package com.theladders.avital.cc.export;
 
-import java.util.List;
-
-import com.theladders.avital.cc.JobApplication;
-import com.theladders.avital.cc.JobApplications;
+import com.theladders.avital.cc.jobapplication.JobApplication;
+import com.theladders.avital.cc.jobapplication.JobApplications;
 
 /**
  * @author sunjing

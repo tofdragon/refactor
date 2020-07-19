@@ -7,10 +7,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.theladders.avital.cc.employer.Employer;
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
 import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
 import com.theladders.avital.cc.export.ExportType;
+import com.theladders.avital.cc.job.Job;
+import com.theladders.avital.cc.job.JobType;
+import com.theladders.avital.cc.jobapplication.JobApplication;
+import com.theladders.avital.cc.jobapplication.JobApplications;
+import com.theladders.avital.cc.job.Jobs;
+import com.theladders.avital.cc.jobseeker.JobSeeker;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
