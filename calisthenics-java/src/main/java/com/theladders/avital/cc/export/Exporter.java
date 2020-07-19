@@ -3,13 +3,14 @@ package com.theladders.avital.cc.export;
 import java.util.List;
 
 import com.theladders.avital.cc.JobApplication;
+import com.theladders.avital.cc.JobApplications;
 
 /**
  * @author sunjing
  */
 public final class Exporter {
 
-    public String export(ExportType type, List<JobApplication> jobApplications) {
+    public String export(ExportType type, JobApplications jobApplications) {
         if (ExportType.CSV == type) {
             return exportCsv(jobApplications);
         }
@@ -21,10 +22,10 @@ public final class Exporter {
         return null;
     }
 
-    private String exportHtml(List<JobApplication> jobApplications) {
+    private String exportHtml(JobApplications jobApplications) {
         String content = "";
 
-        for (JobApplication job : jobApplications) {
+        for (JobApplication job : jobApplications.getJobApplications()) {
             content = content.concat("<tr>" + "<td>" + job.getEmployerName() + "</td>" + "<td>" + job.getJob().getJobName()
                     + "</td>" + "<td>" + job.getJob().getJobType().getType() + "</td>" + "<td>" + job.getJobSeekerName() + "</td>"
                     + "<td>" + job.getApplicationTime() + "</td>" + "</tr>");
@@ -50,9 +51,9 @@ public final class Exporter {
                 + "</html>";
     }
 
-    private String exportCsv(List<JobApplication> jobApplications) {
+    private String exportCsv(JobApplications jobApplications) {
         String result = "Employer,Job,Job Type,Applicants,Date" + "\n";
-        for (JobApplication job : jobApplications) {
+        for (JobApplication job : jobApplications.getJobApplications()) {
             result = result.concat(job.getEmployerName() + "," + job.getJob().getJobName() + ","
                     + job.getJob().getJobType().getType() + "," + job.getJobSeekerName() + "," + job.getApplicationTime() + "\n");
         }

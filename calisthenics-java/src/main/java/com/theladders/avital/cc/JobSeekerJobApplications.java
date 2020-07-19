@@ -2,12 +2,9 @@ package com.theladders.avital.cc;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * @author sunjing
@@ -44,6 +41,7 @@ class JobSeekerJobApplications {
 
     List<String> findApplicants(String jobName) {
         return this.findApplicants(jobName, null, null);
+
     }
 
     List<String> findApplicants(String jobName, LocalDate from) {
@@ -54,7 +52,7 @@ class JobSeekerJobApplications {
         return this.successApplications.findApplicants(jobName, from, to);
     }
 
-    List<JobApplication> findApplicants(LocalDate date) {
+    JobApplications findApplicants(LocalDate date) {
         return successApplications.findApplicants(date);
     }
 
