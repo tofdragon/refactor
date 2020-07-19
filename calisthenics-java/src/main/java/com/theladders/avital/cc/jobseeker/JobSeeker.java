@@ -29,8 +29,31 @@ public final class JobSeeker {
         return name;
     }
 
-    public Resume getResume() {
+    private Resume getResume() {
         return resume;
     }
 
+    private boolean hasResume() {
+        return getResume() != null;
+    }
+
+    public boolean hasNotResume() {
+        return !hasResume();
+    }
+
+    public String getResumeName() {
+        return getResume().getName();
+    }
+
+    public boolean isNotJobSeekerResume() {
+        if (hasNotResume()) {
+            return true;
+        }
+
+        if (!getResumeName().equals(getName())) {
+            return true;
+        }
+
+        return false;
+    }
 }

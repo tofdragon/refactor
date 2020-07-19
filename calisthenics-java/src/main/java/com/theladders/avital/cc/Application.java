@@ -62,7 +62,7 @@ public final class Application {
     }
 
     public String export(ExportType type, LocalDate date) {
-        return new Exporter().export(type, this.jobSeekerJobApplications.findApplicants(date));
+        return new Exporter().export(type, jobSeekerJobApplications.findApplicants(date));
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {

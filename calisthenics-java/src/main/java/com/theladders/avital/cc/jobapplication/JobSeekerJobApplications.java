@@ -20,14 +20,12 @@ public class JobSeekerJobApplications {
 
     public void addJobApplication(JobSeeker jobSeeker, Job job, String employerName, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {
-        String resumeApplicantName = jobSeeker.getResume() == null ? null : jobSeeker.getResume().getName();
-
-        if (JobType.JREQ == job.getJobType() && resumeApplicantName == null) {
+        if (JobType.JREQ == job.getJobType() && jobSeeker.hasNotResume()) {
             failedApplications.add(jobSeeker.getName(), job, employerName, applicationTime);
             throw new RequiresResumeForJReqJobException();
         }
 
-        if (JobType.JREQ == job.getJobType() && !resumeApplicantName.equals(jobSeeker.getName())) {
+        if (JobType.JREQ == job.getJobType() && jobSeeker.isNotJobSeekerResume()) {
             throw new InvalidResumeException();
         }
 
