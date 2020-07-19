@@ -1,21 +1,20 @@
 package com.theladders.avital.cc;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * @author sunjing
  */
 class JobSeekerJobApplications {
 
-    private Map<String, JobApplications> nameToJobApplications = new HashMap<>();
+    private final JobSeekerJobApplication successApplications = new JobSeekerJobApplication();
 
     private final JobSeekerJobApplication failedApplications = new JobSeekerJobApplication();
 
@@ -32,30 +31,16 @@ class JobSeekerJobApplications {
             throw new InvalidResumeException();
         }
 
-        JobApplications jobApplications1 = nameToJobApplications.get(jobSeeker.getName());
-        if (jobApplications1 == null) {
-            jobApplications1 = new JobApplications();
-            nameToJobApplications.put(jobSeeker.getName(), jobApplications1);
-        }
-        jobApplications1.add(JobApplication.create(jobSeeker.getName(), employerName, job, applicationTime));
+        successApplications.add(jobSeeker.getName(), job, employerName, applicationTime);
     }
 
     JobApplications get(String jobSeekerName) {
-        return nameToJobApplications.get(jobSeekerName);
-    }
-
-    private Map<String, JobApplications> getNameToJobApplications() {
-        return nameToJobApplications;
+        return successApplications.get(jobSeekerName);
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
-        int result = 0;
-        for (Map.Entry<String, JobApplications> set : getNameToJobApplications().entrySet()) {
-            JobApplications jobs = set.getValue();
-
-            result += jobs.getJobApplications().stream().anyMatch(job -> job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)) ? 1 : 0;
-        }
-        return result;
+        return successApplications.getJobApplications().getJobApplications().stream().filter(job ->
+                    job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)).collect(Collectors.toList()).size();
     }
 
     List<String> findApplicants(String jobName) {
@@ -67,47 +52,33 @@ class JobSeekerJobApplications {
     }
 
     List<String> findApplicants(String jobName, LocalDate from, LocalDate to) {
-        List<String> result = new ArrayList<>();
-        for (Map.Entry<String, JobApplications> set : getNameToJobApplications().entrySet()) {
-            String applicant = set.getKey();
-            JobApplications jobs = set.getValue();
-            boolean isAppliedThisDate = jobs.getJobApplications().stream().anyMatch(job -> {
-                if (jobName != null) {
-                    if (!job.getJob().getJobName().equals(jobName)) {
-                        return false;
-                    }
+        return successApplications.getJobApplications().getJobApplications().stream().filter(job -> {
+            if (jobName != null) {
+                if (!job.getJob().getJobName().equals(jobName)) {
+                    return false;
                 }
-
-                if (from != null) {
-                    if (from.isAfter(job.getApplicationTime())) {
-                        return false;
-                    }
-                }
-
-                if (to != null) {
-                    if (to.isBefore(job.getApplicationTime())) {
-                        return false;
-                    }
-                }
-
-                return true;
-            });
-            if (isAppliedThisDate) {
-                result.add(applicant);
             }
-        }
-        return result;
+
+            if (from != null) {
+                if (from.isAfter(job.getApplicationTime())) {
+                    return false;
+                }
+            }
+
+            if (to != null) {
+                if (to.isBefore(job.getApplicationTime())) {
+                    return false;
+                }
+            }
+
+            return true;
+        }).map(jobApplication -> jobApplication.getJobSeekerName()).collect(toList());
+
     }
 
     List<JobApplication> findApplicants(LocalDate date) {
-        List<JobApplication> result = new ArrayList<>();
-        for (Map.Entry<String, JobApplications> set : getNameToJobApplications().entrySet()) {
-            JobApplications jobs1 = set.getValue();
-            List<JobApplication> found = jobs1.getJobApplications().stream().filter(job ->
-                    job.getApplicationTime().isEqual(date)).collect(Collectors.toList());
-            result.addAll(found);
-        }
-        return result;
+        return successApplications.getJobApplications().getJobApplications().stream().filter(job ->
+                    job.getApplicationTime().isEqual(date)).collect(toList());
     }
 
     int getUnsuccessfulApplications(String employerName, String jobName) {

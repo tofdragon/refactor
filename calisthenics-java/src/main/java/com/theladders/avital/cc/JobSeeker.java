@@ -12,8 +12,6 @@ final class JobSeeker {
 
     private Resume resume;
 
-    private final List<JobApplication> applied = new ArrayList<>();
-
     private JobSeeker() {
     }
 

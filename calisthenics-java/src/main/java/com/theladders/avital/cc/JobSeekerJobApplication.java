@@ -17,4 +17,18 @@ public class JobSeekerJobApplication {
         return (int) jobApplications.getJobApplications().stream().filter(job -> job.getJob().getJobName().equals(jobName)
                 && job.getEmployerName().equals(employerName)).count();
     }
+
+    JobApplications get(String jobSeekerName) {
+        JobApplications foundJobApplications = new JobApplications();
+        for (JobApplication jobApplication : jobApplications.getJobApplications()) {
+            if (jobApplication.getJobSeekerName().equals(jobSeekerName)) {
+                foundJobApplications.add(jobApplication);
+            }
+        }
+        return foundJobApplications;
+    }
+
+    public JobApplications getJobApplications() {
+        return jobApplications;
+    }
 }

@@ -153,8 +153,8 @@ public class ApplicationTest {
         List<String> applicants = application.findApplicants(seniorJavaDevJob);
 
         List<String> expected = new ArrayList<String>() {{
-            add("Lam");
             add("Jacky");
+            add("Lam");
         }};
 
         assertThat(applicants, is(expected));
@@ -211,8 +211,8 @@ public class ApplicationTest {
         List<String> applicants = application.findApplicants(null, LocalDate.parse("1997-07-01"), LocalDate.parse("1999-12-20"));
 
         List<String> expected = new ArrayList<String>() {{
-            add("Ho");
             add("Jacky");
+            add("Ho");
         }};
 
         assertThat(applicants, is(expected));
@@ -286,8 +286,8 @@ public class ApplicationTest {
         List<String> applicants = application.findApplicants(juniorJavaDevJob, LocalDate.parse("1997-01-01"), LocalDate.parse("1999-01-01"));
 
         List<String> expected = new ArrayList<String>() {{
-            add("Ho");
             add("Jacky");
+            add("Ho");
         }};
 
         assertThat(applicants, is(expected));
@@ -313,8 +313,9 @@ public class ApplicationTest {
         application.apply(Employer.create(employerAlibaba), Job.create(seniorJavaDevJob, JobType.JREQ), JobSeeker.create(jobSeekerLam, lamResume), LocalDate.parse("1999-12-20"));
 
         String csv = application.export(ExportType.CSV, LocalDate.parse("1999-12-20"));
-        String expected = "Employer,Job,Job Type,Applicants,Date" + "\n" + "Alibaba,Java开发,ATS,Ho,1999-12-20" + "\n" + "Alibaba,Java开发,ATS,Lam,1999-12-20" + "\n" + "Alibaba,高级Java开发,JReq,Lam,1999-12-20" + "\n" + "Alibaba,高级Java开发,JReq,Jacky,1999-12-20" + "\n";
+        //String expected = "Employer,Job,Job Type,Applicants,Date" + "\n" + "Alibaba,高级Java开发,JReq,Jacky,1999-12-20" + "\n" + "Alibaba,高级Java开发,JReq,Lam,1999-12-20" + "\n" + "Alibaba,Java开发,ATS,Ho,1999-12-20" + "\n" + "Alibaba,Java开发,ATS,Lam,1999-12-20" + "\n" ;
 
+        String expected = "Employer,Job,Job Type,Applicants,Date"+ "\n" +"Alibaba,高级Java开发,JReq,Jacky,1999-12-20"+"\n"+"Alibaba,Java开发,ATS,Ho,1999-12-20"+"\n"+"Alibaba,Java开发,ATS,Lam,1999-12-20"+"\n"+"Alibaba,高级Java开发,JReq,Lam,1999-12-20" + "\n";
         assertThat(csv, is(expected));
     }
 
@@ -353,6 +354,13 @@ public class ApplicationTest {
                 + "<tbody>"
                 + "<tr>"
                 + "<td>Alibaba</td>"
+                + "<td>高级Java开发</td>"
+                + "<td>JReq</td>"
+                + "<td>Jacky</td>"
+                + "<td>1999-12-20</td>"
+                + "</tr>"
+                + "<tr>"
+                + "<td>Alibaba</td>"
                 + "<td>Java开发</td>"
                 + "<td>ATS</td>"
                 + "<td>Ho</td>"
@@ -372,13 +380,7 @@ public class ApplicationTest {
                 + "<td>Lam</td>"
                 + "<td>1999-12-20</td>"
                 + "</tr>"
-                + "<tr>"
-                + "<td>Alibaba</td>"
-                + "<td>高级Java开发</td>"
-                + "<td>JReq</td>"
-                + "<td>Jacky</td>"
-                + "<td>1999-12-20</td>"
-                + "</tr>"
+
                 + "</tbody>"
                 + "</table>"
                 + "</body>"
@@ -406,7 +408,7 @@ public class ApplicationTest {
         application.apply(Employer.create(employerAlibaba), Job.create(juniorJavaDevJob, JobType.ATS), JobSeeker.create(jobSeekerHo), LocalDate.now());
 
         assertThat(application.getSuccessfulApplications(employerAlibaba, seniorJavaDevJob), is(2));
-        assertThat(application.getSuccessfulApplications(employerAlibaba, juniorJavaDevJob), is(1));
+        assertThat(application.getSuccessfulApplications(employerAlibaba, juniorJavaDevJob), is(2));
     }
 
     @Test
