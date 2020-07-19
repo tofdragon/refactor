@@ -13,7 +13,7 @@ import com.theladders.avital.cc.exception.RequiresResumeForJReqJobException;
 /**
  * @author sunjing
  */
-class JobApplications {
+class JobSeekerJobApplications {
 
     private Map<String, List<JobApplication>> nameToJobApplications = new HashMap<>();
 

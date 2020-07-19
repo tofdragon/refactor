@@ -2,7 +2,6 @@ package com.theladders.avital.cc;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.theladders.avital.cc.exception.InvalidResumeException;
 import com.theladders.avital.cc.exception.NotSupportedJobTypeException;
@@ -21,11 +20,11 @@ public final class Application {
 
     private final SaveJobs saveJobs = new SaveJobs();
 
-    private final JobApplications jobApplications = new JobApplications();
+    private final JobSeekerJobApplications jobSeekerJobApplications = new JobSeekerJobApplications();
 
     void apply(Employer employer, Job job, JobSeeker jobSeeker, LocalDate applicationTime)
             throws RequiresResumeForJReqJobException, InvalidResumeException {
-        jobApplications.addJobApplication(jobSeeker, job, employer.getName(), applicationTime);
+        jobSeekerJobApplications.addJobApplication(jobSeeker, job, employer.getName(), applicationTime);
     }
 
     void save(JobSeeker jobSeeker, Job job) {
@@ -41,29 +40,29 @@ public final class Application {
     }
 
     public List<JobApplication> getAppliedJobs(String jobSeekerName) {
-        return jobApplications.get(jobSeekerName);
+        return jobSeekerJobApplications.get(jobSeekerName);
     }
 
     public List<String> findApplicants(String jobName) {
-        return jobApplications.findApplicants(jobName);
+        return jobSeekerJobApplications.findApplicants(jobName);
     }
 
     public List<String> findApplicants(String jobName, LocalDate from) {
-        return jobApplications.findApplicants(jobName, from);
+        return jobSeekerJobApplications.findApplicants(jobName, from);
     }
 
     public List<String> findApplicants(String jobName, LocalDate from, LocalDate to) {
-        return jobApplications.findApplicants(jobName, from, to);
+        return jobSeekerJobApplications.findApplicants(jobName, from, to);
     }
 
     public String export(ExportType type, LocalDate date) {
         Exporter exporter = new Exporter();
-        return exporter.export(type, this.jobApplications.findApplicants(date));
+        return exporter.export(type, this.jobSeekerJobApplications.findApplicants(date));
     }
 
     public int getSuccessfulApplications(String employerName, String jobName) {
         int result = 0;
-        for (Entry<String, List<JobApplication>> set : this.jobApplications.getNameToJobApplications().entrySet()) {
+        for (Entry<String, List<JobApplication>> set : this.jobSeekerJobApplications.getNameToJobApplications().entrySet()) {
             List<JobApplication> jobs = set.getValue();
 
             result += jobs.stream().anyMatch(job -> job.getEmployerName().equals(employerName) && job.getJob().getJobName().equals(jobName)) ? 1 : 0;
@@ -72,6 +71,6 @@ public final class Application {
     }
 
     public int getUnsuccessfulApplications(String employerName, String jobName) {
-        return jobApplications.getUnsuccessfulApplications(employerName, jobName);
+        return jobSeekerJobApplications.getUnsuccessfulApplications(employerName, jobName);
     }
 }
