@@ -11,20 +11,11 @@ public class Length {
 
     private final double value;
 
-    private final String unit;
-
     private Unit temp_unit;
 
     public Length(double value, Unit temp_unit) {
         this.value = value;
         this.temp_unit = temp_unit;
-        if (temp_unit == Unit.FOOT) {
-            this.unit = FOOT;
-        } else if (temp_unit == Unit.YARD) {
-            this.unit = YARD;
-        } else {
-            this.unit = INCH;
-        }
     }
 
     public Length as(String targetUnit) {
@@ -83,7 +74,7 @@ public class Length {
     public double getValue() {
         return this.value;
     }
-    
+
     public Unit temp_getUnit() {
         return this.temp_unit;
     }
