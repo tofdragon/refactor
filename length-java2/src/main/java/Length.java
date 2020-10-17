@@ -2,7 +2,7 @@
  * @author sunjing
  */
 public class Length {
-    
+
     private final double value;
 
     private Unit unit;
@@ -12,7 +12,7 @@ public class Length {
         this.unit = unit;
     }
 
-    public Length temp_as(Unit temp_targetUnit) {
+    public Length as(Unit temp_targetUnit) {
         if (this.unit == Unit.FOOT) {
             return footAs(temp_targetUnit);
         }
