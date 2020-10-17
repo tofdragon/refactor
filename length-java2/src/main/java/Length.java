@@ -3,7 +3,7 @@
  */
 public class Length {
 
-    public static final String FOOT = "f";
+    public static final String FOOT = "foot";
 
     public static final String YARD = "yard";
 
