@@ -26,7 +26,7 @@ public class Length {
         }
 
         if (this.unit.equals(YARD)) {
-            return yardAs(targetUnit, len);
+            return yardAs(targetUnit);
         }
 
         if (this.unit.equals(INCH)) {
@@ -45,13 +45,16 @@ public class Length {
         return len;
     }
 
-    private Length yardAs(String targetUnit, Length len) {
+    private Length yardAs(String targetUnit) {
         if (targetUnit.equals(INCH)) {
-            len = new Length(this.value * 36, targetUnit);
-        } else if (targetUnit.equals(FOOT)){
-            len = new Length(this.value * 3, targetUnit);
+            return new Length(this.value * 36, targetUnit);
         }
-        return len;
+
+        if (targetUnit.equals(FOOT)){
+            return new Length(this.value * 3, targetUnit);
+        }
+
+        return this;
     }
 
     private Length footAs(String targetUnit) {
