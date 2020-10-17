@@ -13,26 +13,29 @@ public class Length {
     public Length as(String targetUnit) {
         Length len = this;
         final String f = "f";
+        final String yard = "yard";
+        final String inch = "inch";
+
         if (this.unit.equals(f)) {
-            if (targetUnit.equals("yard")) {
+            if (targetUnit.equals(yard)) {
                 len = new Length(this.value / 3, targetUnit);
-            } else if (targetUnit.equals("inch")) {
+            } else if (targetUnit.equals(inch)) {
                 len = new Length(this.value * 12, targetUnit);
             }
         }
 
-        if (this.unit.equals("yard")) {
-            if (targetUnit.equals("inch")) {
+        if (this.unit.equals(yard)) {
+            if (targetUnit.equals(inch)) {
                 len = new Length(this.value * 36, targetUnit);
             } else if (targetUnit.equals(f)){
                 len = new Length(this.value * 3, targetUnit);
             }
         }
 
-        if (this.unit.equals("inch")) {
+        if (this.unit.equals(inch)) {
             if (targetUnit.equals(f)) {
                 len = new Length(this.value / 12, targetUnit);
-            } else if (targetUnit.equals("yard")) {
+            } else if (targetUnit.equals(yard)) {
                 len = new Length(this.value / 36, targetUnit);
             }
         }
