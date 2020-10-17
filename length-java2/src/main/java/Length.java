@@ -19,8 +19,6 @@ public class Length {
     }
 
     public Length as(String targetUnit) {
-        Length len = this;
-
         if (this.unit.equals(FOOT)) {
             return footAs(targetUnit);
         }
@@ -33,7 +31,7 @@ public class Length {
             return inchAs(targetUnit);
         }
 
-        return len;
+        return this;
     }
 
     private Length inchAs(String targetUnit) {
