@@ -2,13 +2,7 @@
  * @author sunjing
  */
 public class Length {
-
-    public static final String FOOT = "foot";
-
-    public static final String YARD = "yard";
-
-    public static final String INCH = "inch";
-
+    
     private final double value;
 
     private Unit unit;
