@@ -62,7 +62,9 @@ public class Length {
         if (targetUnit.equals(INCH)) {
             return new Length(this.value * 12, targetUnit);
         }
-        return len;
+
+
+        return this;
     }
 
     public double getValue() {
