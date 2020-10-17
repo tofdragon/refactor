@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 public class LengthTest {
     @Test
     public void should_1_inch_equals_1_inch() {
-        Length result = new Length(1, Unit.INCH).as(Length.INCH);
+        Length result = new Length(1, Unit.INCH).temp_as(Unit.INCH);
 
         assertThat(result.getValue(), is(1.0));
         assertThat(result.getUnit(), is(Unit.INCH));
@@ -70,7 +70,7 @@ public class LengthTest {
 
     @Test
     public void should_12_inches_equals_1_foot() {
-        Length result = new Length(12, Unit.INCH).as(Length.FOOT);
+        Length result = new Length(12, Unit.INCH).temp_as(Unit.FOOT);
 
         assertThat(result.getValue(), is(1.0));
         assertThat(result.getUnit(), is(Unit.FOOT));
@@ -78,7 +78,7 @@ public class LengthTest {
 
     @Test
     public void should_36_inches_equals_1_yard() {
-        Length result = new Length(36, Unit.INCH).as(Length.YARD);
+        Length result = new Length(36, Unit.INCH).temp_as(Unit.YARD);
 
         assertThat(result.getValue(), is(1.0));
         assertThat(result.getUnit(), is(Unit.YARD));
@@ -86,7 +86,7 @@ public class LengthTest {
 
     @Test
     public void should_18_inches_equals_half_yard() {
-        Length result = new Length(18, Unit.INCH).as(Length.YARD);
+        Length result = new Length(18, Unit.INCH).temp_as(Unit.YARD);
 
         assertThat(result.getValue(), is(0.5));
         assertThat(result.getUnit(), is(Unit.YARD));

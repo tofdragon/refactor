@@ -52,6 +52,10 @@ public class Length {
             return yardAs(temp_targetUnit);
         }
 
+        if (this.unit == Unit.INCH) {
+            return inchAs(temp_targetUnit);
+        }
+
         return this;
     }
 
