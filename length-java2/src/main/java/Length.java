@@ -48,7 +48,7 @@ public class Length {
 
     private Length inchAs(String targetUnit) {
         if (targetUnit.equals(FOOT)) {
-           return new Length(this.value / 12, targetUnit);
+           return new Length(this.value / 12, Unit.FOOT);
         }
 
         if (targetUnit.equals(YARD)) {
@@ -64,7 +64,7 @@ public class Length {
         }
 
         if (targetUnit.equals(FOOT)){
-            return new Length(this.value * 3, targetUnit);
+            return new Length(this.value * 3, Unit.FOOT);
         }
 
         return this;
