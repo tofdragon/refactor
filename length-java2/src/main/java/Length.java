@@ -35,13 +35,13 @@ public class Length {
         }
 
         if (this.unit == Unit.INCH) {
-            return inchAs(targetUnit, temp_targetUnit);
+            return inchAs(temp_targetUnit);
         }
 
         return this;
     }
 
-    private Length inchAs(String targetUnit, Unit temp_targetUnit) {
+    private Length inchAs(Unit temp_targetUnit) {
         if (temp_targetUnit == Unit.FOOT) {
            return new Length(this.value / 12, Unit.FOOT);
         }
