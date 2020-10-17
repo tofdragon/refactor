@@ -7,7 +7,7 @@ public class Length {
 
     private static final String YARD = "yard";
 
-    private static final String INCH = "inch";
+    public static final String INCH = "inch";
 
     private final double value;
 
