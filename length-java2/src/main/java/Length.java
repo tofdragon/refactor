@@ -20,7 +20,16 @@ public class Length {
         this.unit = unit;
     }
 
-  
+    public Length(double value, Unit temp_unit) {
+        this.value = value;
+        this.temp_unit = temp_unit;
+        if (temp_unit == Unit.FOOT) {
+            this.unit = FOOT;
+        } else {
+            this.unit = null;
+        }
+    }
+
     public Length as(String targetUnit) {
         if (this.unit.equals(FOOT)) {
             return footAs(targetUnit);
