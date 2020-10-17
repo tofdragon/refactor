@@ -11,23 +11,23 @@ public class Length {
 
     private final double value;
 
-    private Unit temp_unit;
+    private Unit unit;
 
-    public Length(double value, Unit temp_unit) {
+    public Length(double value, Unit unit) {
         this.value = value;
-        this.temp_unit = temp_unit;
+        this.unit = unit;
     }
 
     public Length as(String targetUnit) {
-        if (this.temp_unit == Unit.FOOT) {
+        if (this.unit == Unit.FOOT) {
             return footAs(targetUnit);
         }
 
-        if (this.temp_unit == Unit.YARD) {
+        if (this.unit == Unit.YARD) {
             return yardAs(targetUnit);
         }
 
-        if (this.temp_unit == Unit.INCH) {
+        if (this.unit == Unit.INCH) {
             return inchAs(targetUnit);
         }
 
@@ -76,6 +76,6 @@ public class Length {
     }
 
     public Unit temp_getUnit() {
-        return this.temp_unit;
+        return this.unit;
     }
 }
