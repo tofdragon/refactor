@@ -12,53 +12,53 @@ public class Length {
         this.unit = unit;
     }
 
-    public Length as(Unit temp_targetUnit) {
+    public Length as(Unit targetUnit) {
         if (this.unit == Unit.FOOT) {
-            return footAs(temp_targetUnit);
+            return footAs(targetUnit);
         }
 
         if (this.unit == Unit.YARD) {
-            return yardAs(temp_targetUnit);
+            return yardAs(targetUnit);
         }
 
         if (this.unit == Unit.INCH) {
-            return inchAs(temp_targetUnit);
+            return inchAs(targetUnit);
         }
 
         return this;
     }
 
-    private Length inchAs(Unit temp_targetUnit) {
-        if (temp_targetUnit == Unit.FOOT) {
-           return new Length(this.value / 12, temp_targetUnit);
+    private Length inchAs(Unit targetUnit) {
+        if (targetUnit == Unit.FOOT) {
+           return new Length(this.value / 12, targetUnit);
         }
 
-        if (temp_targetUnit == Unit.YARD) {
-           return new Length(this.value / 36, temp_targetUnit);
-        }
-
-        return this;
-    }
-
-    private Length yardAs(Unit temp_targetUnit) {
-        if (temp_targetUnit == Unit.INCH) {
-            return new Length(this.value * 36, temp_targetUnit);
-        }
-
-        if (temp_targetUnit == Unit.FOOT){
-            return new Length(this.value * 3, temp_targetUnit);
+        if (targetUnit == Unit.YARD) {
+           return new Length(this.value / 36, targetUnit);
         }
 
         return this;
     }
 
-    private Length footAs(Unit temp_targetUnit) {
-        if (temp_targetUnit == Unit.YARD) {
-            return new Length(this.value / 3, temp_targetUnit);
+    private Length yardAs(Unit targetUnit) {
+        if (targetUnit == Unit.INCH) {
+            return new Length(this.value * 36, targetUnit);
         }
 
-        if (temp_targetUnit == Unit.INCH) {
-            return new Length(this.value * 12, temp_targetUnit);
+        if (targetUnit == Unit.FOOT){
+            return new Length(this.value * 3, targetUnit);
+        }
+
+        return this;
+    }
+
+    private Length footAs(Unit targetUnit) {
+        if (targetUnit == Unit.YARD) {
+            return new Length(this.value / 3, targetUnit);
+        }
+
+        if (targetUnit == Unit.INCH) {
+            return new Length(this.value * 12, targetUnit);
         }
 
 
