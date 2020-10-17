@@ -3,9 +3,9 @@
  */
 public class Length {
 
-    private static final String FOOT = "f";
+    public static final String FOOT = "f";
 
-    private static final String YARD = "yard";
+    public static final String YARD = "yard";
 
     public static final String INCH = "inch";
 
