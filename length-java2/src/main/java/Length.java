@@ -24,10 +24,12 @@ public class Length {
             temp_targetUnit = Unit.FOOT;
         } else if (targetUnit.equals(YARD)) {
             temp_targetUnit = Unit.YARD;
+        } else {
+            temp_targetUnit = Unit.INCH;
         }
 
         if (this.unit == Unit.FOOT) {
-            return footAs(targetUnit);
+            return footAs(temp_targetUnit);
         }
 
         if (this.unit == Unit.YARD) {
@@ -65,13 +67,13 @@ public class Length {
         return this;
     }
 
-    private Length footAs(String targetUnit) {
-        if (targetUnit.equals(YARD)) {
-            return new Length(this.value / 3, Unit.YARD);
+    private Length footAs(Unit temp_targetUnit) {
+        if (temp_targetUnit == Unit.YARD) {
+            return new Length(this.value / 3, temp_targetUnit);
         }
 
-        if (targetUnit.equals(INCH)) {
-            return new Length(this.value * 12, Unit.INCH);
+        if (temp_targetUnit == Unit.INCH) {
+            return new Length(this.value * 12, temp_targetUnit);
         }
 
 
