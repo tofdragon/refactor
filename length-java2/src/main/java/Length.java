@@ -47,6 +47,11 @@ public class Length {
         if (this.unit == Unit.FOOT) {
             return footAs(temp_targetUnit);
         }
+
+        if (this.unit == Unit.YARD) {
+            return yardAs(temp_targetUnit);
+        }
+
         return this;
     }
 
