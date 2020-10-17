@@ -14,7 +14,7 @@ public class Length {
     private final String unit;
 
     private Unit temp_unit;
-    
+
     public Length(double value, Unit temp_unit) {
         this.value = value;
         this.temp_unit = temp_unit;
@@ -28,15 +28,15 @@ public class Length {
     }
 
     public Length as(String targetUnit) {
-        if (this.unit.equals(FOOT)) {
+        if (this.temp_unit == Unit.FOOT) {
             return footAs(targetUnit);
         }
 
-        if (this.unit.equals(YARD)) {
+        if (this.temp_unit == Unit.YARD) {
             return yardAs(targetUnit);
         }
 
-        if (this.unit.equals(INCH)) {
+        if (this.temp_unit == Unit.INCH) {
             return inchAs(targetUnit);
         }
 
