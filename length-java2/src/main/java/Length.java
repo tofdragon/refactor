@@ -1,7 +1,7 @@
 /**
  * @author sunjing
  */
-public class Length {
+public final class Length {
 
     private final double value;
 
