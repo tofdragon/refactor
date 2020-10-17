@@ -43,6 +43,13 @@ public class Length {
         return this;
     }
 
+    public Length temp_as(Unit temp_targetUnit) {
+        if (this.unit == Unit.FOOT) {
+            return footAs(temp_targetUnit);
+        }
+        return this;
+    }
+
     private Length inchAs(Unit temp_targetUnit) {
         if (temp_targetUnit == Unit.FOOT) {
            return new Length(this.value / 12, temp_targetUnit);
