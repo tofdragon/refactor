@@ -5,7 +5,7 @@ public class Length {
 
     private final double value;
 
-    private Unit unit;
+    private final Unit unit;
 
     public Length(double value, Unit unit) {
         this.value = value;
