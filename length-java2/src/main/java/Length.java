@@ -19,6 +19,10 @@ public class Length {
     }
 
     public Length as(String targetUnit) {
+        Unit temp_targetUnit = null;
+        if (targetUnit.equals(FOOT)) {
+            temp_targetUnit = Unit.FOOT;
+        }
         if (this.unit == Unit.FOOT) {
             return footAs(targetUnit);
         }
@@ -28,7 +32,7 @@ public class Length {
         }
 
         if (this.unit == Unit.INCH) {
-            return inchAs(targetUnit, null);
+            return inchAs(targetUnit, temp_targetUnit);
         }
 
         return this;
