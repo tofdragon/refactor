@@ -26,21 +26,31 @@ public class Length {
         }
 
         if (this.unit.equals(YARD)) {
-            if (targetUnit.equals(INCH)) {
-                len = new Length(this.value * 36, targetUnit);
-            } else if (targetUnit.equals(FOOT)){
-                len = new Length(this.value * 3, targetUnit);
-            }
+            len = yardAs(targetUnit, len);
         }
 
         if (this.unit.equals(INCH)) {
-            if (targetUnit.equals(FOOT)) {
-                len = new Length(this.value / 12, targetUnit);
-            } else if (targetUnit.equals(YARD)) {
-                len = new Length(this.value / 36, targetUnit);
-            }
+            len = inchAs(targetUnit, len);
         }
 
+        return len;
+    }
+
+    private Length inchAs(String targetUnit, Length len) {
+        if (targetUnit.equals(FOOT)) {
+            len = new Length(this.value / 12, targetUnit);
+        } else if (targetUnit.equals(YARD)) {
+            len = new Length(this.value / 36, targetUnit);
+        }
+        return len;
+    }
+
+    private Length yardAs(String targetUnit, Length len) {
+        if (targetUnit.equals(INCH)) {
+            len = new Length(this.value * 36, targetUnit);
+        } else if (targetUnit.equals(FOOT)){
+            len = new Length(this.value * 3, targetUnit);
+        }
         return len;
     }
 
