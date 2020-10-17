@@ -28,7 +28,7 @@ public class Length {
         } else if (temp_unit == Unit.YARD) {
             this.unit = YARD;
         } else {
-            this.unit = null;
+            this.unit = INCH;
         }
     }
 
@@ -62,7 +62,7 @@ public class Length {
 
     private Length yardAs(String targetUnit) {
         if (targetUnit.equals(INCH)) {
-            return new Length(this.value * 36, targetUnit);
+            return new Length(this.value * 36, Unit.INCH);
         }
 
         if (targetUnit.equals(FOOT)){
@@ -78,7 +78,7 @@ public class Length {
         }
 
         if (targetUnit.equals(INCH)) {
-            return new Length(this.value * 12, targetUnit);
+            return new Length(this.value * 12, Unit.INCH);
         }
 
 

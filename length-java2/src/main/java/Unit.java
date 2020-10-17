@@ -2,5 +2,5 @@
  * @author sunjing
  */
 public enum Unit {
-    FOOT,YARD;
+    FOOT,YARD,INCH;
 }
