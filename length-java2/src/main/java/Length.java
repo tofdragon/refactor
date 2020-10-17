@@ -22,6 +22,8 @@ public class Length {
         Unit temp_targetUnit = null;
         if (targetUnit.equals(FOOT)) {
             temp_targetUnit = Unit.FOOT;
+        } else if (targetUnit.equals(YARD)) {
+            temp_targetUnit = Unit.YARD;
         }
 
         if (this.unit == Unit.FOOT) {
@@ -44,7 +46,7 @@ public class Length {
            return new Length(this.value / 12, Unit.FOOT);
         }
 
-        if (targetUnit.equals(YARD)) {
+        if (temp_targetUnit == Unit.YARD) {
            return new Length(this.value / 36, Unit.YARD);
         }
 
