@@ -13,11 +13,14 @@ public class Length {
 
     private final String unit;
 
+    private Unit temp_unit;
+
     public Length(double value, String unit) {
         this.value = value;
         this.unit = unit;
     }
 
+  
     public Length as(String targetUnit) {
         if (this.unit.equals(FOOT)) {
             return footAs(targetUnit);
