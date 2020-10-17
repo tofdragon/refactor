@@ -22,7 +22,7 @@ public class Length {
         Length len = this;
 
         if (this.unit.equals(FOOT)) {
-            return footAs(targetUnit, len);
+            return footAs(targetUnit);
         }
 
         if (this.unit.equals(YARD)) {
@@ -54,7 +54,7 @@ public class Length {
         return len;
     }
 
-    private Length footAs(String targetUnit, Length len) {
+    private Length footAs(String targetUnit) {
         if (targetUnit.equals(YARD)) {
             return new Length(this.value / 3, targetUnit);
         }
