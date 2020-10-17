@@ -2,11 +2,17 @@
  * @author sunjing
  */
 public class Length {
-    private final double value;
-    private final String unit;
+
     private static final String F = "f";
+
     private static final String YARD = "yard";
+
     private static final String INCH = "inch";
+
+    private final double value;
+
+    private final String unit;
+
 
     public Length(double value, String unit) {
         this.value = value;
