@@ -3,7 +3,7 @@ package com.gildedrose;
 /**
  * @author sunjing
  */
-public class Item {
+public abstract class Item {
 
     public String name;
 
@@ -23,14 +23,11 @@ public class Item {
         updateQualityWhenExpired();
     }
 
-    protected void updateQuality() {
-    }
+    protected abstract void updateQuality();
 
-    protected void updateSellIn() {
-    }
+    protected abstract void updateSellIn();
 
-    protected void updateQualityWhenExpired() {
-    }
+    protected abstract void updateQualityWhenExpired();
 
     @Override
     public String toString() {
