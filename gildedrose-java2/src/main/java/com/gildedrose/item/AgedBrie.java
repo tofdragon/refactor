@@ -31,10 +31,11 @@ public final class AgedBrie extends Item {
             return;
         }
 
-        if (quality < 50) {
-            quality = quality + 1;
+        if (quality >= 50) {
+            return;
         }
 
+        quality = quality + 1;
     }
 
 }
