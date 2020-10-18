@@ -23,10 +23,19 @@ public abstract class Item {
         updateQualityWhenExpired();
     }
 
+    /**
+     *  updateQuality
+     */
     protected abstract void updateQuality();
 
+    /**
+     *  updateSellIn
+     */
     protected abstract void updateSellIn();
 
+    /**
+     * updateQualityWhenExpired
+     */
     protected abstract void updateQualityWhenExpired();
 
     protected final void incrementQuality() {
