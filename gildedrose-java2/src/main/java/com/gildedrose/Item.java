@@ -14,27 +14,27 @@ public class Item {
         this.quality = quality;
     }
 
-    public void updateQuality(Item item) {
-        if (!item.name.equals(GildedRose.AGED_BRIE) && !item.name.equals(GildedRose.BACKSTAGE)) {
-            if (item.quality > 0) {
-                if (!item.name.equals(GildedRose.SULFURAS)) {
-                    item.quality = item.quality - 1;
+    public void updateQuality() {
+        if (!name.equals(GildedRose.AGED_BRIE) && !name.equals(GildedRose.BACKSTAGE)) {
+            if (quality > 0) {
+                if (!name.equals(GildedRose.SULFURAS)) {
+                    quality = quality - 1;
                 }
             }
         } else {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
+            if (quality < 50) {
+                quality = quality + 1;
 
-                if (item.name.equals(GildedRose.BACKSTAGE)) {
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
+                if (name.equals(GildedRose.BACKSTAGE)) {
+                    if (sellIn < 11) {
+                        if (quality < 50) {
+                            quality = quality + 1;
                         }
                     }
 
-                    if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
+                    if (sellIn < 6) {
+                        if (quality < 50) {
+                            quality = quality + 1;
                         }
                     }
                 }

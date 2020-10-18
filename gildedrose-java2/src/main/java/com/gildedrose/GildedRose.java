@@ -49,6 +49,6 @@ class GildedRose {
     }
 
     private void updateQuality(Item item) {
-        item.updateQuality(item);
+        item.updateQuality();
     }
 }
