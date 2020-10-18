@@ -5,8 +5,6 @@ package com.gildedrose;
  */
 public class Item {
 
-    private static final String AGED_BRIE = "Aged Brie";
-
     public String name;
 
     public int sellIn;
@@ -26,15 +24,6 @@ public class Item {
     }
 
     protected void updateQuality() {
-        if (name.equals(AGED_BRIE)) {
-            if (quality >= 50) {
-                return;
-            }
-
-            quality = quality + 1;
-            return;
-        }
-
         if (quality <= 0) {
             return;
         }
@@ -48,13 +37,6 @@ public class Item {
 
     protected void updateQualityWhenExpired() {
         if (sellIn >= 0) {
-            return;
-        }
-
-        if (name.equals(AGED_BRIE)) {
-            if (quality < 50) {
-                quality = quality + 1;
-            }
             return;
         }
 
