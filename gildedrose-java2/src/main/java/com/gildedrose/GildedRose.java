@@ -16,7 +16,7 @@ class GildedRose {
 
     public void passOneDay() {
         for (Item item : items) {
-            updateQuality(item);
+            item.updateQuality();
             updateSellIn(item);
             updateQualityWhenExpired(item);
         }
@@ -48,7 +48,4 @@ class GildedRose {
         }
     }
 
-    private void updateQuality(Item item) {
-        item.updateQuality();
-    }
 }
