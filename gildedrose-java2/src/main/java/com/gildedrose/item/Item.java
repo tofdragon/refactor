@@ -37,6 +37,10 @@ public abstract class Item {
         sellIn = sellIn - 1;
     }
 
+    protected final void decrementQuality() {
+        quality = quality - 1;
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
