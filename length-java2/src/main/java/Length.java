@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author sunjing
  */
@@ -16,11 +13,7 @@ public final class Length {
     }
 
     public Length as(Unit targetUnit) {
-        return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
-    }
-
-    private Double radio(Unit source, Unit target) {
-        return Pairs.radio(source, target);
+        return new Length(this.value * Pairs.radio(this.unit, targetUnit), targetUnit);
     }
 
     public double getValue() {
