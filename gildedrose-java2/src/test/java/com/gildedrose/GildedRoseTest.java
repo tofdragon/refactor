@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
+import com.gildedrose.item.Common;
+import com.gildedrose.item.Item;
 import com.google.common.io.Files;
 
 public class GildedRoseTest {

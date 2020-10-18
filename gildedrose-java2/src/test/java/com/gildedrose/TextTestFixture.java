@@ -3,6 +3,12 @@ package com.gildedrose;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import com.gildedrose.item.AgedBrie;
+import com.gildedrose.item.Backstage;
+import com.gildedrose.item.Common;
+import com.gildedrose.item.Item;
+import com.gildedrose.item.Sulfuras;
+
 public class TextTestFixture {
     public static void main(String[] args) {
         System.out.print(baseLine(3));

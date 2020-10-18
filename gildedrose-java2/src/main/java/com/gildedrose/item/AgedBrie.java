@@ -1,21 +1,23 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
 /**
  * @author sunjing
  */
-public final class Common extends Item{
+public final class AgedBrie extends Item {
 
-    public Common(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    private static final String AGED_BRIE = "Aged Brie";
+
+    public AgedBrie(int sellIn, int quality) {
+        super(AGED_BRIE, sellIn, quality);
     }
 
     @Override
     protected void updateQuality() {
-        if (quality <= 0) {
+        if (quality >= 50) {
             return;
         }
 
-        quality = quality - 1;
+        quality = quality + 1;
     }
 
     @Override
@@ -29,11 +31,10 @@ public final class Common extends Item{
             return;
         }
 
-        if (quality <= 0) {
-            return;
+        if (quality < 50) {
+            quality = quality + 1;
         }
 
-        quality = quality - 1;
     }
 
 }

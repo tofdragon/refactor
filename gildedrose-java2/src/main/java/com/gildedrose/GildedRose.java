@@ -2,6 +2,8 @@ package com.gildedrose;
 
 import java.util.stream.Stream;
 
+import com.gildedrose.item.Item;
+
 class GildedRose {
 
     Item[] items;

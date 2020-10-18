@@ -1,4 +1,4 @@
-package com.gildedrose;
+package com.gildedrose.item;
 
 /**
  * @author sunjing
@@ -17,7 +17,7 @@ public abstract class Item {
         this.quality = quality;
     }
 
-    void passOneDay() {
+    public void passOneDay() {
         updateQuality();
         updateSellIn();
         updateQualityWhenExpired();
