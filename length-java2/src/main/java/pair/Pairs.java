@@ -1,3 +1,5 @@
+package pair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +10,7 @@ import unit.Unit;
 /**
  * @author sunjing
  */
-final class Pairs {
+public final class Pairs {
 
     private static final List<Pair> PAIRS = new ArrayList<>();
 
@@ -26,7 +28,7 @@ final class Pairs {
         PAIRS.add(Pair.create(Unit.INCH, Unit.YARD, 1/36d));
     }
 
-    static Double radio(Unit source, Unit target) {
+    public static Double radio(Unit source, Unit target) {
         Optional<Pair> foundPair = PAIRS.stream().filter(pair -> pair.equalsSourceAndTarget(source, target)).findAny();
         if (foundPair.isPresent()) {
             return foundPair.get().getRadio();
