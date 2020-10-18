@@ -9,7 +9,9 @@ class GildedRose {
 
     public void update_quality() {
         for (Item item : items) {
-            if (!item.name.equals("Aged Brie")
+            final String agedBrie = "Aged Brie";
+            
+            if (!item.name.equals(agedBrie)
                     && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (item.quality > 0) {
                     if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -41,7 +43,7 @@ class GildedRose {
             }
 
             if (item.sellIn < 0) {
-                if (!item.name.equals("Aged Brie")) {
+                if (!item.name.equals(agedBrie)) {
                     if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (item.quality > 0) {
                             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
