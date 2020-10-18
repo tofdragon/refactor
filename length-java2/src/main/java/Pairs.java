@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author sunjing
@@ -23,6 +24,10 @@ final class Pairs {
     }
 
     static Double radio(Unit source, Unit target) {
-        return PAIRS.stream().filter(pair -> pair.equalsSourceAndTarget(source, target)).findAny().get().getRadio();
+        Optional<Pair> foundPair = PAIRS.stream().filter(pair -> pair.equalsSourceAndTarget(source, target)).findAny();
+        if (foundPair.isPresent()) {
+            return foundPair.get().getRadio();
+        }
+        return 1d;
     }
 }
