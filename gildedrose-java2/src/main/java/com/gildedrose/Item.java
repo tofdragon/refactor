@@ -5,7 +5,7 @@ package com.gildedrose;
  */
 public class Item {
 
-    private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    protected static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
 
     private static final String AGED_BRIE = "Aged Brie";
 
@@ -28,27 +28,6 @@ public class Item {
     }
 
     protected void updateQuality() {
-        if (name.equals(BACKSTAGE)) {
-            if (quality >= 50) {
-                return;
-            }
-
-            quality = quality + 1;
-
-            if (sellIn < 11) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            }
-
-            if (sellIn < 6) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            }
-            return;
-        }
-
         if (name.equals(AGED_BRIE)) {
             if (quality >= 50) {
                 return;
@@ -78,11 +57,6 @@ public class Item {
             if (quality < 50) {
                 quality = quality + 1;
             }
-            return;
-        }
-
-        if (name.equals(BACKSTAGE)) {
-            quality = 0;
             return;
         }
 
