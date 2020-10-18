@@ -1,11 +1,21 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author sunjing
  */
 public final class Length {
 
+    private static final List<Pair> PAIRS = new ArrayList<>();
+
     private final double value;
 
     private final Unit unit;
+
+    static {
+        PAIRS.add(Pair.create(Unit.FOOT, Unit.FOOT, 1d));
+    }
 
     public Length(double value, Unit unit) {
         this.value = value;
