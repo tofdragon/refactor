@@ -51,11 +51,15 @@ public class Item {
             return;
         }
 
-        if (quality > 0) {
-            if (!name.equals(SULFURAS)) {
-                quality = quality - 1;
-            }
+        if (quality <= 0) {
+            return;
         }
+
+        if (name.equals(SULFURAS)) {
+            return;
+        }
+
+        quality = quality - 1;
     }
 
     private void updateSellIn() {
