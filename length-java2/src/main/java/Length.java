@@ -16,6 +16,10 @@ public final class Length {
         PAIRS.add(Pair.create(Unit.FOOT, Unit.FOOT, 1d));
         PAIRS.add(Pair.create(Unit.FOOT, Unit.YARD, 1/3d));
         PAIRS.add(Pair.create(Unit.FOOT, Unit.INCH, 12d));
+
+        PAIRS.add(Pair.create(Unit.YARD, Unit.YARD, 1d));
+        PAIRS.add(Pair.create(Unit.YARD, Unit.INCH, 36d));
+        PAIRS.add(Pair.create(Unit.YARD, Unit.FOOT, 3d));
     }
 
     public Length(double value, Unit unit) {
@@ -53,14 +57,15 @@ public final class Length {
 
     private Length yardAs(Unit targetUnit) {
         if (targetUnit == Unit.INCH) {
-            return new Length(this.value * 36, targetUnit);
+            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
         }
 
         if (targetUnit == Unit.FOOT) {
-            return new Length(this.value * 3, targetUnit);
+            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
         }
 
-        return this;
+        return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
+
     }
 
     private Double radio(Unit source, Unit target) {
