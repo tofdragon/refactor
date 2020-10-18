@@ -7,7 +7,7 @@ class GildedRose {
         this.items = items;
     }
 
-    public void update_quality() {
+    public void passOneDay() {
         for (Item item : items) {
             final String agedBrie = "Aged Brie";
             final String backstage = "Backstage passes to a TAFKAL80ETC concert";
