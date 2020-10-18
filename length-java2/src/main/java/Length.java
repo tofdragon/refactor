@@ -33,7 +33,7 @@ public final class Length {
         }
 
         if (this.unit == Unit.YARD) {
-            return yardAs(targetUnit);
+            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
         }
 
         if (this.unit == Unit.INCH) {
@@ -53,10 +53,6 @@ public final class Length {
         }
 
         return this;
-    }
-
-    private Length yardAs(Unit targetUnit) {
-        return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
     }
 
     private Double radio(Unit source, Unit target) {
