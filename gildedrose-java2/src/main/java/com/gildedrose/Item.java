@@ -29,7 +29,7 @@ public class Item {
         updateQualityWhenExpired();
     }
 
-    private void updateQuality() {
+    protected void updateQuality() {
         if (name.equals(BACKSTAGE)) {
             if (quality >= 50) {
                 return;
