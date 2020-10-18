@@ -1,8 +1,11 @@
 package com.gildedrose;
 
+import java.io.PrintStream;
+
 public class TextTestFixture {
     public static void main(String[] args) {
-        System.out.println("OMGHAI!");
+        final PrintStream out = System.out;
+        out.println("OMGHAI!");
 
         Item[] items = new Item[] {
                 new Item("+5 Dexterity Vest", 10, 20), //
@@ -25,12 +28,12 @@ public class TextTestFixture {
         }
 
         for (int i = 0; i < days; i++) {
-            System.out.println("-------- day " + i + " --------");
-            System.out.println("name, sellIn, quality");
+            out.println("-------- day " + i + " --------");
+            out.println("name, sellIn, quality");
             for (Item item : items) {
-                System.out.println(item);
+                out.println(item);
             }
-            System.out.println();
+            out.println();
             app.update_quality();
         }
     }
