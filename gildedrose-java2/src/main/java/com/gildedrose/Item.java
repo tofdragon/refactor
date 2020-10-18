@@ -20,7 +20,7 @@ public class Item {
         updateQualityWhenExpired();
     }
 
-    public void updateQuality() {
+    private void updateQuality() {
         if (!name.equals(GildedRose.AGED_BRIE) && !name.equals(GildedRose.BACKSTAGE)) {
             if (quality > 0) {
                 if (!name.equals(GildedRose.SULFURAS)) {
@@ -48,13 +48,13 @@ public class Item {
         }
     }
 
-    public void updateSellIn() {
+    private void updateSellIn() {
         if (!name.equals(GildedRose.SULFURAS)) {
             sellIn = sellIn - 1;
         }
     }
 
-    public void updateQualityWhenExpired() {
+    private void updateQualityWhenExpired() {
         if (sellIn < 0) {
             if (!name.equals(GildedRose.AGED_BRIE)) {
                 if (!name.equals(GildedRose.BACKSTAGE)) {
