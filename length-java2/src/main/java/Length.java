@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public final class Length {
 
     public Length as(Unit targetUnit) {
         if (this.unit == Unit.FOOT) {
-            return footAs(targetUnit);
+            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
         }
 
         if (this.unit == Unit.YARD) {
@@ -62,10 +61,6 @@ public final class Length {
         }
 
         return this;
-    }
-
-    private Length footAs(Unit targetUnit) {
-        return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
     }
 
     private Double radio(Unit source, Unit target) {
