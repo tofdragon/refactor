@@ -48,13 +48,6 @@ public final class Length {
     }
 
     private Length inchAs(Unit targetUnit) {
-        if (targetUnit == Unit.FOOT) {
-            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
-        }
-
-        if (targetUnit == Unit.YARD) {
-            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
-        }
         return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
     }
 
