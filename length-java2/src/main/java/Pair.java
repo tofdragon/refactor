@@ -19,4 +19,12 @@ final class Pair {
         pair.radio = radio;
         return pair;
     }
+
+    boolean equalsSourceAndTarget(Unit source, Unit target) {
+        return this.source == source && this.target == target;
+    }
+
+    Double getRadio() {
+        return this.radio;
+    }
 }

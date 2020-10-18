@@ -71,7 +71,11 @@ public final class Length {
             return new Length(this.value * 12, targetUnit);
         }
 
-        return this;
+        return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
+    }
+
+    private Double radio(Unit source, Unit target) {
+        return PAIRS.stream().filter(pair -> pair.equalsSourceAndTarget(source, target)).findAny().get().getRadio();
     }
 
     public double getValue() {
