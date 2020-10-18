@@ -1,5 +1,8 @@
 package com.gildedrose;
 
+/**
+ * @author sunjing
+ */
 public class Item {
 
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
