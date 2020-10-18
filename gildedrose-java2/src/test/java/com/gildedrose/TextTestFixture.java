@@ -1,10 +1,16 @@
 package com.gildedrose;
 
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class TextTestFixture {
     public static void main(String[] args) {
-        final PrintStream out = System.out;
+        System.out.print(baseLine(3));
+    }
+
+    public static String baseLine(int days) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        final PrintStream out = new PrintStream(bos);
         out.println("OMGHAI!");
 
         Item[] items = new Item[] {
@@ -22,11 +28,6 @@ public class TextTestFixture {
 
         GildedRose app = new GildedRose(items);
 
-        int days = 3;
-        if (args.length > 0) {
-            days = Integer.parseInt(args[0]) + 1;
-        }
-
         for (int i = 0; i < days; i++) {
             out.println("-------- day " + i + " --------");
             out.println("name, sellIn, quality");
@@ -36,6 +37,8 @@ public class TextTestFixture {
             out.println();
             app.update_quality();
         }
+
+        return bos.toString();
     }
 
 }
