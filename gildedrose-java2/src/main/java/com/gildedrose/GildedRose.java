@@ -11,7 +11,7 @@ class GildedRose {
     }
 
     public void passOneDay() {
-        Stream.of(items).forEach(item -> item.passOneDay());
+        Stream.of(items).forEach(Item::passOneDay);
     }
 
 }
