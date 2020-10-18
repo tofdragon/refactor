@@ -67,11 +67,7 @@ public class Item {
         quality = quality - 1;
     }
 
-    private void updateSellIn() {
-        if (name.equals(SULFURAS)) {
-            return;
-        }
-
+    protected void updateSellIn() {
         sellIn = sellIn - 1;
     }
 
