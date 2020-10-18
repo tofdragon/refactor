@@ -15,6 +15,9 @@ public class Item {
     }
 
     void passOneDay() {
+        updateQuality();
+        updateSellIn();
+        updateQualityWhenExpired();
     }
 
     public void updateQuality() {
