@@ -19,18 +19,18 @@ public class TextTestFixture {
         final PrintStream out = new PrintStream(bos);
         out.println("OMGHAI!");
 
-        Item[] items = new Item[] {
+        Item[] items = new Item[]{
                 new Common("+5 Dexterity Vest", 10, 20), //
                 new AgedBrie(2, 0), //
                 new Common("Elixir of the Mongoose", 5, 7), //
-                new Sulfuras( 0, 80), //
-                new Sulfuras( -1, 80),
+                new Sulfuras(0, 80), //
+                new Sulfuras(-1, 80),
                 new Backstage(15, 20),
-                new Backstage( 10, 49),
-                new Backstage( 5, 49),
-                new Backstage( 1, 20),
+                new Backstage(10, 49),
+                new Backstage(5, 49),
+                new Backstage(1, 20),
                 // this conjured item does not work properly yet
-                new Common("Conjured Mana Cake", 3, 6) };
+                new Common("Conjured Mana Cake", 3, 6)};
 
         GildedRose app = new GildedRose(items);
 

@@ -4,20 +4,21 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 import com.gildedrose.item.Common;
 import com.gildedrose.item.Item;
 import com.google.common.io.Files;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
 public class GildedRoseTest {
 
     @Test
     public void foo() {
-        Item[] items = new Item[] { new Common("foo", 1, 5) };
+        Item[] items = new Item[]{new Common("foo", 1, 5)};
         GildedRose app = new GildedRose(items);
         app.passOneDay();
         assertEquals("foo", app.items[0].name);
@@ -52,7 +53,7 @@ public class GildedRoseTest {
 
     private void assert_equals_baseline_when_is(int days) throws IOException {
         String actual = TextTestFixture.baseLine(days);
-        String baseLine = Files.toString(new File("src/test/java/com/gildedrose/baseLine" + days +".txt"),
+        String baseLine = Files.toString(new File("src/test/java/com/gildedrose/baseLine" + days + ".txt"),
                 Charset.forName("utf-8"));
         Assert.assertEquals(baseLine, actual);
     }

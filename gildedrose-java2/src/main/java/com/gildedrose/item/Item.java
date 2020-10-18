@@ -24,12 +24,12 @@ public abstract class Item {
     }
 
     /**
-     *  updateQuality
+     * updateQuality
      */
     protected abstract void updateQuality();
 
     /**
-     *  updateSellIn
+     * updateSellIn
      */
     protected abstract void updateSellIn();
 

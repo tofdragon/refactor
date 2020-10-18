@@ -3,7 +3,7 @@ package com.gildedrose.item;
 /**
  * @author sunjing
  */
-public final class Sulfuras extends Item{
+public final class Sulfuras extends Item {
 
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
