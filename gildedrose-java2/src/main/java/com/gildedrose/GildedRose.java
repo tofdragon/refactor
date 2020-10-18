@@ -2,12 +2,6 @@ package com.gildedrose;
 
 class GildedRose {
 
-    static final String AGED_BRIE = "Aged Brie";
-
-    static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
-
-    static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-
     Item[] items;
 
     public GildedRose(Item[] items) {

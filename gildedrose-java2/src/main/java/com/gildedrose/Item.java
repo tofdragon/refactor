@@ -2,6 +2,9 @@ package com.gildedrose;
 
 public class Item {
 
+    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String AGED_BRIE = "Aged Brie";
     public String name;
 
     public int sellIn;
@@ -21,9 +24,9 @@ public class Item {
     }
 
     private void updateQuality() {
-        if (!name.equals(GildedRose.AGED_BRIE) && !name.equals(GildedRose.BACKSTAGE)) {
+        if (!name.equals(AGED_BRIE) && !name.equals(BACKSTAGE)) {
             if (quality > 0) {
-                if (!name.equals(GildedRose.SULFURAS)) {
+                if (!name.equals(SULFURAS)) {
                     quality = quality - 1;
                 }
             }
@@ -31,7 +34,7 @@ public class Item {
             if (quality < 50) {
                 quality = quality + 1;
 
-                if (name.equals(GildedRose.BACKSTAGE)) {
+                if (name.equals(BACKSTAGE)) {
                     if (sellIn < 11) {
                         if (quality < 50) {
                             quality = quality + 1;
@@ -49,17 +52,17 @@ public class Item {
     }
 
     private void updateSellIn() {
-        if (!name.equals(GildedRose.SULFURAS)) {
+        if (!name.equals(SULFURAS)) {
             sellIn = sellIn - 1;
         }
     }
 
     private void updateQualityWhenExpired() {
         if (sellIn < 0) {
-            if (!name.equals(GildedRose.AGED_BRIE)) {
-                if (!name.equals(GildedRose.BACKSTAGE)) {
+            if (!name.equals(AGED_BRIE)) {
+                if (!name.equals(BACKSTAGE)) {
                     if (quality > 0) {
-                        if (!name.equals(GildedRose.SULFURAS)) {
+                        if (!name.equals(SULFURAS)) {
                             quality = quality - 1;
                         }
                     }
