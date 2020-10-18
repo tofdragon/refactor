@@ -28,6 +28,6 @@ final class Pairs {
         if (foundPair.isPresent()) {
             return foundPair.get().getRadio();
         }
-        return 1d;
+        throw new CouldNotFoundRadioException(source, target);
     }
 }
