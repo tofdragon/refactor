@@ -71,7 +71,7 @@ public class Item {
         sellIn = sellIn - 1;
     }
 
-    private void updateQualityWhenExpired() {
+    protected void updateQualityWhenExpired() {
         if (sellIn >= 0) {
             return;
         }
@@ -89,10 +89,6 @@ public class Item {
         }
 
         if (quality <= 0) {
-            return;
-        }
-
-        if (name.equals(SULFURAS)) {
             return;
         }
 
