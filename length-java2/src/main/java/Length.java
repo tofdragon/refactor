@@ -36,7 +36,7 @@ public final class Length {
     }
 
     private Double radio(Unit source, Unit target) {
-        return PAIRS.stream().filter(pair -> pair.equalsSourceAndTarget(source, target)).findAny().get().getRadio();
+        return Pairs.radio(source, target);
     }
 
     public double getValue() {
