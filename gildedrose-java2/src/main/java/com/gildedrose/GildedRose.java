@@ -18,12 +18,8 @@ class GildedRose {
         for (Item item : items) {
             item.updateQuality();
             item.updateSellIn();
-            updateQualityWhenExpired(item);
+            item.updateQualityWhenExpired();
         }
-    }
-
-    private void updateQualityWhenExpired(Item item) {
-        item.updateQualityWhenExpired();
     }
 
 }
