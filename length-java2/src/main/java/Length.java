@@ -32,14 +32,6 @@ public final class Length {
     }
 
     public Length as(Unit targetUnit) {
-        if (this.unit == Unit.YARD) {
-            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
-        }
-
-        if (this.unit == Unit.INCH) {
-            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
-        }
-
         return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
     }
 
