@@ -44,7 +44,7 @@ public final class Length {
             return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
         }
 
-        return this;
+        return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
     }
 
     private Double radio(Unit source, Unit target) {
