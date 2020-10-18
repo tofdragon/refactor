@@ -32,10 +32,6 @@ public final class Length {
     }
 
     public Length as(Unit targetUnit) {
-        if (this.unit == Unit.FOOT) {
-            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
-        }
-
         if (this.unit == Unit.YARD) {
             return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
         }
