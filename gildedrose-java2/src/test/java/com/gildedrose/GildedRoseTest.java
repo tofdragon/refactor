@@ -25,8 +25,18 @@ public class GildedRoseTest {
 
     @Test
     public void should_equals_baseline_when_is_3_days() throws IOException {
-        String actual = TextTestFixture.baseLine(3);
-        String baseLine = Files.toString(new File("src/test/java/com/gildedrose/baseLine3.txt"), Charset.forName("utf-8"));
+        assert_equals_baseline_when_is(3);
+    }
+
+    @Test
+    public void should_equals_baseline_when_is_5_days() throws IOException {
+        assert_equals_baseline_when_is(5);
+    }
+
+    private void assert_equals_baseline_when_is(int days) throws IOException {
+        String actual = TextTestFixture.baseLine(days);
+        String baseLine = Files.toString(new File("src/test/java/com/gildedrose/baseLine" + days +".txt"),
+                Charset.forName("utf-8"));
         Assert.assertEquals(baseLine, actual);
     }
 
