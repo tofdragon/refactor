@@ -29,6 +29,10 @@ public abstract class Item {
 
     protected abstract void updateQualityWhenExpired();
 
+    protected final void incrementQuality() {
+        quality = quality + 1;
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
