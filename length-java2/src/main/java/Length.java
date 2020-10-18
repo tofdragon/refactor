@@ -41,14 +41,10 @@ public final class Length {
         }
 
         if (this.unit == Unit.INCH) {
-            return inchAs(targetUnit);
+            return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
         }
 
         return this;
-    }
-
-    private Length inchAs(Unit targetUnit) {
-        return new Length(this.value * radio(this.unit, targetUnit), targetUnit);
     }
 
     private Double radio(Unit source, Unit target) {
