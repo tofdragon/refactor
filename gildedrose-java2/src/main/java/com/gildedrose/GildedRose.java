@@ -19,9 +19,7 @@ class GildedRose {
 
             updateQuality(item);
 
-            if (!item.name.equals(SULFURAS)) {
-                item.sellIn = item.sellIn - 1;
-            }
+            updateSellIn(item);
 
             if (item.sellIn < 0) {
                 if (!item.name.equals(AGED_BRIE)) {
@@ -40,6 +38,12 @@ class GildedRose {
                     }
                 }
             }
+        }
+    }
+
+    private void updateSellIn(Item item) {
+        if (!item.name.equals(SULFURAS)) {
+            item.sellIn = item.sellIn - 1;
         }
     }
 
