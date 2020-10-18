@@ -5,8 +5,6 @@ package com.gildedrose;
  */
 public class Item {
 
-    protected static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
-
     private static final String AGED_BRIE = "Aged Brie";
 
     public String name;

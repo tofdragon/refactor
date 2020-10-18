@@ -5,8 +5,10 @@ package com.gildedrose;
  */
 public final class Backstage extends Item {
 
-    public Backstage(String name, int sellIn, int quality) {
-        super(name, sellIn, quality);
+    private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+
+    public Backstage(int sellIn, int quality) {
+        super(BACKSTAGE, sellIn, quality);
     }
 
     @Override
