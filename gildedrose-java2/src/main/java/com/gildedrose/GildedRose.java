@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.stream.Stream;
+
 class GildedRose {
 
     Item[] items;
@@ -9,9 +11,7 @@ class GildedRose {
     }
 
     public void passOneDay() {
-        for (Item item : items) {
-            item.passOneDay();
-        }
+        Stream.of(items).forEach(item -> item.passOneDay());
     }
 
 }
