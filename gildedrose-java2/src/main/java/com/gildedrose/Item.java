@@ -42,7 +42,10 @@ public class Item {
         }
     }
 
-    public void updateSellIn(Item item) {
+    public void updateSellIn() {
+        if (!name.equals(GildedRose.SULFURAS)) {
+            sellIn = sellIn - 1;
+        }
     }
 
     @Override
