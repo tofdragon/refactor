@@ -5,7 +5,7 @@ package com.gildedrose;
  */
 public class Item {
 
-    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    protected static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
 
     private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
 
@@ -61,10 +61,6 @@ public class Item {
         }
 
         if (quality <= 0) {
-            return;
-        }
-
-        if (name.equals(SULFURAS)) {
             return;
         }
 
