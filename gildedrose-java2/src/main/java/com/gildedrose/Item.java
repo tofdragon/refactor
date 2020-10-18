@@ -70,23 +70,27 @@ public class Item {
             return;
         }
 
-        if (sellIn < 0) {
-            if (!name.equals(AGED_BRIE)) {
-                if (!name.equals(BACKSTAGE)) {
-                    if (quality > 0) {
-                        if (!name.equals(SULFURAS)) {
-                            quality = quality - 1;
-                        }
-                    }
-                } else {
-                    quality = 0;
-                }
-            } else {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
+        if (name.equals(AGED_BRIE)) {
+            if (quality < 50) {
+                quality = quality + 1;
             }
+            return;
         }
+
+        if (name.equals(BACKSTAGE)) {
+            quality = 0;
+            return;
+        }
+
+        if (quality <= 0) {
+            return;
+        }
+
+        if (name.equals(SULFURAS)) {
+            return;
+        }
+
+        quality = quality - 1;
     }
 
     @Override
