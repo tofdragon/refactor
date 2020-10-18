@@ -43,6 +43,7 @@ class GildedRose {
     }
 
     private void updateSellIn(Item item) {
+        item.updateSellIn(item);
         if (!item.name.equals(SULFURAS)) {
             item.sellIn = item.sellIn - 1;
         }

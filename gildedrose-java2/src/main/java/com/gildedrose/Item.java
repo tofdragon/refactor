@@ -42,8 +42,13 @@ public class Item {
         }
     }
 
+    public void updateSellIn(Item item) {
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
+
+
 }
