@@ -36,7 +36,7 @@ public final class Backstage extends Item {
 
     @Override
     protected void updateSellIn() {
-        sellIn = sellIn - 1;
+        decrementSellIn();
     }
 
     @Override
