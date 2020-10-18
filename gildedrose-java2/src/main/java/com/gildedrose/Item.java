@@ -14,6 +14,9 @@ public class Item {
         this.quality = quality;
     }
 
+    void passOneDay() {
+    }
+
     public void updateQuality() {
         if (!name.equals(GildedRose.AGED_BRIE) && !name.equals(GildedRose.BACKSTAGE)) {
             if (quality > 0) {
@@ -72,5 +75,4 @@ public class Item {
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
-
 }
