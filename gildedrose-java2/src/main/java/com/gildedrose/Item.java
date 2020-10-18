@@ -48,10 +48,29 @@ public class Item {
         }
     }
 
+    public void updateQualityWhenExpired() {
+        if (sellIn < 0) {
+            if (!name.equals(GildedRose.AGED_BRIE)) {
+                if (!name.equals(GildedRose.BACKSTAGE)) {
+                    if (quality > 0) {
+                        if (!name.equals(GildedRose.SULFURAS)) {
+                            quality = quality - 1;
+                        }
+                    }
+                } else {
+                    quality = quality - quality;
+                }
+            } else {
+                if (quality < 50) {
+                    quality = quality + 1;
+                }
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
-
 
 }
