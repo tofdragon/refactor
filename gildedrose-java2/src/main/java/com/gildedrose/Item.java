@@ -66,6 +66,10 @@ public class Item {
     }
 
     private void updateQualityWhenExpired() {
+        if (sellIn >= 0) {
+            return;
+        }
+
         if (sellIn < 0) {
             if (!name.equals(AGED_BRIE)) {
                 if (!name.equals(BACKSTAGE)) {
