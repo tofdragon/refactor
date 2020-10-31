@@ -1,10 +1,14 @@
 package bowling;
 
+import java.util.LinkedList;
+import java.util.List;
+
 // Please don't modify the class name.
 public class Bowling {
-    int score;
-    int rolls[] = new int[21];
-    int rollsIndex = 0;
+
+    private final int[] rolls = new int[21];
+
+    private int rollsIndex = 0;
 
     // Please don't modify the signature of this method.
     public void roll(int n) {
@@ -14,44 +18,35 @@ public class Bowling {
 
     // Please don't modify the signature of this method.
     public int getScore() {
-        if(this.score != 0) {
-            this.score = 0;
+        int score = 0;
+        int current = 0;
+
+        for (int num = 0; num < this.rollsIndex; num++) {
+            if (current == 10) {
+                break;
+            }
+
+            ScoreResponse scoreResponse = scoreResponse(rolls, num);
+            score += scoreResponse.score();
+            num += scoreResponse.num();
+            current++;
         }
 
-        boolean midFrame = false;
-        boolean isStrike = false;
+        return score;
+    }
 
-        for(int i = 0; i < this.rollsIndex; i++) {
-            if(this.rolls[i] == 10 || midFrame) {
-                if(isStrike) {
-                    if(midFrame) {
-                            this.score += this.rolls[i] + this.rolls[i - 1];
-                    } else {
-                        if(i != this.rollsIndex - 1) {
-                            this.score += this.rolls[i] + this.rolls[i + 1];
-                        }
-                    }
-                    isStrike = false;
-                }
+    private ScoreResponse scoreResponse(final int[] rolls, int num) {
+        List<ScoreStrategy> scoreStrategies = new LinkedList<>();
+        scoreStrategies.add(new StrikeScoreStrategy());
+        scoreStrategies.add(new SpareScoreStrategy());
+        scoreStrategies.add(new CommonScoreStrategy());
 
-                if(this.rolls[i] == 10 && !midFrame) {
-                    this.score += this.rolls[i];
-                    isStrike = true;
-                } else {
-                    if((this.rolls[i-1] + this.rolls[i] == 10) && midFrame){
-                        if(i != this.rollsIndex - 1) {
-                            this.score += this.rolls[i + 1];
-                        }
-                    }
-                    this.score += this.rolls[i] + this.rolls[i-1];
-                    if (midFrame) {
-                        midFrame = false;
-                    }
-                }
-            } else {
-                    midFrame = true;
+        for (ScoreStrategy scoreStrategy : scoreStrategies) {
+            ScoreResponse scoreResponse = scoreStrategy.score(rolls, num);
+            if (scoreResponse.match()) {
+                return scoreResponse;
             }
         }
-        return this.score;
+        return null;
     }
 }
