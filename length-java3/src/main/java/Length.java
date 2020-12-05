@@ -19,8 +19,6 @@ public class Length {
     }
 
     public Length as(String targetUnit) {
-        Length len = this;
-
         if (this.unit.equals(FOOT)) {
             return footAs(targetUnit);
         }
