@@ -22,18 +22,18 @@ public class Length {
         Length len = this;
 
         if (this.unit.equals(FOOT)) {
-            len = footAs(targetUnit, len);
+            return footAs(targetUnit, len);
         }
 
         if (this.unit.equals(YARD)) {
-            len = yardAs(targetUnit, len);
+            return yardAs(targetUnit, len);
         }
 
         if (this.unit.equals(INCH)) {
-            len = inchAs(targetUnit, len);
+            return inchAs(targetUnit, len);
         }
 
-        return len;
+        return this;
     }
 
     private Length inchAs(String targetUnit, Length len) {
