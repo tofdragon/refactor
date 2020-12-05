@@ -57,11 +57,11 @@ public class Length {
 
     private Length inchAs(String targetUnit) {
         if (targetUnit.equals(FOOT)) {
-            return new Length(this.value / 12, targetUnit);
+            return new Length(this.value / 12, Unit.FOOT);
         }
 
         if (targetUnit.equals(YARD)) {
-            return new Length(this.value / 36, targetUnit);
+            return new Length(this.value / 36, Unit.YARD);
         }
 
         return this;
@@ -69,11 +69,11 @@ public class Length {
 
     private Length yardAs(String targetUnit) {
         if (targetUnit.equals(INCH)) {
-            return new Length(this.value * 36, targetUnit);
+            return new Length(this.value * 36, Unit.INCH);
         }
 
         if (targetUnit.equals(FOOT)){
-            return new Length(this.value * 3, targetUnit);
+            return new Length(this.value * 3, Unit.FOOT);
         }
 
         return this;
@@ -81,11 +81,11 @@ public class Length {
 
     private Length footAs(String targetUnit) {
         if (targetUnit.equals(YARD)) {
-            return new Length(this.value / 3, targetUnit);
+            return new Length(this.value / 3, Unit.YARD);
         }
 
         if (targetUnit.equals(INCH)) {
-            return new Length(this.value * 12, targetUnit);
+            return new Length(this.value * 12, Unit.INCH);
         }
         return this;
     }
