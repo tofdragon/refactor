@@ -20,6 +20,10 @@ public class Length {
         this.unit = unit;
         if (this.unit.equals(Length.FOOT)) {
             this.temp_unit = Unit.FOOT;
+        } else if (this.unit.equals(Length.YARD)) {
+            this.temp_unit = Unit.YARD;
+        } else {
+            this.temp_unit = Unit.INCH;
         }
     }
 
