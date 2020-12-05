@@ -27,6 +27,18 @@ public class Length {
         }
     }
 
+    public Length(double value, Unit unit) {
+        this.value = value;
+        this.temp_unit = unit;
+        if (this.temp_unit == Unit.FOOT) {
+            this.unit = Length.FOOT;
+        } else if (this.temp_unit == Unit.YARD) {
+            this.unit = Length.YARD;
+        } else {
+            this.unit = Length.INCH;
+        }
+    }
+
     public Length as(String targetUnit) {
         if (this.unit.equals(FOOT)) {
             return footAs(targetUnit);
