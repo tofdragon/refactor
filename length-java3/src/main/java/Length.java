@@ -22,21 +22,21 @@ public class Length {
         Length len = this;
 
         if (this.unit.equals(FOOT)) {
-            return footAs(targetUnit, len);
+            return footAs(targetUnit);
         }
 
         if (this.unit.equals(YARD)) {
-            return yardAs(targetUnit, len);
+            return yardAs(targetUnit);
         }
 
         if (this.unit.equals(INCH)) {
-            return inchAs(targetUnit, len);
+            return inchAs(targetUnit);
         }
 
         return this;
     }
 
-    private Length inchAs(String targetUnit, Length len) {
+    private Length inchAs(String targetUnit) {
         if (targetUnit.equals(FOOT)) {
             return new Length(this.value / 12, targetUnit);
         }
@@ -45,10 +45,10 @@ public class Length {
             return new Length(this.value / 36, targetUnit);
         }
 
-        return len;
+        return this;
     }
 
-    private Length yardAs(String targetUnit, Length len) {
+    private Length yardAs(String targetUnit) {
         if (targetUnit.equals(INCH)) {
             return new Length(this.value * 36, targetUnit);
         }
@@ -57,10 +57,10 @@ public class Length {
             return new Length(this.value * 3, targetUnit);
         }
 
-        return len;
+        return this;
     }
 
-    private Length footAs(String targetUnit, Length len) {
+    private Length footAs(String targetUnit) {
         if (targetUnit.equals(YARD)) {
             return new Length(this.value / 3, targetUnit);
         }
@@ -68,7 +68,7 @@ public class Length {
         if (targetUnit.equals(INCH)) {
             return new Length(this.value * 12, targetUnit);
         }
-        return len;
+        return this;
     }
 
     public double getValue() {
