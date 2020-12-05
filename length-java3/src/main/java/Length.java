@@ -28,16 +28,20 @@ public class Length {
             temp_targetUnit = Unit.INCH;
         }
 
+        return temp_as(temp_targetUnit);
+    }
+
+    public Length temp_as(Unit targetUnit) {
         if (this.unit == Unit.FOOT) {
-            return footAs(temp_targetUnit);
+            return footAs(targetUnit);
         }
 
         if (this.unit == Unit.YARD) {
-            return yardAs(temp_targetUnit);
+            return yardAs(targetUnit);
         }
 
         if (this.unit == Unit.INCH) {
-            return inchAs(temp_targetUnit);
+            return inchAs(targetUnit);
         }
 
         return this;
