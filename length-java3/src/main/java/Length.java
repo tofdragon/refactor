@@ -2,7 +2,9 @@
  * @author sunjing
  */
 public class Length {
+
     private final double value;
+
     private final String unit;
 
     public Length(double value, String unit) {
