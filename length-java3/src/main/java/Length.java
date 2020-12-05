@@ -68,12 +68,12 @@ public class Length {
     }
 
     private Length footAs(String targetUnit, Unit temp_targetUnit) {
-        if (targetUnit.equals(YARD)) {
-            return new Length(this.value / 3, Unit.YARD);
+        if (temp_targetUnit == Unit.YARD) {
+            return new Length(this.value / 3, temp_targetUnit);
         }
 
-        if (targetUnit.equals(INCH)) {
-            return new Length(this.value * 12, Unit.INCH);
+        if (temp_targetUnit == Unit.INCH) {
+            return new Length(this.value * 12, temp_targetUnit);
         }
         return this;
     }
