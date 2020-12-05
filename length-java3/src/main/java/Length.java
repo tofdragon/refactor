@@ -13,9 +13,14 @@ public class Length {
 
     private final String unit;
 
+    private Unit temp_unit;
+
     public Length(double value, String unit) {
         this.value = value;
         this.unit = unit;
+        if (this.unit.equals(Length.FOOT)) {
+            this.temp_unit = Unit.FOOT;
+        }
     }
 
     public Length as(String targetUnit) {
@@ -75,5 +80,9 @@ public class Length {
 
     public String getUnit() {
         return this.unit;
+    }
+
+    public Unit temp_getUnit() {
+        return this.temp_unit;
     }
 }
