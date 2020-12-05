@@ -17,8 +17,8 @@ public class Length {
         this.value = value;
         this.unit = unit;
     }
-    
-    public Length temp_as(Unit targetUnit) {
+
+    public Length as(Unit targetUnit) {
         if (this.unit == Unit.FOOT) {
             return footAs(targetUnit);
         }
