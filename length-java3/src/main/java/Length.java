@@ -38,27 +38,35 @@ public class Length {
 
     private Length inchAs(String targetUnit, Length len) {
         if (targetUnit.equals(FOOT)) {
-            len = new Length(this.value / 12, targetUnit);
-        } else if (targetUnit.equals(YARD)) {
-            len = new Length(this.value / 36, targetUnit);
+            return new Length(this.value / 12, targetUnit);
         }
+
+        if (targetUnit.equals(YARD)) {
+            return new Length(this.value / 36, targetUnit);
+        }
+
         return len;
     }
 
     private Length yardAs(String targetUnit, Length len) {
         if (targetUnit.equals(INCH)) {
-            len = new Length(this.value * 36, targetUnit);
-        } else if (targetUnit.equals(FOOT)){
-            len = new Length(this.value * 3, targetUnit);
+            return new Length(this.value * 36, targetUnit);
         }
+
+        if (targetUnit.equals(FOOT)){
+            return new Length(this.value * 3, targetUnit);
+        }
+
         return len;
     }
 
     private Length footAs(String targetUnit, Length len) {
         if (targetUnit.equals(YARD)) {
-            len = new Length(this.value / 3, targetUnit);
-        } else if (targetUnit.equals(INCH)) {
-            len = new Length(this.value * 12, targetUnit);
+            return new Length(this.value / 3, targetUnit);
+        }
+
+        if (targetUnit.equals(INCH)) {
+            return new Length(this.value * 12, targetUnit);
         }
         return len;
     }
